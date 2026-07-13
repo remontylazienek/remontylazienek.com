@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pl" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Formularz anulowania subskrypcji – Remonty Łazienek Marketplace">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>Anulowanie subskrypcji – Remonty Łazienek</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
+
+:root {
+  --navy:       #0D1B2A;
+  --blue:       #1A3A5C;
+  --gold:       #C9A84C;
+  --gold2:      #E8C97A;
+  --light:      #F4F1EB;
+  --white:      #FFFFFF;
+  --gray:       #8A9BAD;
+  --error:      #ff6b6b;
+  --error-bg:   rgba(255,107,107,0.08);
+  --error-bdr:  rgba(255,107,107,0.4);
+  --radius:     12px;
+  --radius-sm:  7px;
+}
+
+body { font-family:'DM Sans',Arial,sans-serif; background:var(--navy); margin:0; padding:0 0 56px; color:var(--light); font-weight:300; line-height:1.6; -webkit-font-smoothing:antialiased; min-height:100vh; }
+body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse at 20% 0%,rgba(26,58,92,0.5) 0%,transparent 60%); pointer-events:none; z-index:0; }
+
+/* ── NAV ── */
+nav { position:sticky; top:0; z-index:100; background:rgba(13,27,42,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.18); padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-back { font-size:12px; color:rgba(201,168,76,0.75); text-decoration:none; display:flex; align-items:center; gap:6px; }
+.nav-back:hover { color:var(--gold2); }
+
+/* ── LAYOUT ── */
+.page-wrap { position:relative; z-index:1; padding:32px 16px 0; }
+
+.card { background:var(--navy); border-radius:var(--radius); max-width:600px; width:100%; margin:0 auto; overflow:hidden; box-shadow:0 8px 40px rgba(0,0,0,0.5); border:1px solid rgba(201,168,76,0.15); }
+
+/* ── HEADER ── */
+.card-header { background:var(--navy); border-bottom:2px solid rgba(201,168,76,0.35); padding:48px 48px 40px; position:relative; overflow:hidden; text-align:center; }
+.card-header::after { content:''; position:absolute; top:16px; right:20px; width:56px; height:68px; background-image:url("data:image/svg+xml,%3Csvg width='56' height='68' viewBox='0 0 56 68' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M42 4 C42 4 42 22 28 22' stroke='%23C9A84C' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3Crect x='8' y='20' width='36' height='12' rx='6' stroke='%23C9A84C' stroke-width='2' fill='none'/%3E%3Cline x1='14' y1='36' x2='14' y2='44' stroke='%23C9A84C' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='21' y1='36' x2='19' y2='46' stroke='%23C9A84C' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='28' y1='36' x2='28' y2='45' stroke='%23C9A84C' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='35' y1='36' x2='37' y2='46' stroke='%23C9A84C' stroke-width='1.5' stroke-linecap='round'/%3E%3Cline x1='42' y1='36' x2='42' y2='44' stroke='%23C9A84C' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; opacity:0.14; pointer-events:none; }
+
+.deco-line { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:20px; }
+.deco-line::before,.deco-line::after { content:''; width:32px; height:1px; background:linear-gradient(90deg,transparent,#C9A84C,transparent); opacity:0.8; }
+.deco-diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); opacity:0.7; }
+.brand-name { font-family:'DM Sans',Arial,sans-serif; font-size:10px; font-weight:500; letter-spacing:5px; text-transform:uppercase; color:var(--gold); margin:0 0 10px 0; line-height:1; }
+.page-title { font-family:'Playfair Display',Georgia,serif; font-size:38px; font-weight:900; color:var(--white); letter-spacing:0.5px; line-height:1.15; margin:0 0 16px 0; }
+.page-title em { font-style:italic; color:var(--gold2); }
+.tagline { font-family:'DM Sans',Arial,sans-serif; font-size:13px; font-weight:300; color:rgba(244,241,235,0.65); line-height:1.7; }
+
+/* ── BODY ── */
+.card-body { padding:36px 48px 40px; background:var(--navy); }
+
+.info-box { display:flex; gap:14px; align-items:flex-start; background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.25); border-left:3px solid var(--gold); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:14px 18px; margin-bottom:28px; }
+.info-box p { font-size:12.5px; line-height:1.7; color:rgba(244,241,235,0.8); }
+.info-box strong { font-weight:500; color:var(--gold2); }
+
+/* ── FORM ── */
+.form-group { margin-bottom:20px; }
+.form-group label { display:block; font-size:10.5px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); margin-bottom:7px; }
+.required-mark { color:var(--error); margin-left:2px; }
+
+input[type="email"],input[type="text"],select,textarea {
+  width:100%; padding:12px 16px;
+  border:1px solid rgba(255,255,255,0.12); border-radius:var(--radius-sm);
+  font-family:'DM Sans',Arial,sans-serif; font-size:14px; font-weight:300;
+  color:var(--light); background:rgba(255,255,255,0.05);
+  transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+select { background-color:#112236; color:var(--light); }
+select option { background-color:#112236; color:var(--light); }
+input::placeholder,textarea::placeholder { color:var(--gray); opacity:0.6; font-weight:300; }
+input:focus,select:focus,textarea:focus { outline:none; border-color:var(--gold); background:rgba(201,168,76,0.06); box-shadow:0 0 0 3px rgba(201,168,76,0.15); }
+textarea { resize:vertical; min-height:90px; }
+.field-error { display:none; font-size:11.5px; color:var(--error); margin-top:6px; padding-left:2px; }
+.field-error.visible { display:block; }
+input.invalid { border-color:rgba(255,107,107,0.5); background:rgba(255,107,107,0.06); }
+
+.separator { display:flex; align-items:center; gap:16px; margin:28px 0; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); opacity:0.6; }
+.separator::before,.separator::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.1); }
+
+.info-block { border-radius:var(--radius-sm); padding:16px 18px; margin-bottom:12px; font-size:11.5px; line-height:1.85; font-weight:300; }
+.info-block--neutral { background:rgba(26,58,92,0.35); border:1px solid rgba(255,255,255,0.09); }
+.info-block--moss { background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.25); }
+.info-block-title { display:block; font-size:9.5px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:500; margin-bottom:10px; padding-bottom:8px; border-bottom:1px solid rgba(255,255,255,0.1); }
+.info-block--moss .info-block-title { border-bottom-color:rgba(201,168,76,0.3); color:var(--gold2); }
+.info-block p { color:rgba(244,241,235,0.75); margin:0; }
+.info-block strong { font-weight:500; color:var(--white); }
+.info-block a { color:var(--gold); text-decoration:underline; text-underline-offset:2px; }
+.info-block a:hover { color:var(--gold2); }
+
+.checkbox-row { display:flex; align-items:flex-start; gap:14px; padding:16px 18px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); border-radius:var(--radius-sm); margin-bottom:20px; cursor:pointer; transition:border-color 0.2s,background 0.2s; }
+.checkbox-row:hover { border-color:rgba(201,168,76,0.4); }
+.checkbox-row.checked { border-color:rgba(201,168,76,0.6); background:rgba(201,168,76,0.10); }
+.checkbox-row input[type="checkbox"] { width:18px; height:18px; flex-shrink:0; margin-top:2px; accent-color:var(--gold); cursor:pointer; }
+.checkbox-label { font-size:13px; font-weight:300; color:rgba(244,241,235,0.8); line-height:1.65; cursor:pointer; }
+.checkbox-label strong { font-weight:500; color:var(--white); }
+
+.form-errors { display:none; background:var(--error-bg); border:1px solid rgba(255,107,107,0.3); border-left:3px solid var(--error); border-radius:0 var(--radius-sm) var(--radius-sm) 0; padding:12px 16px; margin-bottom:18px; font-size:12.5px; color:#ff9999; }
+.form-errors.visible { display:block; }
+
+.btn-cancel { width:100%; padding:16px 24px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); border:none; border-radius:var(--radius-sm); font-family:'DM Sans',Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:2.5px; text-transform:uppercase; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 24px rgba(201,168,76,0.3); }
+.btn-cancel:hover:not(:disabled) { box-shadow:0 8px 32px rgba(201,168,76,0.45); transform:translateY(-2px); }
+.btn-cancel:disabled { background:rgba(255,255,255,0.08); color:var(--gray); cursor:not-allowed; transform:none; box-shadow:none; border:1px solid rgba(255,255,255,0.1); }
+.legal-note { font-size:11px; color:var(--gray); text-align:center; margin-top:14px; line-height:1.7; opacity:0.8; }
+.legal-note a { color:var(--gold); text-decoration:underline; }
+
+/* ── SUCCESS ── */
+.success-screen { display:none; text-align:center; padding:64px 48px; background:var(--navy); }
+.success-emblem { width:72px; height:72px; margin:0 auto 28px; }
+.success-emblem-ring { width:72px; height:72px; border-radius:50%; background:rgba(201,168,76,0.12); border:1.5px solid rgba(201,168,76,0.4); display:flex; align-items:center; justify-content:center; }
+.success-check { font-size:28px; color:var(--gold); line-height:1; }
+.success-screen h2 { font-family:'Playfair Display',Georgia,serif; font-size:30px; font-weight:900; color:var(--white); margin-bottom:14px; }
+.success-divider { width:36px; height:1px; background:linear-gradient(90deg,transparent,var(--gold),transparent); margin:0 auto 18px; opacity:0.8; }
+.success-screen p { font-size:13.5px; font-weight:300; color:rgba(244,241,235,0.7); line-height:1.9; max-width:340px; margin:0 auto; }
+.success-screen .btn-home { display:inline-block; margin-top:28px; padding:12px 28px; border:1px solid rgba(201,168,76,0.4); color:rgba(244,241,235,0.8); font-size:13px; border-radius:7px; text-decoration:none; transition:border-color 0.2s,background 0.2s; }
+.success-screen .btn-home:hover { border-color:rgba(201,168,76,0.7); background:rgba(201,168,76,0.07); }
+
+/* ── FOOTER ── */
+.card-footer { background:rgba(10,22,36,0.6); border-top:1px solid rgba(201,168,76,0.2); padding:16px 48px; text-align:center; }
+.card-footer p { font-size:11px; color:var(--gray); }
+.card-footer a { color:rgba(201,168,76,0.75); text-decoration:none; }
+.card-footer a:hover { color:var(--gold2); text-decoration:underline; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:560px) {
+  nav { padding:0 16px; }
+  .card-header,.card-body,.card-footer { padding-left:20px; padding-right:20px; }
+  .success-screen { padding:48px 20px; }
+  .page-title { font-size:30px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
+  <a href="wybor-planow.html" class="nav-back">← Powrót do planów</a>
+</nav>
+
+<div class="page-wrap">
+<main aria-label="Formularz anulowania subskrypcji">
+<div class="card">
+
+  <header class="card-header">
+    <div class="deco-line" aria-hidden="true"><div class="deco-diamond"></div></div>
+    <p class="brand-name" aria-hidden="true">Remonty Łazienek</p>
+    <h1 class="page-title">Anulowanie<br><em>subskrypcji</em></h1>
+    <p class="tagline">Wypełnij formularz — potwierdzimy anulowanie e-mailem w ciągu 24 godzin.</p>
+  </header>
+
+  <div class="card-body" id="form-screen">
+    <div id="form-errors" class="form-errors" role="alert" aria-live="assertive" tabindex="-1"></div>
+
+    <div class="info-box" role="note">
+      <p><strong>Po anulowaniu</strong> zachowujesz dostęp do końca opłaconego okresu. Kolejna opłata nie zostanie pobrana. Potwierdzenie rozwiązania umowy otrzymasz e-mailem.</p>
+    </div>
+
+    <form id="cancel-form" novalidate aria-label="Dane do anulowania subskrypcji">
+
+      <div class="form-group">
+        <label for="email">Adres e-mail konta <span class="required-mark" aria-hidden="true">*</span></label>
+        <input type="email" id="email" name="email" placeholder="twoj@email.pl" aria-required="true" autocomplete="email">
+        <span id="email-error" class="field-error" role="alert">Wpisz prawidłowy adres e-mail.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="firma">Nazwa firmy <span class="required-mark" aria-hidden="true">*</span></label>
+        <input type="text" id="firma" name="firma" placeholder="Nazwa Twojej firmy" aria-required="true" autocomplete="organization">
+        <span id="firma-error" class="field-error" role="alert">Wpisz nazwę firmy.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="powod">Powód rezygnacji <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;color:var(--gray);">(opcjonalnie)</span></label>
+        <select id="powod" name="powod">
+          <option value="">— wybierz opcjonalnie —</option>
+          <option value="cena">Cena zbyt wysoka</option>
+          <option value="brak_zlecen">Za mało zleceń</option>
+          <option value="jakosc">Jakość zleceń nieodpowiednia</option>
+          <option value="przerwa">Przerwa w działalności</option>
+          <option value="konkurencja">Wybieram inną platformę</option>
+          <option value="inne">Inny powód</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="uwagi">Dodatkowe uwagi <span style="font-weight:300;text-transform:none;letter-spacing:0;font-size:11px;color:var(--gray);">(opcjonalnie)</span></label>
+        <textarea id="uwagi" name="uwagi" placeholder="Opcjonalnie — co moglibyśmy poprawić?"></textarea>
+      </div>
+
+      <div class="info-block info-block--neutral" role="region" aria-label="Informacja RODO">
+        <span class="info-block-title">Informacja o przetwarzaniu danych osobowych (art. 13 RODO)</span>
+        <p>
+          <strong>Administrator:</strong> Platforma Remonty Łazienek, e-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a><br><br>
+          <strong>Cel:</strong> obsługa wniosku o anulowanie subskrypcji (art. 6 ust. 1 lit. b RODO).<br><br>
+          <strong>Okres przechowywania:</strong> 5 lat od zakończenia umowy (obowiązki podatkowe).<br><br>
+          <strong>Prawa (art. 15–22 RODO):</strong> dostęp, sprostowanie, usunięcie, ograniczenie, sprzeciw.<br><br>
+          <strong>Skarga do PUODO:</strong> ul. Stawki 2, 00-193 Warszawa, <a href="https://uodo.gov.pl" target="_blank" rel="noopener">uodo.gov.pl</a>
+        </p>
+      </div>
+
+      <div class="separator" aria-hidden="true">potwierdzenie</div>
+
+      <div class="checkbox-row" id="cb-wrap" onclick="toggleCheck()">
+        <input type="checkbox" id="confirm" name="confirm" aria-required="true" onclick="event.stopPropagation()">
+        <label class="checkbox-label" for="confirm" onclick="event.preventDefault()">
+          Potwierdzam, że chcę anulować subskrypcję. <strong>Rozumiem, że dostęp zachowuję do końca opłaconego okresu, a kolejna opłata nie zostanie pobrana.</strong>
+        </label>
+      </div>
+
+      <button type="button" class="btn-cancel" id="btn-submit" disabled aria-disabled="true">
+        Anuluj subskrypcję
+      </button>
+
+      <div class="info-block info-block--moss" style="margin-top:18px;" role="note">
+        <p>
+          <strong>Czas realizacji:</strong> Potwierdzenie anulowania zostanie wysłane e-mailem <strong>w ciągu 24 godzin</strong>.<br><br>
+          Brak potwierdzenia? Napisz: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
+        </p>
+      </div>
+
+      <p class="legal-note">
+        Anulowanie subskrypcji jest bezpłatne i zgodne z <a href="regulamin.html">regulaminem</a>.<br>
+        Pytania: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
+      </p>
+    </form>
+  </div>
+
+  <div class="success-screen" id="success-screen" role="status" aria-live="assertive" tabindex="-1">
+    <div class="success-emblem" aria-hidden="true">
+      <div class="success-emblem-ring"><span class="success-check">✓</span></div>
+    </div>
+    <h2>Subskrypcja anulowana</h2>
+    <div class="success-divider" aria-hidden="true"></div>
+    <p>Potwierdzenie wysłaliśmy na Twój adres e-mail.<br><br>Zachowujesz dostęp do platformy do końca opłaconego okresu.<br><br>Dziękujemy za współpracę.</p>
+    <a href="index.html" class="btn-home">Wróć do strony głównej</a>
+  </div>
+
+  <footer class="card-footer">
+    <p>
+      <a href="regulamin.html">Regulamin</a> &nbsp;·&nbsp;
+      <a href="polityka-prywatnosci.html">Polityka prywatności</a> &nbsp;·&nbsp;
+      <a href="mailto:platforma@remontylazienek.com">Pomoc</a>
+    </p>
+  </footer>
+</div>
+</main>
+</div>
+
+<script>
+/* Checkbox */
+document.getElementById('confirm').addEventListener('change', function() {
+  var checked = this.checked;
+  document.getElementById('cb-wrap').classList.toggle('checked', checked);
+  var btn = document.getElementById('btn-submit');
+  btn.disabled = !checked;
+  btn.setAttribute('aria-disabled', String(!checked));
+});
+
+function toggleCheck() {
+  var cb = document.getElementById('confirm');
+  cb.checked = !cb.checked;
+  cb.dispatchEvent(new Event('change'));
+}
+
+/* Walidacja */
+function showFieldError(fieldId, errorId, show) {
+  var field = document.getElementById(fieldId);
+  var error = document.getElementById(errorId);
+  if (show) { error.classList.add('visible'); field.setAttribute('aria-invalid','true'); field.classList.add('invalid'); }
+  else { error.classList.remove('visible'); field.removeAttribute('aria-invalid'); field.classList.remove('invalid'); }
+}
+
+/* Wysyłka */
+document.getElementById('btn-submit').addEventListener('click', function() {
+  var email  = document.getElementById('email').value.trim();
+  var firma  = document.getElementById('firma').value.trim();
+  var errors = document.getElementById('form-errors');
+  var hasErr = false;
+
+  var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  showFieldError('email','email-error',!emailOk);
+  if (!emailOk) hasErr = true;
+
+  showFieldError('firma','firma-error',!firma);
+  if (!firma) hasErr = true;
+
+  if (hasErr) { errors.textContent='Proszę poprawić zaznaczone pola.'; errors.classList.add('visible'); errors.focus(); return; }
+  errors.classList.remove('visible');
+
+  var payload = { email:email, firma:firma, powod:document.getElementById('powod').value, uwagi:document.getElementById('uwagi').value, timestamp:new Date().toISOString() };
+
+  /*
+   * Aby formularz działał, zastąp poniższy URL adresem swojego
+   * Google Apps Script Web App lub innym endpointem (np. Formspree):
+   * Formspree: https://formspree.io/f/TWOJ_ID
+   * Apps Script: https://script.google.com/macros/s/TWOJ_ID/exec
+   */
+  var url = 'https://formspree.io/f/ZASTAP_SWOIM_ID';
+
+  fetch(url, { method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'}, body:JSON.stringify(payload) })
+    .then(function(r) { showSuccess(); })
+    .catch(function() {
+      /* Fallback: otwórz klienta pocztowego */
+      var body = encodeURIComponent('E-mail: ' + email + '\nFirma: ' + firma + '\nPowód: ' + payload.powod + '\nUwagi: ' + payload.uwagi);
+      window.location.href = 'mailto:platforma@remontylazienek.com?subject=Anulowanie+subskrypcji&body=' + body;
+    });
+});
+
+function showSuccess() {
+  document.getElementById('form-screen').style.display = 'none';
+  var s = document.getElementById('success-screen');
+  s.style.display = 'block';
+  s.focus();
+}
+
+/* Pre-fill z URL */
+(function() {
+  try {
+    var p = new URLSearchParams(window.location.search);
+    var email = p.get('email'); var firma = p.get('firma');
+    if (email) document.getElementById('email').value = decodeURIComponent(email);
+    if (firma) document.getElementById('firma').value = decodeURIComponent(firma);
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
