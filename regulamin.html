@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulamin – Remonty Łazienek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --navy:#0D1B2A; --blue:#1A3A5C; --gold:#C9A84C; --gold2:#E8C97A; --light:#F4F1EB; --white:#FFFFFF; --gray:#8A9BAD; }
+html { scroll-behavior: smooth; }
+body { background:var(--navy); color:var(--light); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.8; min-height:100vh; overflow-x:hidden; }
+body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse at 20% 0%,rgba(26,58,92,0.45) 0%,transparent 60%); pointer-events:none; z-index:0; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(13,27,42,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.18); padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-links { display:flex; align-items:center; gap:28px; }
+.nav-links a { font-size:13px; color:rgba(244,241,235,0.75); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--white); }
+.nav-cta { padding:9px 22px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy)!important; font-weight:500!important; border-radius:7px; }
+.nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; }
+.nav-burger span { display:block; width:22px; height:2px; background:var(--light); border-radius:2px; }
+.nav-mobile { display:none; position:fixed; top:64px; left:0; right:0; background:rgba(13,27,42,0.98); border-bottom:1px solid rgba(201,168,76,0.18); padding:24px 32px; flex-direction:column; gap:20px; z-index:99; }
+.nav-mobile.open { display:flex; }
+.nav-mobile a { font-size:15px; color:rgba(244,241,235,0.85); text-decoration:none; padding:4px 0; }
+
+.wrapper { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:60px 32px 100px; }
+
+/* ── PAGE HEADER ── */
+.page-eyebrow { display:inline-block; font-size:11px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border-bottom:1px solid rgba(201,168,76,0.4); padding-bottom:6px; margin-bottom:28px; }
+.page-h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,52px); font-weight:900; color:var(--white); line-height:1.1; margin-bottom:12px; }
+.page-h1 em { font-style:normal; color:var(--gold2); }
+.page-date { font-size:13px; color:var(--gray); margin-bottom:48px; }
+
+/* ── DIVIDER ── */
+.divider { height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent); margin:40px 0; }
+
+/* ── SECTIONS ── */
+.reg-section { margin-bottom:36px; }
+.reg-section h2 {
+  font-family:'Playfair Display',serif; font-size:20px; font-weight:700;
+  color:var(--white); margin-bottom:16px; padding-bottom:10px;
+  border-bottom:1px solid rgba(201,168,76,0.2);
+  display:flex; align-items:center; gap:12px;
+}
+.reg-section h2 .para-num {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:28px; height:28px; background:rgba(201,168,76,0.15);
+  border:1px solid rgba(201,168,76,0.35); border-radius:50%;
+  font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500;
+  color:var(--gold); flex-shrink:0;
+}
+
+.reg-section p { font-size:15px; color:rgba(244,241,235,0.82); margin-bottom:10px; }
+.reg-section p:last-child { margin-bottom:0; }
+.reg-section ul { list-style:none; padding:0; margin:8px 0 10px 0; }
+.reg-section ul li { font-size:15px; color:rgba(244,241,235,0.78); padding:4px 0 4px 20px; position:relative; }
+.reg-section ul li::before { content:'—'; position:absolute; left:0; color:var(--gold); opacity:0.6; }
+
+.limits-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:14px; }
+.limits-table th { padding:10px 16px; text-align:left; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:500; border-bottom:1px solid rgba(255,255,255,0.1); }
+.limits-table td { padding:12px 16px; color:rgba(244,241,235,0.8); border-bottom:1px solid rgba(255,255,255,0.06); }
+.limits-table tr:hover td { background:rgba(201,168,76,0.04); }
+.limits-table td:first-child { color:var(--gold2); font-weight:500; }
+
+/* ── CTA ── */
+.cta-box { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-radius:12px; padding:28px 32px; margin-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+.cta-box p { font-size:15px; color:rgba(244,241,235,0.8); }
+.cta-box a { display:inline-block; padding:12px 28px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); font-size:13px; font-weight:500; border-radius:7px; text-decoration:none; white-space:nowrap; }
+
+footer { position:relative; z-index:1; border-top:1px solid rgba(201,168,76,0.15); background:rgba(10,22,36,0.7); padding:28px 32px; text-align:center; }
+.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 24px; margin-bottom:12px; }
+.footer-links a { font-size:12px; color:rgba(201,168,76,0.7); text-decoration:none; }
+.footer-links a:hover { color:var(--gold2); }
+footer p { font-size:11px; color:var(--gray); opacity:0.7; }
+
+@media (max-width:680px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-burger { display:flex; }
+  .wrapper { padding:40px 20px 80px; }
+  .cta-box { flex-direction:column; }
+  footer { padding:20px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dla Wykonawców</a>
+    <a href="dla-klientow.html">Dla Klientów</a>
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="anulowanie.html">Anulowanie</a>
+    <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Dla Wykonawców</a>
+  <a href="dla-klientow.html">Dla Klientów</a>
+  <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+  <a href="anulowanie.html">Anulowanie subskrypcji</a>
+  <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+</div>
+
+<div class="wrapper">
+
+  <span class="page-eyebrow">Dokument prawny</span>
+  <h1 class="page-h1">Regulamin <em>Platformy</em></h1>
+  <p class="page-date">Obowiązuje od dnia 01.03.2026</p>
+
+  <div class="divider"></div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§1</span>Postanowienia ogólne</h2>
+    <p>Regulamin określa zasady korzystania z Platformy internetowej prowadzonej przez Operatora.</p>
+    <p>Operatorem Platformy jest: <strong style="color:var(--white);">[Nazwa firmy, forma prawna, adres, NIP, e-mail]</strong>.</p>
+    <p>Platforma świadczy usługę drogą elektroniczną. Umowa zawierana jest w formie elektronicznej. Regulamin stanowi integralną część umowy.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§2</span>Definicje</h2>
+    <ul>
+      <li><strong style="color:var(--white);">Platforma</strong> – system teleinformatyczny umożliwiający przekazywanie Wykonawcom zapytań od Klientów.</li>
+      <li><strong style="color:var(--white);">Operator</strong> – właściciel Platformy.</li>
+      <li><strong style="color:var(--white);">Wykonawca</strong> – przedsiębiorca korzystający z Platformy.</li>
+      <li><strong style="color:var(--white);">Wykonawca uprzywilejowany</strong> – osoba fizyczna prowadząca JDG zawierająca umowę niezwiązaną bezpośrednio z jej zawodowym charakterem.</li>
+      <li><strong style="color:var(--white);">Klient</strong> – osoba zainteresowana usługą.</li>
+      <li><strong style="color:var(--white);">Zlecenie (Lead)</strong> – przekazanie danych kontaktowych Klienta.</li>
+      <li><strong style="color:var(--white);">Subskrypcja</strong> – cykliczna, automatycznie odnawialna usługa dostępu do Platformy.</li>
+      <li><strong style="color:var(--white);">Okres rozliczeniowy</strong> – 30 dni, o ile nie wskazano inaczej.</li>
+    </ul>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§3</span>Charakter usługi</h2>
+    <p>Platforma świadczy wyłącznie usługę pośrednictwa polegającą na przekazaniu danych kontaktowych. Operator nie jest stroną umowy między Wykonawcą a Klientem.</p>
+    <p>Operator nie gwarantuje:</p>
+    <ul>
+      <li>określonej liczby zleceń</li>
+      <li>minimalnej wartości zlecenia</li>
+      <li>skuteczności sprzedaży</li>
+      <li>zawarcia umowy z Klientem</li>
+      <li>jakości zapytania</li>
+      <li>dostępności Klienta</li>
+    </ul>
+    <p>Przekazanie Zlecenia oznacza prawidłowe wykonanie świadczenia przez Operatora. Subskrypcja obejmuje dostęp do systemu oraz gotowość przekazywania zleceń, a nie gwarancję ich uzyskania.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§4</span>Zasady przydzielania zleceń</h2>
+    <p>Zlecenia przydzielane są automatycznie według: lokalizacji, aktywnej Subskrypcji, limitu planu oraz parametrów systemowych. Algorytm przydziału stanowi tajemnicę przedsiębiorstwa Operatora.</p>
+    <p>Limity miesięczne:</p>
+    <table class="limits-table">
+      <thead><tr><th>Plan</th><th>Zleceń / miesiąc</th><th>Max dziennie</th></tr></thead>
+      <tbody>
+        <tr><td>PRÓBNY</td><td>1 zlecenie</td><td>1</td></tr>
+        <tr><td>START</td><td>5 zleceń</td><td>1</td></tr>
+        <tr><td>STANDARD</td><td>10 zleceń</td><td>2</td></tr>
+        <tr><td>PREMIUM</td><td>20 zleceń</td><td>4</td></tr>
+      </tbody>
+    </table>
+    <p>Niewykorzystane limity nie przechodzą na kolejny okres. Operator może odmówić przekazania zlecenia w przypadku zaległości w płatnościach, naruszenia Regulaminu lub podejrzenia nadużycia systemu.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§5</span>Subskrypcja i płatności cykliczne</h2>
+    <p>Subskrypcja odnawia się automatycznie na kolejny Okres rozliczeniowy. Wykonawca wyraża zgodę na cykliczne obciążenie wybranej metody płatności. Informacja o cenie, okresie oraz automatycznym odnowieniu prezentowana jest przed zawarciem umowy.</p>
+    <p>Rezygnacja z Subskrypcji możliwa jest najpóźniej 24h przed końcem okresu. Brak rezygnacji oznacza przedłużenie Subskrypcji. Opłaty są bezzwrotne za rozpoczęty okres rozliczeniowy.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§6</span>Prawo odstąpienia (JDG na prawach konsumenta)</h2>
+    <p>Wykonawcy uprzywilejowanemu przysługuje 14-dniowe prawo odstąpienia. Prawo wygasa, jeżeli Wykonawca wyraził zgodę na rozpoczęcie świadczenia, został poinformowany o utracie prawa i otrzymał pierwsze Zlecenie. W przypadku odstąpienia przed wykonaniem świadczenia zwrot następuje proporcjonalnie.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§7</span>Obowiązki Wykonawcy</h2>
+    <ul>
+      <li>Kontakt z Klientem w 24h od otrzymania informacji o nowym zleceniu.</li>
+      <li>Zakaz wykorzystania danych poza realizacją danego Zlecenia.</li>
+      <li>Zakaz omijania Platformy.</li>
+      <li>Zakaz działań szkodzących reputacji Platformy.</li>
+      <li>Zakaz składania nieuzasadnionych roszczeń w złej wierze.</li>
+    </ul>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§8</span>Nadużycia i ochrona systemu</h2>
+    <p>Za nadużycie uznaje się m.in.: fikcyjne zgłoszenia reklamacyjne, celowe generowanie sporów, próby testowania systemu w celu jego obejścia, podawanie nieprawdziwych danych, próby odzyskania środków mimo wykonania usługi.</p>
+    <p>W takich przypadkach Operator może zablokować konto, rozwiązać umowę natychmiast, dochodzić odszkodowania na zasadach ogólnych lub zgłosić sprawę do operatora płatności.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§9</span>Reklamacje</h2>
+    <p>Reklamacje należy zgłaszać w terminie 7 dni. Brak zgłoszenia w terminie oznacza akceptację wykonania usługi. Reklamacje nie obejmują: braku zawarcia umowy, braku odpowiedzi Klienta, ceny zlecenia, subiektywnej oceny jakości zapytania.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§10</span>Odpowiedzialność</h2>
+    <p>Wobec przedsiębiorców odpowiedzialność ograniczona jest do wysokości jednej miesięcznej Subskrypcji. Wobec Wykonawców uprzywilejowanych — do wysokości rzeczywiście poniesionej szkody. Operator nie odpowiada za utracone korzyści, utratę reputacji, utracone kontrakty, szkody pośrednie ani zdarzenia siły wyższej.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§11</span>Rozwiązanie umowy</h2>
+    <p>Umowa zawierana jest na czas nieokreślony. Rezygnacja skutkuje zakończeniem po bieżącym okresie. Operator może rozwiązać umowę natychmiast w przypadku naruszenia Regulaminu, nadużyć lub działań na szkodę Platformy.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§12</span>Zmiany Regulaminu i cen</h2>
+    <p>Operator może zmienić Regulamin lub cenę z ważnych przyczyn. Informacja przekazywana 14 dni wcześniej. Brak rezygnacji oznacza akceptację zmian.</p>
+  </div>
+
+  <div class="reg-section">
+    <h2><span class="para-num">§13</span>Postanowienia końcowe</h2>
+    <p>Spory z przedsiębiorcami rozstrzyga sąd właściwy dla siedziby Operatora. Wobec Wykonawcy uprzywilejowanego stosuje się przepisy ogólne. Jeżeli jakiekolwiek postanowienie okaże się nieważne, pozostałe pozostają w mocy.</p>
+  </div>
+
+  <div class="cta-box">
+    <p>Masz pytania dotyczące regulaminu? Napisz do nas lub wybierz plan subskrypcji.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <a href="mailto:platforma@remontylazienek.com" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:var(--light);">Napisz do nas</a>
+      <a href="wybor-planow.html">Wybierz plan</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="regulamin.html">Regulamin</a>
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="anulowanie.html">Anuluj subskrypcję</a>
+    <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
+  </div>
+  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<script>
+const burger = document.getElementById('burger');
+const navMobile = document.getElementById('nav-mobile');
+burger.addEventListener('click', function() {
+  const open = navMobile.clas
