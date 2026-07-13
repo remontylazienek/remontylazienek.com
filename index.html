@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Platforma dla wykonawców remontów łazienek — zweryfikowane zlecenia w Twoim rejonie.">
+<title>Remonty Łazienek – Platforma dla Wykonawców</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:  #0D1B2A;
+  --blue:  #1A3A5C;
+  --gold:  #C9A84C;
+  --gold2: #E8C97A;
+  --light: #F4F1EB;
+  --white: #FFFFFF;
+  --gray:  #8A9BAD;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--light);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13,27,42,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,0.18);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+.nav-logo span { color: var(--gold); }
+
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(244,241,235,0.75);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--white); }
+
+.nav-cta {
+  padding: 9px 22px;
+  background: linear-gradient(135deg, var(--gold), #A8782A);
+  color: var(--navy) !important;
+  font-weight: 500 !important;
+  border-radius: 7px;
+  letter-spacing: 0.3px !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+  box-shadow: 0 2px 14px rgba(201,168,76,0.3);
+}
+.nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(201,168,76,0.45) !important; }
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  background: none;
+  border: none;
+}
+.nav-burger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--light);
+  border-radius: 2px;
+  transition: all 0.3s;
+}
+
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 64px;
+  left: 0; right: 0;
+  background: rgba(13,27,42,0.98);
+  border-bottom: 1px solid rgba(201,168,76,0.18);
+  padding: 24px 32px;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 99;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile a {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(244,241,235,0.85);
+  text-decoration: none;
+  padding: 4px 0;
+}
+.nav-mobile .nav-cta {
+  text-align: center;
+  padding: 12px 22px;
+}
+
+/* ── BG ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(26,58,92,0.55) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(201,168,76,0.07) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── WRAPPER ── */
+.wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 80px 32px 120px;
+}
+
+/* ── EYEBROW ── */
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-bottom: 1px solid rgba(201,168,76,0.4);
+  padding-bottom: 6px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.1s forwards;
+}
+
+/* ── H1 ── */
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 6vw, 68px);
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 40px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.25s forwards;
+}
+h1 em {
+  font-style: normal;
+  color: var(--gold2);
+  position: relative;
+}
+h1 em::after {
+  content: '';
+  position: absolute;
+  bottom: 4px; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* ── LEAD ── */
+.lead {
+  font-size: 20px;
+  font-weight: 400;
+  color: rgba(244,241,235,0.9);
+  max-width: 660px;
+  margin-bottom: 56px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.4s forwards;
+}
+
+/* ── MID ── */
+.mid {
+  opacity: 0;
+  animation: fadeUp 0.9s 0.55s forwards;
+}
+.mid p {
+  font-size: 17px;
+  color: rgba(244,241,235,0.8);
+  margin-bottom: 28px;
+  max-width: 700px;
+}
+.mid p strong { color: var(--white); font-weight: 500; }
+
+/* ── BENEFITS ── */
+.benefits {
+  margin: 48px 0;
+  display: grid;
+  gap: 20px;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.7s forwards;
+}
+.benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  transition: background 0.3s, border-color 0.3s;
+}
+.benefit:hover {
+  background: rgba(201,168,76,0.07);
+  border-color: rgba(201,168,76,0.25);
+}
+.benefit-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+.benefit-text strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.benefit-text span { font-size: 15px; color: var(--gray); line-height: 1.6; }
+
+/* ── QUOTE ── */
+.quote-block {
+  margin: 52px 0;
+  padding: 36px 40px;
+  border-left: 3px solid var(--gold);
+  background: rgba(201,168,76,0.05);
+  border-radius: 0 12px 12px 0;
+  opacity: 0;
+  animation: fadeUp 0.9s 0.85s forwards;
+}
+.quote-block p {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-style: italic;
+  color: rgba(244,241,235,0.92);
+  line-height: 1.65;
+}
+
+/* ── CLOSING ── */
+.closing {
+  opacity: 0;
+  animation: fadeUp 0.9s 1s forwards;
+}
+.closing p {
+  font-size: 17px;
+  color: rgba(244,241,235,0.8);
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+.closing p strong { color: var(--white); font-weight: 500; }
+
+/* ── CTA ── */
+.cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 48px;
+  opacity: 0;
+  animation: fadeUp 0.9s 1.15s forwards;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 18px 40px;
+  background: linear-gradient(135deg, var(--gold), #A8782A);
+  color: var(--navy);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(201,168,76,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201,168,76,0.4); }
+
+.btn-secondary {
+  display: inline-block;
+  padding: 18px 32px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--light);
+  font-size: 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.btn-secondary:hover { border-color: rgba(201,168,76,0.5); background: rgba(201,168,76,0.05); }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+  margin: 64px 0;
+  opacity: 0;
+  animation: fadeIn 1s 0.6s forwards;
+}
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(201,168,76,0.15);
+  background: rgba(10,22,36,0.7);
+  padding: 32px;
+  text-align: center;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-bottom: 16px;
+}
+.footer-links a {
+  font-size: 12px;
+  color: rgba(201,168,76,0.7);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--gold2); }
+footer p {
+  font-size: 11px;
+  color: var(--gray);
+  opacity: 0.7;
+}
+
+/* ── ANIMACJE ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 680px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-burger { display: flex; }
+  .wrapper { padding: 48px 20px 80px; }
+  .lead { font-size: 17px; }
+  .benefit { padding: 18px 20px; }
+  .quote-block { padding: 24px 24px; }
+  .quote-block p { font-size: 18px; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+  .cta-row { flex-direction: column; }
+  footer { padding: 24px 20px; }
+}
+@media (max-width: 400px) {
+  h1 { font-size: 34px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dla Wykonawców</a>
+    <a href="dla-klientow.html">Dla Klientów</a>
+    <a href="regulamin.html">Regulamin</a>
+    <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-mobile">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="nav-mobile" role="navigation" aria-label="Menu mobilne">
+  <a href="index.html">Dla Wykonawców</a>
+  <a href="dla-klientow.html">Dla Klientów</a>
+  <a href="regulamin.html">Regulamin</a>
+  <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+  <a href="anulowanie.html">Anulowanie subskrypcji</a>
+  <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+</div>
+
+<div class="wrapper">
+  <span class="eyebrow">Platforma dla profesjonalistów</span>
+
+  <h1>Skup się na pracy,<br>którą <em>naprawdę lubisz</em>.<br>Zlecenia znajdziemy za Ciebie.</h1>
+
+  <p class="lead">
+    Najlepsi fachowcy nie szukają klientów — klienci trafiają do nich sami.
+    Dołącz do grona wykonawców, którzy już teraz spokojnie planują kolejne tygodnie pracy.
+  </p>
+
+  <div class="mid">
+    <p>
+      Każdy dobry fachowiec wie, że <strong>czas spędzony na szukaniu zleceń to czas ukradziony prawdziwej robocie.</strong>
+      Telefony do nieznajomych, niepewne zapytania, klienci którzy „jeszcze się zastanowią" —
+      to kosztuje Cię energię i pieniądze, których wolałbyś nie tracić.
+    </p>
+    <p>
+      Wyobraź sobie, że budzisz się rano i wiesz, że na Twoim mailu czeka już
+      <strong>zweryfikowane zlecenie z konkretnym klientem</strong> — gotowym do rozmowy,
+      z realną decyzją o remoncie i budżetem na realizację.
+      Nie musisz nic szukać. Wystarczy zadzwonić, ustalić termin i zabrać się do roboty.
+    </p>
+  </div>
+
+  <div class="benefits">
+    <div class="benefit">
+      <div class="benefit-icon">✓</div>
+      <div class="benefit-text">
+        <strong>Tylko gotowi klienci</strong>
+        <span>Każde zlecenie przechodzi weryfikację — sprawdzamy decyzję o remoncie, budżet i zgodę właściciela. Do Ciebie trafia wyłącznie ktoś, kto naprawdę chce działać.</span>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">✓</div>
+      <div class="benefit-text">
+        <strong>Zero czasu na poszukiwania</strong>
+        <span>Koniec z portalami ogłoszeniowymi, poleceniami od znajomych i niepewnymi zapytaniami z mediów społecznościowych. Zlecenie samo do Ciebie przychodzi.</span>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">✓</div>
+      <div class="benefit-text">
+        <strong>Jeden telefon — i wiesz wszystko</strong>
+        <span>Otrzymujesz komplet informacji: lokalizację, zakres prac i metraż łazienki. Jeden kontakt z klientem wystarczy, żeby ustalić termin i kwotę.</span>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">✓</div>
+      <div class="benefit-text">
+        <strong>Zasięg dopasowany do Twojej okolicy</strong>
+        <span>System kieruje zlecenia wyłącznie do wykonawców w pobliżu klienta. Żadnych dojazdów na drugi koniec województwa — pracujesz tam, gdzie chcesz.</span>
+      </div>
+    </div>
+    <div class="benefit">
+      <div class="benefit-icon">✓</div>
+      <div class="benefit-text">
+        <strong>Kontrolujesz tempo pracy</strong>
+        <span>Ty decydujesz ile zleceń miesięcznie chcesz obsługiwać. System dopasowuje limit do Twojego planu — dostajesz więcej, gdy masz moce przerobowe; mniej, gdy kalendarz jest pełny.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quote-block">
+    <p>
+      „Kiedy zaczniesz pracować ze stałym, pewnym źródłem zleceń,
+      zauważysz że Twoja praca nabiera innego rytmu —
+      spokojniejszego, bardziej przewidywalnego.
+      Właśnie tak powinna wyglądać dobrze prowadzona firma."
+    </p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="closing">
+    <p>
+      Profesjonaliści, którzy dołączyli do platformy, mówią o jednej zmianie, którą odczuli najszybciej:
+      <strong>przestali zastanawiać się skąd będzie następne zlecenie.</strong>
+      To spokój, który pozwala skupić się na tym, co najważniejsze.
+    </p>
+    <p>
+      Zacznij od planu próbnego — <strong>odbierz pierwsze zlecenie i sam oceń czy ta współpraca ma sens.</strong>
+      Jeśli poczujesz, że to działa, kolejny krok będzie oczywisty.
+    </p>
+    <p>
+      Twoi klienci już wypełniają formularze. <strong>Pytanie tylko, do kogo trafi ich zlecenie.</strong>
+    </p>
+  </div>
+
+  <div class="cta-row">
+    <a href="wybor-planow.html" class="btn-primary">Zacznij współpracę — wybierz swój plan</a>
+    <a href="mailto:platforma@remontylazienek.com" class="btn-secondary">Napisz do nas</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="regulamin.html">Regulamin</a>
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="anulowanie.html">Anuluj subskrypcję</a>
+    <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
+  </div>
+  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<script>
+const burger = document.getElementById('burger');
+const navMobile = document.getElementById('nav-mobile');
+burger.addEventListener('click', function() {
+  const open = navMobile.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+navMobile.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    navMobile.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
+</body>
+</html>
