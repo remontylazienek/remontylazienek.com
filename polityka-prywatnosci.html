@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Polityka prywatności – Remonty Łazienek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root { --navy:#0D1B2A; --blue:#1A3A5C; --gold:#C9A84C; --gold2:#E8C97A; --light:#F4F1EB; --white:#FFFFFF; --gray:#8A9BAD; }
+html { scroll-behavior: smooth; }
+body { background:var(--navy); color:var(--light); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.8; min-height:100vh; overflow-x:hidden; }
+body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse at 80% 0%,rgba(26,58,92,0.4) 0%,transparent 60%); pointer-events:none; z-index:0; }
+
+nav { position:sticky; top:0; z-index:100; background:rgba(13,27,42,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.18); padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:64px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-links { display:flex; align-items:center; gap:28px; }
+.nav-links a { font-size:13px; color:rgba(244,241,235,0.75); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--white); }
+.nav-cta { padding:9px 22px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy)!important; font-weight:500!important; border-radius:7px; }
+.nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; }
+.nav-burger span { display:block; width:22px; height:2px; background:var(--light); border-radius:2px; }
+.nav-mobile { display:none; position:fixed; top:64px; left:0; right:0; background:rgba(13,27,42,0.98); border-bottom:1px solid rgba(201,168,76,0.18); padding:24px 32px; flex-direction:column; gap:20px; z-index:99; }
+.nav-mobile.open { display:flex; }
+.nav-mobile a { font-size:15px; color:rgba(244,241,235,0.85); text-decoration:none; padding:4px 0; }
+
+.wrapper { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:60px 32px 100px; }
+
+.page-eyebrow { display:inline-block; font-size:11px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border-bottom:1px solid rgba(201,168,76,0.4); padding-bottom:6px; margin-bottom:28px; }
+.page-h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,52px); font-weight:900; color:var(--white); line-height:1.1; margin-bottom:12px; }
+.page-h1 em { font-style:normal; color:var(--gold2); }
+.page-date { font-size:13px; color:var(--gray); margin-bottom:48px; }
+
+.divider { height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent); margin:36px 0; }
+
+.pp-section { margin-bottom:32px; }
+.pp-section h2 { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--white); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(201,168,76,0.15); display:flex; align-items:center; gap:10px; }
+.pp-section h2 .num { display:inline-flex; align-items:center; justify-content:center; width:26px; height:26px; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3); border-radius:50%; font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500; color:var(--gold); flex-shrink:0; }
+.pp-section p { font-size:15px; color:rgba(244,241,235,0.8); margin-bottom:10px; }
+.pp-section ul { list-style:none; padding:0; margin:8px 0 10px 0; }
+.pp-section ul li { font-size:15px; color:rgba(244,241,235,0.75); padding:4px 0 4px 20px; position:relative; }
+.pp-section ul li::before { content:'–'; position:absolute; left:0; color:var(--gold); opacity:0.6; }
+.pp-section a { color:var(--gold); text-decoration:underline; text-underline-offset:2px; }
+.pp-section a:hover { color:var(--gold2); }
+
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0; }
+.col-box { background:rgba(26,58,92,0.3); border:1px solid rgba(201,168,76,0.15); border-radius:8px; padding:16px 20px; }
+.col-box-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:10px; }
+.col-box ul { margin:0; }
+.col-box ul li { font-size:13px; }
+
+.rights-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin:12px 0; }
+.right-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:14px 16px; font-size:13px; color:rgba(244,241,235,0.8); }
+.right-card strong { display:block; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--gold2); font-weight:500; margin-bottom:6px; }
+
+.contact-box { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-radius:10px; padding:20px 24px; margin-top:40px; }
+.contact-box p { font-size:15px; color:rgba(244,241,235,0.85); margin-bottom:8px; }
+.contact-box p:last-child { margin-bottom:0; }
+.contact-box a { color:var(--gold); }
+
+footer { position:relative; z-index:1; border-top:1px solid rgba(201,168,76,0.15); background:rgba(10,22,36,0.7); padding:28px 32px; text-align:center; }
+.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 24px; margin-bottom:12px; }
+.footer-links a { font-size:12px; color:rgba(201,168,76,0.7); text-decoration:none; }
+.footer-links a:hover { color:var(--gold2); }
+footer p { font-size:11px; color:var(--gray); opacity:0.7; }
+
+@media (max-width:680px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-burger { display:flex; }
+  .wrapper { padding:40px 20px 80px; }
+  .two-col { grid-template-columns:1fr; }
+  footer { padding:20px 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dla Wykonawców</a>
+    <a href="dla-klientow.html">Dla Klientów</a>
+    <a href="regulamin.html">Regulamin</a>
+    <a href="anulowanie.html">Anulowanie</a>
+    <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Dla Wykonawców</a>
+  <a href="dla-klientow.html">Dla Klientów</a>
+  <a href="regulamin.html">Regulamin</a>
+  <a href="anulowanie.html">Anulowanie subskrypcji</a>
+  <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+</div>
+
+<div class="wrapper">
+
+  <span class="page-eyebrow">RODO / Ochrona danych</span>
+  <h1 class="page-h1">Polityka <em>prywatności</em></h1>
+  <p class="page-date">Obowiązuje od dnia: [data wejścia w życie]</p>
+
+  <div class="divider"></div>
+
+  <div class="pp-section">
+    <h2><span class="num">1</span>Administrator danych</h2>
+    <p>Administratorem danych osobowych jest:</p>
+    <ul>
+      <li>[Nazwa spółki / działalności]</li>
+      <li>[Forma prawna]</li>
+      <li>[Adres siedziby]</li>
+      <li>[NIP / REGON / KRS]</li>
+      <li>E-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a></li>
+    </ul>
+    <p>Administrator przetwarza dane w związku z prowadzeniem Platformy internetowej umożliwiającej przekazywanie zapytań ofertowych Wykonawcom w modelu subskrypcyjnym.</p>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">2</span>Definicje</h2>
+    <ul>
+      <li><strong style="color:var(--white);">Platforma</strong> – system online umożliwiający przekazywanie Zleceń (Leadów)</li>
+      <li><strong style="color:var(--white);">Wykonawca</strong> – przedsiębiorca korzystający z Platformy</li>
+      <li><strong style="color:var(--white);">Klient</strong> – osoba składająca zapytanie</li>
+      <li><strong style="color:var(--white);">Subskrypcja</strong> – cykliczna usługa dostępu do Platformy</li>
+      <li><strong style="color:var(--white);">RODO</strong> – Rozporządzenie (UE) 2016/679</li>
+    </ul>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">3</span>Modele przetwarzania danych</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <p class="col-box-title">A) Administrator danych</p>
+        <ul>
+          <li>rejestracja kont</li>
+          <li>obsługa Subskrypcji</li>
+          <li>płatności</li>
+          <li>marketing własny</li>
+          <li>analityka</li>
+        </ul>
+      </div>
+      <div class="col-box">
+        <p class="col-box-title">B) Niezależni administratorzy</p>
+        <p style="font-size:13px;color:rgba(244,241,235,0.7);line-height:1.6;">Po przekazaniu danych Klienta, Wykonawca staje się odrębnym administratorem danych i odpowiada samodzielnie za dalsze przetwarzanie.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">4</span>Cele i podstawy prawne przetwarzania</h2>
+    <p><strong style="color:var(--white);">4.1 Zawarcie i realizacja umowy</strong> — art. 6 ust. 1 lit. b RODO. Zakres: dane identyfikacyjne, kontaktowe, firmowe, płatnicze.</p>
+    <p><strong style="color:var(--white);">4.2 Realizacja płatności cyklicznych</strong> — dane przekazywane operatorom płatności (np. Stripe, PayU). Podstawa: wykonanie umowy i obowiązek prawny.</p>
+    <p><strong style="color:var(--white);">4.3 Przekazywanie Zleceń</strong> — dane Klienta przetwarzane są w celu umożliwienia kontaktu i dopasowania zapytania do lokalizacji. Podstawa: zgoda Klienta i prawnie uzasadniony interes Administratora.</p>
+    <p><strong style="color:var(--white);">4.4 Marketing własnych usług</strong> — w oparciu o zgodę lub prawnie uzasadniony interes (marketing bezpośredni B2B).</p>
+    <p><strong style="color:var(--white);">4.5 Ochrona przed nadużyciami</strong> — wykrywanie oszustw, zapobieganie chargebackom, ochrona interesów prawnych. Podstawa: art. 6 ust. 1 lit. f RODO.</p>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">5</span>Profilowanie i systemy automatyczne</h2>
+    <p>Platforma wykorzystuje system algorytmicznego dopasowania zapytań na podstawie lokalizacji, rodzaju Subskrypcji i dostępnych limitów. System nie podejmuje decyzji wywołujących skutki prawne w rozumieniu art. 22 RODO.</p>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">6</span>Odbiorcy danych</h2>
+    <p>Dane mogą być przekazywane:</p>
+    <ul>
+      <li>operatorom płatności</li>
+      <li>dostawcom hostingu i chmury (np. AWS, Google Cloud)</li>
+      <li>dostawcom systemów mailingowych</li>
+      <li>kancelariom prawnym i firmom księgowym</li>
+      <li>dostawcom narzędzi analitycznych</li>
+      <li>podmiotom wspierającym rozwój technologiczny</li>
+    </ul>
+    <p>Każdy podmiot przetwarza dane na podstawie umowy powierzenia przetwarzania danych.</p>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">7</span>Przekazywanie danych poza UE</h2>
+    <p>Jeżeli dane przekazywane są poza EOG, stosowane są Standardowe Klauzule Umowne (SCC) i dodatkowe zabezpieczenia techniczne. Transfer odbywa się wyłącznie do podmiotów zapewniających odpowiedni poziom ochrony.</p>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">8</span>Okres przechowywania danych</h2>
+    <ul>
+      <li>przez czas trwania umowy</li>
+      <li>przez okres przedawnienia roszczeń (zazwyczaj 3 lata)</li>
+      <li>przez okres wymagany przepisami podatkowymi (5 lat)</li>
+      <li>dane marketingowe – do cofnięcia zgody</li>
+      <li>dane techniczne (logi) – dłużej, w celach bezpieczeństwa</li>
+    </ul>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">9</span>Prawa osób, których dane dotyczą</h2>
+    <div class="rights-grid">
+      <div class="right-card"><strong>Dostęp</strong>Prawo do uzyskania informacji o przetwarzanych danych</div>
+      <div class="right-card"><strong>Sprostowanie</strong>Prawo do poprawienia błędnych lub niekompletnych danych</div>
+      <div class="right-card"><strong>Usunięcie</strong>Prawo do bycia zapomnianym (w określonych przypadkach)</div>
+      <div class="right-card"><strong>Ograniczenie</strong>Prawo do ograniczenia przetwarzania danych</div>
+      <div class="right-card"><strong>Sprzeciw</strong>Prawo do sprzeciwu wobec przetwarzania</div>
+      <div class="right-card"><strong>Przenoszenie</strong>Prawo do otrzymania danych w formacie do odczytu</div>
+      <div class="right-card"><strong>Cofnięcie zgody</strong>W dowolnym momencie, bez wpływu na wcześniejsze przetwarzanie</div>
+      <div class="right-card"><strong>Skarga do UODO</strong>ul. Stawki 2, 00-193 Warszawa, <a href="https://uodo.gov.pl" target="_blank" rel="noopener">uodo.gov.pl</a></div>
+    </div>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">10</span>Środki bezpieczeństwa</h2>
+    <ul>
+      <li>szyfrowanie SSL/TLS</li>
+      <li>ograniczenie dostępu do danych</li>
+      <li>uwierzytelnianie wieloskładnikowe</li>
+      <li>monitoring nadużyć</li>
+      <li>regularne aktualizacje systemów</li>
+      <li>pseudonimizacja danych</li>
+    </ul>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">11</span>Dane techniczne i cookies</h2>
+    <p>Platforma wykorzystuje cookies niezbędne, cookies analityczne (po uzyskaniu zgody) oraz cookies marketingowe (po uzyskaniu zgody). Szczegóły opisane są w Polityce Cookies.</p>
+  </div>
+
+  <div class="pp-section">
+    <h2><span class="num">12</span>Zmiany Polityki</h2>
+    <p>Administrator może aktualizować Politykę w przypadku zmiany przepisów prawa, modelu biznesowego, wdrożenia nowych technologii lub ekspansji międzynarodowej. Aktualna wersja publikowana jest na stronie Platformy.</p>
+  </div>
+
+  <div class="contact-box">
+    <p><strong style="color:var(--white);">Kontakt w sprawach ochrony danych:</strong></p>
+    <p>E-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a></p>
+    <p style="margin-top:12px;font-size:13px;color:var(--gray);">Odpiszemy w ciągu 30 dni roboczych. W sprawach pilnych prosimy o kontakt telefoniczny.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="regulamin.html">Regulamin</a>
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="anulowanie.html">Anuluj subskrypcję</a>
+    <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
+  </div>
+  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<script>
+const burger = document.getElementById('burger');
+const navMobile = document.getElementById('nav-mobile');
+burger.addEventListener('click', function() {
+  const open = navMobile.clas
