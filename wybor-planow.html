@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Wybierz plan subskrypcji i zacznij otrzymywać zlecenia – Remonty Łazienek">
+<title>Wybierz plan – Remonty Łazienek</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:  #0D1B2A;
+  --blue:  #1A3A5C;
+  --gold:  #C9A84C;
+  --gold2: #E8C97A;
+  --light: #F4F1EB;
+  --white: #FFFFFF;
+  --gray:  #8A9BAD;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--navy);
+  color: var(--light);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 0%, rgba(26,58,92,0.5) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 100%, rgba(201,168,76,0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(13,27,42,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201,168,76,0.18);
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.nav-logo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); text-decoration:none; }
+.nav-logo span { color:var(--gold); }
+.nav-links { display:flex; align-items:center; gap:32px; }
+.nav-links a { font-size:13px; font-weight:400; color:rgba(244,241,235,0.75); text-decoration:none; transition:color 0.2s; }
+.nav-links a:hover { color:var(--white); }
+.nav-cta { padding:9px 22px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy)!important; font-weight:500!important; border-radius:7px; box-shadow:0 2px 14px rgba(201,168,76,0.3); transition:transform 0.2s,box-shadow 0.2s!important; }
+.nav-cta:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(201,168,76,0.45)!important; }
+.nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; }
+.nav-burger span { display:block; width:22px; height:2px; background:var(--light); border-radius:2px; }
+.nav-mobile { display:none; position:fixed; top:64px; left:0; right:0; background:rgba(13,27,42,0.98); border-bottom:1px solid rgba(201,168,76,0.18); padding:24px 32px; flex-direction:column; gap:20px; z-index:99; }
+.nav-mobile.open { display:flex; }
+.nav-mobile a { font-size:15px; color:rgba(244,241,235,0.85); text-decoration:none; padding:4px 0; }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  position: relative; z-index: 1;
+  text-align: center;
+  padding: 72px 32px 56px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 11px; font-weight: 500; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  border-bottom: 1px solid rgba(201,168,76,0.4);
+  padding-bottom: 6px; margin-bottom: 28px;
+}
+.page-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 900; color: var(--white); line-height: 1.15;
+  margin-bottom: 20px;
+}
+.page-header h1 em { font-style:normal; color:var(--gold2); }
+.page-header p {
+  font-size: 17px; color: rgba(244,241,235,0.75);
+  max-width: 540px; margin: 0 auto;
+}
+
+/* ── PLANS SECTION ── */
+.plans-section {
+  position: relative; z-index: 1;
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 24px 32px;
+}
+
+/* ── BADGE ── */
+.popular-badge {
+  text-align: center;
+  margin-bottom: 14px;
+}
+.popular-badge span {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--navy);
+  background: linear-gradient(135deg, var(--gold), #A8782A);
+  padding: 5px 18px; border-radius: 20px;
+}
+
+/* ── FEATURED PLAN ── */
+.plan-featured {
+  background: rgba(201,168,76,0.08);
+  border: 2px solid rgba(201,168,76,0.55);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+}
+.plan-featured:hover {
+  border-color: rgba(201,168,76,0.85);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(201,168,76,0.15);
+}
+
+.plan-featured-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0;
+}
+
+.plan-featured-body { padding: 32px 36px; }
+.plan-featured-tag {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold2); font-weight: 700; margin-bottom: 8px;
+}
+.plan-featured-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px; font-weight: 700; color: var(--white);
+  line-height: 1.1; margin-bottom: 12px;
+}
+.plan-featured-desc {
+  font-size: 14px; color: rgba(244,241,235,0.7);
+  line-height: 1.7; margin-bottom: 20px; max-width: 420px;
+}
+.plan-features { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; }
+.plan-feature {
+  font-size: 13px; color: var(--light);
+  display: flex; align-items: center; gap: 8px;
+}
+.plan-feature-check {
+  width: 16px; height: 16px; border-radius: 50%;
+  background: rgba(201,168,76,0.2); border: 1px solid rgba(201,168,76,0.5);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; color: var(--gold); flex-shrink: 0;
+}
+
+.plan-featured-price {
+  padding: 32px 36px;
+  border-left: 1px solid rgba(201,168,76,0.25);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-width: 180px; text-align: center;
+  background: rgba(201,168,76,0.04);
+}
+.price-label { font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: var(--gray); margin-bottom: 6px; }
+.price-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px; font-weight: 700; color: var(--gold2); line-height: 1;
+}
+.price-currency { font-size: 18px; color: var(--gray); }
+.price-period { font-size: 11px; color: var(--gray); margin-bottom: 20px; }
+
+.btn-plan-primary {
+  display: block; width: 100%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, var(--gold), #A8782A);
+  color: var(--navy);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.5px; text-align: center;
+  border-radius: 8px; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(201,168,76,0.3);
+}
+.btn-plan-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(201,168,76,0.45); }
+
+.price-note { font-size: 10px; color: var(--gray); margin-top: 10px; line-height: 1.6; }
+
+/* ── GRID OF 3 PLANS ── */
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.plan-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: flex; flex-direction: column;
+}
+.plan-card:hover {
+  border-color: rgba(201,168,76,0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.plan-card-body { padding: 24px 24px 20px; flex: 1; }
+.plan-card-name {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gray); font-weight: 700; margin-bottom: 14px;
+}
+.plan-card-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px; font-weight: 700; color: var(--white); line-height: 1;
+}
+.plan-card-price .zl { font-family:'DM Sans',sans-serif; font-size:14px; color:var(--gray); font-weight:300; }
+.plan-card-period { font-size: 11px; color: var(--gray); margin-bottom: 20px; margin-top: 4px; }
+
+.plan-card-divider {
+  height: 1px; background: rgba(255,255,255,0.08);
+  margin-bottom: 16px;
+}
+.plan-card-feature { font-size: 12px; color: rgba(244,241,235,0.8); margin-bottom: 6px; }
+
+.plan-card-footer { padding: 0 24px 24px; }
+
+.btn-plan-secondary {
+  display: block; width: 100%;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.14);
+  color: var(--light);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px; font-weight: 500;
+  text-align: center; border-radius: 7px;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-plan-secondary:hover {
+  background: rgba(201,168,76,0.12);
+  border-color: rgba(201,168,76,0.4);
+  color: var(--gold2);
+}
+
+/* ── PRÓBNY ── */
+.plan-probny {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  margin-bottom: 48px;
+  transition: border-color 0.2s, background 0.2s;
+}
+.plan-probny:hover { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.04); }
+
+.plan-probny-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 24px 28px;
+  gap: 24px;
+}
+.plan-probny-label {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gray); font-weight: 700; margin-bottom: 4px;
+}
+.plan-probny-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700; color: var(--white); margin-bottom: 8px;
+}
+.plan-probny-desc { font-size: 13px; color: rgba(244,241,235,0.65); line-height: 1.6; max-width: 500px; }
+.plan-probny-highlight {
+  background: rgba(201,168,76,0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  margin-top: 12px;
+  font-size: 12px; color: rgba(244,241,235,0.8); line-height: 1.6;
+}
+.plan-probny-highlight strong { color: var(--gold2); }
+
+.plan-probny-right {
+  text-align: center; min-width: 140px;
+  border-left: 1px solid rgba(255,255,255,0.07);
+  padding-left: 28px; flex-shrink: 0;
+}
+.probny-price { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:var(--gold2); line-height:1; }
+.probny-period { font-size:11px; color:var(--gray); margin-bottom:16px; }
+
+.btn-plan-ghost {
+  display: block; width: 100%;
+  padding: 11px 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.18);
+  color: rgba(244,241,235,0.85);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px; font-weight: 500;
+  text-align: center; border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.btn-plan-ghost:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); }
+
+/* ── INFO BOXES ── */
+.info-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 40px; }
+
+.info-box {
+  background: rgba(26,58,92,0.35);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.info-box-title { font-size: 12px; font-weight: 500; color: var(--white); margin-bottom: 6px; }
+.info-box-body { font-size: 12px; color: rgba(244,241,235,0.7); line-height: 1.7; }
+.info-box-body strong { color: var(--gold2); }
+.info-box-body a { color: var(--gold); text-decoration: none; }
+.info-box-body a:hover { color: var(--gold2); text-decoration: underline; }
+
+/* ── SEPARATOR ── */
+.sep {
+  text-align: center; font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gray); opacity: 0.7;
+  display: flex; align-items: center; gap: 16px;
+  margin: 0 0 20px;
+}
+.sep::before, .sep::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.1); }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1;
+  border-top: 1px solid rgba(201,168,76,0.15);
+  background: rgba(10,22,36,0.7);
+  padding: 28px 32px; text-align: center;
+}
+.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 24px; margin-bottom:12px; }
+.footer-links a { font-size:12px; color:rgba(201,168,76,0.7); text-decoration:none; transition:color 0.2s; }
+.footer-links a:hover { color:var(--gold2); }
+footer p { font-size:11px; color:var(--gray); opacity:0.7; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:860px) {
+  .plans-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:680px) {
+  nav { padding:0 20px; }
+  .nav-links { display:none; }
+  .nav-burger { display:flex; }
+  .page-header { padding:48px 20px 40px; }
+  .plans-section { padding:0 16px 24px; }
+  .plan-featured-inner { grid-template-columns:1fr; }
+  .plan-featured-price { border-left:none; border-top:1px solid rgba(201,168,76,0.2); padding:24px 28px; flex-direction:row; justify-content:space-between; align-items:center; min-width:unset; }
+  .price-note { display:none; }
+  .plans-grid { grid-template-columns:1fr; }
+  .plan-features { grid-template-columns:1fr; }
+  .plan-probny-inner { grid-template-columns:1fr; }
+  .plan-probny-right { border-left:none; border-top:1px solid rgba(255,255,255,0.07); padding-left:0; padding-top:20px; text-align:left; display:flex; align-items:center; gap:24px; }
+  .info-boxes { grid-template-columns:1fr; }
+  footer { padding:20px 16px; }
+}
+@media (max-width:400px) {
+  .plan-card-price { font-size:28px; }
+  .price-amount { font-size:40px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
+  <div class="nav-links">
+    <a href="index.html">Dla Wykonawców</a>
+    <a href="dla-klientow.html">Dla Klientów</a>
+    <a href="regulamin.html">Regulamin</a>
+    <a href="anulowanie.html">Anulowanie</a>
+    <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+  </div>
+  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav-mobile">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="nav-mobile" id="nav-mobile">
+  <a href="index.html">Dla Wykonawców</a>
+  <a href="dla-klientow.html">Dla Klientów</a>
+  <a href="regulamin.html">Regulamin</a>
+  <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+  <a href="anulowanie.html">Anulowanie subskrypcji</a>
+  <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+</div>
+
+<div class="page-header">
+  <span class="eyebrow">Twój wybór, Twoje tempo</span>
+  <h1>Wybierz plan<br>i zacznij odbierać <em>zlecenia</em></h1>
+  <p>Twoje konto jest gotowe. Aktywuj subskrypcję i odbieraj zlecenia w swoim rejonie.</p>
+</div>
+
+<div class="plans-section">
+
+  <!-- STANDARD — wyróżniony -->
+  <div class="popular-badge">
+    <span>🔥 Najczęściej wybierany przez profesjonalistów</span>
+  </div>
+
+  <div class="plan-featured">
+    <div class="plan-featured-inner">
+      <div class="plan-featured-body">
+        <p class="plan-featured-tag">Optymalny wybór</p>
+        <p class="plan-featured-name">Plan STANDARD</p>
+        <p class="plan-featured-desc">Gwarantuje ciągłość pracy, stabilny lejek zleceń i priorytetowe traktowanie Twojej firmy w regionie.</p>
+        <div class="plan-features">
+          <div class="plan-feature"><div class="plan-feature-check">✓</div> <strong>10 zleceń</strong>&nbsp;/ miesiąc</div>
+          <div class="plan-feature"><div class="plan-feature-check">✓</div> max <strong>2 zlecenia</strong>&nbsp;dziennie</div>
+          <div class="plan-feature"><div class="plan-feature-check">✓</div> Zasięg do <strong>35 km</strong></div>
+          <div class="plan-feature"><div class="plan-feature-check">✓</div> Priorytet dystrybucji</div>
+        </div>
+      </div>
+      <div class="plan-featured-price">
+        <p class="price-label">Co 30 dni</p>
+        <p class="price-amount">999 <span class="price-currency">zł</span></p>
+        <p class="price-period">auto-odnowienie</p>
+        <a href="potwierdzenie.html?plan=standard" class="btn-plan-primary">Wybieram STANDARD</a>
+        <p class="price-note">Rezygnacja w dowolnej chwili</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GRID: START + PREMIUM -->
+  <div class="plans-grid">
+
+    <div class="plan-card">
+      <div class="plan-card-body">
+        <p class="plan-card-name">START</p>
+        <p class="plan-card-price">499 <span class="zl">zł</span></p>
+        <p class="plan-card-period">/ 30 dni · auto-odnowienie</p>
+        <div class="plan-card-divider"></div>
+        <p class="plan-card-feature">✓ 5 zleceń / miesiąc</p>
+        <p class="plan-card-feature">✓ max 1 zlecenie dziennie</p>
+        <p class="plan-card-feature">✓ Zasięg 25 km</p>
+        <p class="plan-card-feature">✓ Standardowe wsparcie</p>
+      </div>
+      <div class="plan-card-footer">
+        <a href="potwierdzenie.html?plan=start" class="btn-plan-secondary">Wybieram START</a>
+      </div>
+    </div>
+
+    <div class="plan-card">
+      <div class="plan-card-body">
+        <p class="plan-card-name">PREMIUM</p>
+        <p class="plan-card-price">1799 <span class="zl">zł</span></p>
+        <p class="plan-card-period">/ 30 dni · auto-odnowienie</p>
+        <div class="plan-card-divider"></div>
+        <p class="plan-card-feature">✓ 20 zleceń / miesiąc</p>
+        <p class="plan-card-feature">✓ max 4 zlecenia dziennie</p>
+        <p class="plan-card-feature">✓ Zasięg 50 km</p>
+        <p class="plan-card-feature">✓ Najwyższy priorytet</p>
+      </div>
+      <div class="plan-card-footer">
+        <a href="potwierdzenie.html?plan=premium" class="btn-plan-secondary">Wybieram PREMIUM</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRÓBNY -->
+  <div class="sep">Nadal się wahasz? Przetestuj naszą skuteczność.</div>
+
+  <div class="plan-probny">
+    <div class="plan-probny-inner">
+      <div>
+        <p class="plan-probny-label">Pojedyncze zlecenie</p>
+        <p class="plan-probny-name">Plan PRÓBNY</p>
+        <p class="plan-probny-desc">Idealne rozwiązanie na start. Otrzymujesz jedno gwarantowane zlecenie w Twoim rejonie, dopasowane do Twoich potrzeb.</p>
+        <div class="plan-probny-highlight">
+          <strong>Zwrot inwestycji 100%:</strong> Jeśli w ciągu <strong>14 dni</strong> zdecydujesz się przejść na wyższy pakiet, kwota <strong>249 zł zostanie w całości odliczona</strong> od pierwszego abonamentu.
+        </div>
+      </div>
+      <div class="plan-probny-right">
+        <div>
+          <p class="price-label">Jednorazowo</p>
+          <p class="probny-price">249 <span style="font-size:14px;color:var(--gray);font-family:'DM Sans',sans-serif;font-weight:300;">zł</span></p>
+          <p class="probny-period">bez auto-odnowienia</p>
+          <a href="potwierdzenie.html?plan=probny" class="btn-plan-ghost">Wybieram PRÓBNY</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO BOXES -->
+  <div class="info-boxes">
+    <div class="info-box">
+      <p class="info-box-title">ℹ️ Automatyczne odnowienie</p>
+      <p class="info-box-body">Plany START, STANDARD i PREMIUM odnawiają się co 30 dni. <strong>3 dni przed odnowieniem</strong> wyślemy Ci przypomnienie e-mailem. Plan PRÓBNY jest jednorazowy.</p>
+    </div>
+    <div class="info-box">
+      <p class="info-box-title">🔓 Rezygnacja bez komplikacji</p>
+      <p class="info-box-body">Nie wymagamy kontaktu telefonicznego. Wystarczy krótki formularz. Dostęp zachowasz do końca opłaconego okresu. <a href="anulowanie.html">Anuluj subskrypcję →</a></p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="regulamin.html">Regulamin</a>
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="anulowanie.html">Anuluj subskrypcję</a>
+    <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
+  </div>
+  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.</p>
+</footer>
+
+<script>
+const burger = document.getElementById('burger');
+const navMobile = document.getElementById('nav-mobile');
+burger.addEventListener('click', function() {
+  const open = navMobile.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+navMobile.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() {
+    navMobile.classList.remov
