@@ -378,8 +378,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
 <nav>
   <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
   <div class="nav-links">
-    <a href="index.html">Dla Wykonawców</a>
-    <a href="dla-klientow.html">Dla Klientów</a>
+    <a href="index.html">Strona główna</a>
     <a href="regulamin.html">Regulamin</a>
     <a href="anulowanie.html">Anulowanie</a>
     <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
@@ -389,8 +388,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
   </button>
 </nav>
 <div class="nav-mobile" id="nav-mobile">
-  <a href="index.html">Dla Wykonawców</a>
-  <a href="dla-klientow.html">Dla Klientów</a>
+  <a href="index.html">Strona główna</a>
   <a href="regulamin.html">Regulamin</a>
   <a href="polityka-prywatnosci.html">Polityka prywatności</a>
   <a href="anulowanie.html">Anulowanie subskrypcji</a>
@@ -527,4 +525,10 @@ burger.addEventListener('click', function() {
 });
 navMobile.querySelectorAll('a').forEach(function(a) {
   a.addEventListener('click', function() {
-    navMobile.classList.remov
+    navMobile.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
+</body>
+</html>
