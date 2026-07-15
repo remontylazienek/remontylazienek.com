@@ -100,9 +100,9 @@ nav {
 /* ── PLAN CARDS ── */
 .plans-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
 
-.plan-card { border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 16px; cursor:pointer; transition:all 0.18s; background:rgba(255,255,255,0.04); position:relative; user-select:none; -webkit-user-select:none; }
+.plan-card { border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 16px; cursor:pointer; transition:all 0.18s; background:rgba(255,255,255,0.04); position:relative; user-select:none; -webkit-user-select:none; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
 .plan-card:hover { border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.06); }
-.plan-card.selected { border-color:rgba(201,168,76,0.6); background:rgba(201,168,76,0.10); box-shadow:0 0 0 3px rgba(201,168,76,0.12); }
+.plan-card.selected { border-color:var(--gold); background:rgba(201,168,76,0.12); box-shadow:0 0 0 3px rgba(201,168,76,0.18); }
 .plan-card.selected .plan-check { opacity:1; }
 .plan-check { position:absolute; top:10px; right:10px; width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); font-size:10px; line-height:18px; text-align:center; opacity:0; transition:opacity 0.15s; font-weight:700; }
 .plan-name { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:500; margin:0 0 4px 0; }
@@ -152,6 +152,7 @@ nav {
 @media (max-width:520px) {
   nav { padding:0 16px; }
   .card-header,.card-body,.card-footer { padding-left:20px; padding-right:20px; }
+  .plans-grid { grid-template-columns:1fr !important; }
   .plans-grid { grid-template-columns:1fr 1fr; gap:8px; }
   .page-title { font-size:26px; }
   .plan-price { font-size:22px; }
@@ -289,66 +290,67 @@ nav {
 </main>
 
 <script>
-/* ─── KONFIGURACJA PLANÓW ───
-   WAŻNE: Zastąp URL-e poniżej rzeczywistymi linkami do bramki płatności
-   (np. Stripe Checkout, PayU, Przelewy24 itp.)
-──────────────────────────────── */
 var PLANS = {
-  probny:   { label:'PRÓBNY',   price:'249 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=probny',   required:['cb2','cb3'] },
-  start:    { label:'START',    price:'499 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=start',    required:['cb1','cb2','cb3'] },
-  standard: { label:'STANDARD', price:'999 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=standard', required:['cb1','cb2','cb3'] },
-  premium:  { label:'PREMIUM',  price:'1799 zł netto', url:'https://platnosci.remontylazienek.com/checkout?plan=premium',  required:['cb1','cb2','cb3'] }
+  probny:   { label:'PROBNY',   price:'249 zl netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=probny',   required:['cb2','cb3'] },
+  start:    { label:'START',    price:'499 zl netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=start',    required:['cb1','cb2','cb3'] },
+  standard: { label:'STANDARD', price:'999 zl netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=standard', required:['cb1','cb2','cb3'] },
+  premium:  { label:'PREMIUM',  price:'1799 zl netto', url:'https://platnosci.remontylazienek.com/checkout?plan=premium',  required:['cb1','cb2','cb3'] }
 };
 
 var currentPlan = null;
 
 function selectPlan(plan) {
+  if (!PLANS[plan]) return;
   currentPlan = plan;
-  Object.keys(PLANS).forEach(function(p) {
+
+  // Oznacz karty
+  ['probny','start','standard','premium'].forEach(function(p) {
     var card = document.getElementById('card-' + p);
     if (!card) return;
-    card.classList.toggle('selected', p === plan);
-    card.setAttribute('aria-checked', p === plan ? 'true' : 'false');
+    if (p === plan) {
+      card.classList.add('selected');
+      card.setAttribute('aria-checked', 'true');
+    } else {
+      card.classList.remove('selected');
+      card.setAttribute('aria-checked', 'false');
+    }
   });
+
+  // Pokaz/ukryj zgodę na auto-odnowienie (nie dotyczy Probnego)
   var row1 = document.getElementById('row-cb1');
-  var cb1  = document.getElementById('cb1');
-  if (plan === 'probny') {
-    row1.classList.add('hidden');
-    cb1.checked = false;
-    row1.classList.remove('checked');
-  } else {
-    row1.classList.remove('hidden');
+  if (row1) {
+    if (plan === 'probny') {
+      row1.classList.add('hidden');
+      var cb1 = document.getElementById('cb1');
+      if (cb1) cb1.checked = false;
+    } else {
+      row1.classList.remove('hidden');
+    }
   }
+
+  // Resetuj zgody
   ['cb1','cb2','cb3'].forEach(function(id) {
     var cb  = document.getElementById(id);
     var row = document.getElementById('row-' + id);
     if (cb) cb.checked = false;
     if (row) row.classList.remove('checked');
   });
-  document.getElementById('consent-alert').classList.remove('visible');
+
+  var alert = document.getElementById('consent-alert');
+  if (alert) alert.classList.remove('visible');
   updatePayButton();
 }
 
 function toggleConsent(id) {
   var cb  = document.getElementById(id);
   var row = document.getElementById('row-' + id);
-  if (!cb || row.classList.contains('hidden')) return;
+  if (!cb || !row || row.classList.contains('hidden')) return;
   cb.checked = !cb.checked;
   row.classList.toggle('checked', cb.checked);
-  document.getElementById('consent-alert').classList.remove('visible');
+  var alert = document.getElementById('consent-alert');
+  if (alert) alert.classList.remove('visible');
   updatePayButton();
 }
-
-['cb1','cb2','cb3'].forEach(function(id) {
-  var cb = document.getElementById(id);
-  if (!cb) return;
-  cb.addEventListener('change', function() {
-    var row = document.getElementById('row-' + id);
-    if (row) row.classList.toggle('checked', cb.checked);
-    document.getElementById('consent-alert').classList.remove('visible');
-    updatePayButton();
-  });
-});
 
 function updatePayButton() {
   if (!currentPlan) { document.getElementById('btn-pay').disabled = true; return; }
@@ -388,8 +390,12 @@ function updatePayButton() {
   }
 }
 
-(function init() {
-  try {
-    var params   = new URLSearchParams(window.location.search);
-    var planParam = params.get('plan');
-    if (planParam && PLANS[planParam]) selectPlan(planParam);
+// Inicjalizacja po zaladowaniu DOM
+document.addEventListener('DOMContentLoaded', function() {
+  // Nasluchiwanie na zmiany checkboxow
+  ['cb1','cb2','cb3'].forEach(function(id) {
+    var cb = document.getElementById(id);
+    if (!cb) return;
+    cb.addEventListener('change', function() {
+      var row = document.getElementById('row-' + id);
+      if (row) row.classList.toggle('checked
