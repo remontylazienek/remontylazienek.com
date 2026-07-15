@@ -253,4 +253,9 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
 const burger = document.getElementById('burger');
 const navMobile = document.getElementById('nav-mobile');
 burger.addEventListener('click', function() {
-  const open = navMobile.clas
+  const open = navMobile.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+});
+</script>
+</body>
+</html>
