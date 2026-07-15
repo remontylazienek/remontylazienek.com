@@ -8,192 +8,86 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <title>Potwierdzenie planu – Remonty Łazienek</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0; }
-
-:root {
-  --navy:      #0D1B2A;
-  --blue:      #1A3A5C;
-  --gold:      #C9A84C;
-  --gold2:     #E8C97A;
-  --light:     #F4F1EB;
-  --white:     #FFFFFF;
-  --gray:      #8A9BAD;
-  --error:     #ff6b6b;
-  --error-bg:  rgba(255,107,107,0.08);
-  --error-bdr: rgba(255,107,107,0.4);
-}
-
-body {
-  font-family: 'DM Sans', Arial, sans-serif;
-  background: var(--navy);
-  margin: 0;
-  padding: 24px 16px 56px;
-  color: var(--light);
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  min-height: 100vh;
-}
-body::before {
-  content:''; position:fixed; inset:0;
-  background: radial-gradient(ellipse at 20% 0%, rgba(26,58,92,0.5) 0%, transparent 60%);
-  pointer-events:none; z-index:0;
-}
-
-/* ── NAV ── */
-nav {
-  position:sticky; top:0; z-index:100;
-  background:rgba(13,27,42,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px);
-  border-bottom:1px solid rgba(201,168,76,0.18);
-  padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:64px;
-  margin:-24px -16px 32px; width:calc(100% + 32px);
-}
-.nav-logo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); text-decoration:none; }
-.nav-logo span { color:var(--gold); }
-.nav-links { display:flex; align-items:center; gap:28px; }
-.nav-links a { font-size:13px; color:rgba(244,241,235,0.75); text-decoration:none; transition:color 0.2s; }
-.nav-links a:hover { color:var(--white); }
-.nav-back { font-size:12px; color:rgba(201,168,76,0.75); text-decoration:none; display:flex; align-items:center; gap:6px; }
-.nav-back:hover { color:var(--gold2); }
-
-/* ── CARD ── */
-.card {
-  background: var(--navy);
-  border-radius: 12px;
-  max-width: 600px;
-  margin: 0 auto;
-  overflow: hidden;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
-  border: 1px solid rgba(201,168,76,0.15);
-  position: relative; z-index: 1;
-}
-
-/* ── HEADER ── */
-.card-header {
-  background: var(--navy);
-  border-bottom: 2px solid rgba(201,168,76,0.35);
-  padding: 40px 44px 34px;
-  text-align: center;
-  position: relative; overflow: hidden;
-}
-.card-header::before {
-  content:''; position:absolute; bottom:-4px; left:16px; width:56px; height:56px;
-  background-image:url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='2' y='2' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='21' y='2' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='40' y='2' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='2' y='21' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='21' y='21' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='40' y='21' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='2' y='40' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='21' y='40' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3Crect x='40' y='40' width='15' height='15' rx='2.5' stroke='%23C9A84C' stroke-width='1.5'/%3E%3C/svg%3E");
-  background-repeat:no-repeat; opacity:0.12; pointer-events:none;
-}
-.deco-line { display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:16px; }
-.deco-line::before,.deco-line::after { content:''; width:28px; height:1px; background:linear-gradient(90deg,transparent,#C9A84C,transparent); opacity:0.8; }
-.deco-diamond { width:5px; height:5px; background:var(--gold); transform:rotate(45deg); opacity:0.7; }
-.brand { font-family:'DM Sans',Arial,sans-serif; font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--gold); font-weight:500; margin:0 0 8px 0; }
-.page-title { font-family:'Playfair Display',Georgia,serif; font-size:32px; font-weight:900; color:var(--white); line-height:1.15; margin:0 0 10px 0; }
-.page-title em { font-style:italic; color:var(--gold2); }
-.tagline { font-size:13px; font-weight:300; color:rgba(244,241,235,0.65); line-height:1.7; }
-
-/* ── BODY ── */
-.card-body { padding: 28px 40px 36px; background: var(--navy); }
-
-/* ── STEP LABEL ── */
-.step-label { font-size:9.5px; letter-spacing:2px; text-transform:uppercase; font-weight:500; color:var(--gray); margin:0 0 14px 0; }
-.step-label span { display:inline-block; width:18px; height:18px; line-height:18px; text-align:center; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); border-radius:50%; font-size:10px; font-weight:700; margin-right:8px; vertical-align:middle; }
-
-/* ── PLAN CARDS ── */
-.plans-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:24px; }
-
-.plan-card { border:1px solid rgba(255,255,255,0.09); border-radius:10px; padding:14px 16px; cursor:pointer; transition:all 0.18s; background:rgba(255,255,255,0.04); position:relative; user-select:none; -webkit-user-select:none; touch-action:manipulation; -webkit-tap-highlight-color:transparent; }
-.plan-card:hover { border-color:rgba(201,168,76,0.4); background:rgba(201,168,76,0.06); }
-.plan-card.selected { border-color:var(--gold); background:rgba(201,168,76,0.12); box-shadow:0 0 0 3px rgba(201,168,76,0.18); }
-.plan-card.selected .plan-check { opacity:1; }
-.plan-check { position:absolute; top:10px; right:10px; width:18px; height:18px; border-radius:50%; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); font-size:10px; line-height:18px; text-align:center; opacity:0; transition:opacity 0.15s; font-weight:700; }
-.plan-name { font-size:9px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:500; margin:0 0 4px 0; }
-.plan-price { font-family:'Playfair Display',Georgia,serif; font-size:26px; font-weight:700; color:var(--white); line-height:1; margin:0 0 2px 0; }
-.plan-price span { font-family:'DM Sans',Arial,sans-serif; font-size:11px; color:var(--gray); }
-.plan-period { font-size:10px; color:var(--gray); margin:0 0 8px 0; }
-.plan-feat { font-size:11px; color:rgba(244,241,235,0.75); margin:0 0 2px 0; }
-.plan-card.featured { border-color:rgba(201,168,76,0.5); }
-.plan-card.featured .plan-name { color:var(--gold); }
-.badge-pop { display:inline-block; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); font-size:8px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; padding:2px 7px; border-radius:10px; margin-bottom:6px; }
-
-/* ── SEPARATOR ── */
-.sep { display:flex; align-items:center; gap:14px; margin:0 0 22px 0; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--gray); opacity:0.7; }
-.sep::before,.sep::after { content:''; flex:1; height:1px; background:rgba(255,255,255,0.1); }
-
-/* ── CONSENTS ── */
-.consents-box { background:rgba(26,58,92,0.3); border:1px solid rgba(201,168,76,0.2); border-radius:10px; padding:18px 20px; margin-bottom:20px; }
-.consent-row { display:flex; align-items:flex-start; gap:12px; padding:10px 12px; border-radius:7px; margin-bottom:8px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.09); transition:border-color 0.15s,background 0.15s; cursor:pointer; }
-.consent-row:last-child { margin-bottom:0; }
-.consent-row:hover { border-color:rgba(201,168,76,0.4); }
-.consent-row.checked { border-color:rgba(201,168,76,0.55); background:rgba(201,168,76,0.08); }
-.consent-row.hidden { display:none; }
-.consent-row input[type="checkbox"] { width:17px; height:17px; flex-shrink:0; margin-top:2px; accent-color:var(--gold); cursor:pointer; }
-.consent-label { font-size:12px; font-weight:300; color:rgba(244,241,235,0.8); line-height:1.65; cursor:pointer; }
-.consent-label strong { font-weight:500; color:var(--white); }
-.consent-tag { display:inline-block; font-size:8.5px; font-weight:600; letter-spacing:0.5px; padding:1px 6px; border-radius:3px; margin-left:4px; vertical-align:middle; }
-.tag-all { background:rgba(201,168,76,0.12); color:var(--gold2); border:1px solid rgba(201,168,76,0.3); }
-.tag-sub { background:rgba(201,168,76,0.08); color:var(--gold); border:1px solid rgba(201,168,76,0.25); }
-
-.consent-alert { display:none; background:var(--error-bg); border:1px solid rgba(255,107,107,0.3); border-left:3px solid var(--error); border-radius:0 7px 7px 0; padding:10px 14px; margin-bottom:14px; font-size:12px; color:#ff9999; }
-.consent-alert.visible { display:block; }
-
-/* ── BUTTON ── */
-.btn-pay { width:100%; padding:16px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); border:none; border-radius:8px; font-family:'DM Sans',Arial,sans-serif; font-size:11px; font-weight:500; letter-spacing:2px; text-transform:uppercase; cursor:pointer; transition:all 0.2s; box-shadow:0 4px 24px rgba(201,168,76,0.3); }
-.btn-pay:hover:not(:disabled) { box-shadow:0 8px 32px rgba(201,168,76,0.45); transform:translateY(-2px); }
-.btn-pay:focus-visible { outline:3px solid var(--gold); outline-offset:3px; }
-.btn-pay:disabled { background:rgba(255,255,255,0.08); color:var(--gray); cursor:not-allowed; transform:none; box-shadow:none; border:1px solid rgba(255,255,255,0.1); }
-.btn-note { font-size:11px; color:var(--gray); text-align:center; margin-top:10px; line-height:1.6; opacity:0.8; }
-
-/* ── FOOTER ── */
-.card-footer { background:rgba(10,22,36,0.6); border-top:1px solid rgba(201,168,76,0.2); padding:14px 40px; text-align:center; }
-.card-footer p { font-size:11px; color:var(--gray); font-weight:300; }
-.card-footer a { color:rgba(201,168,76,0.75); text-decoration:none; }
-.card-footer a:hover { color:var(--gold2); text-decoration:underline; }
-
-/* ── RESPONSIVE ── */
-@media (max-width:520px) {
-  nav { padding:0 16px; }
-  .card-header,.card-body,.card-footer { padding-left:20px; padding-right:20px; }
-  .plans-grid { grid-template-columns:1fr !important; }
-  .plans-grid { grid-template-columns:1fr 1fr; gap:8px; }
-  .page-title { font-size:26px; }
-  .plan-price { font-size:22px; }
-}
-@media (max-width:380px) { .plans-grid { grid-template-columns:1fr; } }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0D1B2A;--gold:#C9A84C;--gold2:#E8C97A;--light:#F4F1EB;--white:#FFFFFF;--gray:#8A9BAD;--error:#ff6b6b;--error-bg:rgba(255,107,107,0.08)}
+body{font-family:'DM Sans',Arial,sans-serif;background:var(--navy);margin:0;padding:24px 16px 56px;color:var(--light);font-weight:300;-webkit-font-smoothing:antialiased;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(26,58,92,0.5) 0%,transparent 60%);pointer-events:none;z-index:0}
+nav{position:sticky;top:0;z-index:100;background:rgba(13,27,42,0.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,0.18);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;margin:-24px -16px 32px;width:calc(100% + 32px)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-back{font-size:12px;color:rgba(201,168,76,0.75);text-decoration:none;display:flex;align-items:center;gap:6px}
+.nav-back:hover{color:var(--gold2)}
+.card{background:var(--navy);border-radius:12px;max-width:600px;margin:0 auto;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.5);border:1px solid rgba(201,168,76,0.15);position:relative;z-index:1}
+.card-header{background:var(--navy);border-bottom:2px solid rgba(201,168,76,0.35);padding:40px 44px 34px;text-align:center;position:relative;overflow:hidden}
+.deco-line{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:16px}
+.deco-line::before,.deco-line::after{content:'';width:28px;height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);opacity:0.8}
+.deco-diamond{width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:0.7}
+.brand{font-family:'DM Sans',Arial,sans-serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:500;margin:0 0 8px 0}
+.page-title{font-family:'Playfair Display',Georgia,serif;font-size:32px;font-weight:900;color:var(--white);line-height:1.15;margin:0 0 10px 0}
+.page-title em{font-style:italic;color:var(--gold2)}
+.tagline{font-size:13px;font-weight:300;color:rgba(244,241,235,0.65);line-height:1.7}
+.card-body{padding:28px 40px 36px;background:var(--navy)}
+.step-label{font-size:9.5px;letter-spacing:2px;text-transform:uppercase;font-weight:500;color:var(--gray);margin:0 0 14px 0}
+.step-label span{display:inline-block;width:18px;height:18px;line-height:18px;text-align:center;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);border-radius:50%;font-size:10px;font-weight:700;margin-right:8px;vertical-align:middle}
+.plans-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.plan-card{border:1px solid rgba(255,255,255,0.09);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all 0.18s;background:rgba(255,255,255,0.04);position:relative;user-select:none;-webkit-user-select:none;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.plan-card:hover{border-color:rgba(201,168,76,0.4);background:rgba(201,168,76,0.06)}
+.plan-card.selected{border-color:var(--gold);background:rgba(201,168,76,0.12);box-shadow:0 0 0 3px rgba(201,168,76,0.18)}
+.plan-card.selected .plan-check{opacity:1}
+.plan-check{position:absolute;top:10px;right:10px;width:18px;height:18px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);font-size:10px;line-height:18px;text-align:center;opacity:0;transition:opacity 0.15s;font-weight:700}
+.plan-name{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);font-weight:500;margin:0 0 4px 0}
+.plan-price{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:var(--white);line-height:1;margin:0 0 2px 0}
+.plan-price span{font-family:'DM Sans',Arial,sans-serif;font-size:11px;color:var(--gray)}
+.plan-period{font-size:10px;color:var(--gray);margin:0 0 8px 0}
+.plan-feat{font-size:11px;color:rgba(244,241,235,0.75);margin:0 0 2px 0}
+.plan-card.featured{border-color:rgba(201,168,76,0.5)}
+.plan-card.featured .plan-name{color:var(--gold)}
+.badge-pop{display:inline-block;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);font-size:8px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:2px 7px;border-radius:10px;margin-bottom:6px}
+.consents-box{background:rgba(26,58,92,0.3);border:1px solid rgba(201,168,76,0.2);border-radius:10px;padding:18px 20px;margin-bottom:20px}
+.consent-row{display:flex;align-items:flex-start;gap:12px;padding:10px 12px;border-radius:7px;margin-bottom:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);transition:border-color 0.15s,background 0.15s;cursor:pointer}
+.consent-row:last-child{margin-bottom:0}
+.consent-row:hover{border-color:rgba(201,168,76,0.4)}
+.consent-row.checked{border-color:rgba(201,168,76,0.55);background:rgba(201,168,76,0.08)}
+.consent-row.hidden{display:none}
+.consent-row input[type="checkbox"]{width:17px;height:17px;flex-shrink:0;margin-top:2px;accent-color:var(--gold);cursor:pointer}
+.consent-label{font-size:12px;font-weight:300;color:rgba(244,241,235,0.8);line-height:1.65;cursor:pointer}
+.consent-label strong{font-weight:500;color:var(--white)}
+.consent-tag{display:inline-block;font-size:8.5px;font-weight:600;letter-spacing:0.5px;padding:1px 6px;border-radius:3px;margin-left:4px;vertical-align:middle}
+.tag-all{background:rgba(201,168,76,0.12);color:var(--gold2);border:1px solid rgba(201,168,76,0.3)}
+.tag-sub{background:rgba(201,168,76,0.08);color:var(--gold);border:1px solid rgba(201,168,76,0.25)}
+.consent-alert{display:none;background:var(--error-bg);border:1px solid rgba(255,107,107,0.3);border-left:3px solid var(--error);border-radius:0 7px 7px 0;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#ff9999}
+.consent-alert.visible{display:block}
+.btn-pay{width:100%;padding:16px;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);border:none;border-radius:8px;font-family:'DM Sans',Arial,sans-serif;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s;box-shadow:0 4px 24px rgba(201,168,76,0.3)}
+.btn-pay:hover:not(:disabled){box-shadow:0 8px 32px rgba(201,168,76,0.45);transform:translateY(-2px)}
+.btn-pay:disabled{background:rgba(255,255,255,0.08);color:var(--gray);cursor:not-allowed;transform:none;box-shadow:none;border:1px solid rgba(255,255,255,0.1)}
+.btn-note{font-size:11px;color:var(--gray);text-align:center;margin-top:10px;line-height:1.6;opacity:0.8}
+.card-footer{background:rgba(10,22,36,0.6);border-top:1px solid rgba(201,168,76,0.2);padding:14px 40px;text-align:center}
+.card-footer p{font-size:11px;color:var(--gray);font-weight:300}
+.card-footer a{color:rgba(201,168,76,0.75);text-decoration:none}
+.card-footer a:hover{color:var(--gold2);text-decoration:underline}
+@media(max-width:520px){nav{padding:0 16px}.card-header,.card-body,.card-footer{padding-left:20px;padding-right:20px}.plans-grid{grid-template-columns:1fr!important}.page-title{font-size:26px}.plan-price{font-size:22px}}
+@media(max-width:380px){.plans-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
   <div class="nav-links">
     <a href="wybor-planow.html" class="nav-back">← Wróć do planów</a>
   </div>
 </nav>
-
-<noscript>
-  <div style="background:rgba(255,107,107,0.08);border:1px solid rgba(255,107,107,0.3);border-left:3px solid #ff6b6b;padding:14px 18px;max-width:600px;margin:0 auto 20px;font-family:'DM Sans',Arial,sans-serif;font-size:13px;color:#ff9999;border-radius:0 6px 6px 0;position:relative;z-index:1;">
-    <strong>Wymagana obsługa JavaScript.</strong> Skontaktuj się: <a href="mailto:platforma@remontylazienek.com" style="color:var(--gold);">platforma@remontylazienek.com</a>
-  </div>
-</noscript>
-
 <main>
 <div class="card">
-
   <header class="card-header">
     <div class="deco-line" aria-hidden="true"><div class="deco-diamond"></div></div>
     <p class="brand" aria-hidden="true">Remonty Łazienek</p>
     <h1 class="page-title">Potwierdź plan<br><em>i przejdź do płatności</em></h1>
     <p class="tagline">Wybierz plan, zaznacz wymagane zgody i kliknij przycisk płatności.</p>
   </header>
-
   <div class="card-body">
-
     <p class="step-label"><span>1</span>Wybierz plan</p>
-
     <div class="plans-grid" role="radiogroup" aria-label="Wybór planu subskrypcji">
-
-      <div class="plan-card featured" id="card-standard" role="radio" aria-checked="false"
-        tabindex="0" onclick="selectPlan('standard')"
-        onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('standard')">
+      <div class="plan-card featured" id="card-standard" role="radio" aria-checked="false" tabindex="0" onclick="selectPlan('standard')" onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('standard')">
         <div class="plan-check" aria-hidden="true">✓</div>
         <div class="badge-pop">Najpopularniejszy</div>
         <p class="plan-name">Standard</p>
@@ -202,10 +96,7 @@ nav {
         <p class="plan-feat">✓ 10 zleceń / miesiąc</p>
         <p class="plan-feat">✓ Zasięg 35 km</p>
       </div>
-
-      <div class="plan-card" id="card-start" role="radio" aria-checked="false"
-        tabindex="0" onclick="selectPlan('start')"
-        onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('start')">
+      <div class="plan-card" id="card-start" role="radio" aria-checked="false" tabindex="0" onclick="selectPlan('start')" onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('start')">
         <div class="plan-check" aria-hidden="true">✓</div>
         <p class="plan-name">Start</p>
         <p class="plan-price">499 <span>zł netto</span></p>
@@ -213,10 +104,7 @@ nav {
         <p class="plan-feat">✓ 5 zleceń / miesiąc</p>
         <p class="plan-feat">✓ Zasięg 25 km</p>
       </div>
-
-      <div class="plan-card" id="card-premium" role="radio" aria-checked="false"
-        tabindex="0" onclick="selectPlan('premium')"
-        onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('premium')">
+      <div class="plan-card" id="card-premium" role="radio" aria-checked="false" tabindex="0" onclick="selectPlan('premium')" onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('premium')">
         <div class="plan-check" aria-hidden="true">✓</div>
         <p class="plan-name">Premium</p>
         <p class="plan-price">1799 <span>zł netto</span></p>
@@ -224,10 +112,7 @@ nav {
         <p class="plan-feat">✓ 20 zleceń / miesiąc</p>
         <p class="plan-feat">✓ Zasięg 50 km</p>
       </div>
-
-      <div class="plan-card" id="card-probny" role="radio" aria-checked="false"
-        tabindex="0" onclick="selectPlan('probny')"
-        onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('probny')">
+      <div class="plan-card" id="card-probny" role="radio" aria-checked="false" tabindex="0" onclick="selectPlan('probny')" onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('probny')">
         <div class="plan-check" aria-hidden="true">✓</div>
         <p class="plan-name">Plan Próbny</p>
         <p class="plan-price">249 <span>zł netto</span></p>
@@ -235,11 +120,8 @@ nav {
         <p class="plan-feat">✓ 1 zlecenie próbne</p>
         <p class="plan-feat">✓ Bez auto-odnowienia</p>
       </div>
-
     </div>
-
     <p class="step-label"><span>2</span>Potwierdź zgody</p>
-
     <div class="consents-box" role="group" aria-label="Wymagane potwierdzenia">
       <div class="consent-row" id="row-cb1" onclick="toggleConsent('cb1')">
         <input type="checkbox" id="cb1" aria-required="true" onclick="event.stopPropagation()">
@@ -263,21 +145,13 @@ nav {
         </label>
       </div>
     </div>
-
     <div id="consent-alert" class="consent-alert" role="alert" aria-live="assertive">
       Zaznacz wymagane zgody aby przejść do płatności.
     </div>
-
     <p class="step-label"><span>3</span>Przejdź do płatności</p>
-
-    <button type="button" class="btn-pay" id="btn-pay" disabled aria-disabled="true">
-      Przejdź do płatności
-    </button>
-
+    <button type="button" class="btn-pay" id="btn-pay" disabled aria-disabled="true">Przejdź do płatności</button>
     <p class="btn-note" id="btn-note">Zostaniesz przekierowany do bezpiecznej bramki płatności.</p>
-
   </div>
-
   <footer class="card-footer">
     <p>
       <a href="regulamin.html">Regulamin</a> &nbsp;·&nbsp;
@@ -285,117 +159,87 @@ nav {
       <a href="mailto:platforma@remontylazienek.com">Pomoc</a>
     </p>
   </footer>
-
 </div>
 </main>
-
 <script>
 var PLANS = {
-  probny:   { label:'PROBNY',   price:'249 zl netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=probny',   required:['cb2','cb3'] },
-  start:    { label:'START',    price:'499 zl netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=start',    required:['cb1','cb2','cb3'] },
-  standard: { label:'STANDARD', price:'999 zl netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=standard', required:['cb1','cb2','cb3'] },
-  premium:  { label:'PREMIUM',  price:'1799 zl netto', url:'https://platnosci.remontylazienek.com/checkout?plan=premium',  required:['cb1','cb2','cb3'] }
+  probny:   { label:'PRÓBNY',   price:'249 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=probny',   required:['cb2','cb3'] },
+  start:    { label:'START',    price:'499 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=start',    required:['cb1','cb2','cb3'] },
+  standard: { label:'STANDARD', price:'999 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=standard', required:['cb1','cb2','cb3'] },
+  premium:  { label:'PREMIUM',  price:'1799 zł netto', url:'https://platnosci.remontylazienek.com/checkout?plan=premium',  required:['cb1','cb2','cb3'] }
 };
-
-var currentPlan = null;
-
-function selectPlan(plan) {
-  if (!PLANS[plan]) return;
-  currentPlan = plan;
-
-  // Oznacz karty
-  ['probny','start','standard','premium'].forEach(function(p) {
-    var card = document.getElementById('card-' + p);
-    if (!card) return;
-    if (p === plan) {
-      card.classList.add('selected');
-      card.setAttribute('aria-checked', 'true');
-    } else {
-      card.classList.remove('selected');
-      card.setAttribute('aria-checked', 'false');
-    }
+var currentPlan=null;
+function selectPlan(plan){
+  if(!PLANS[plan])return;
+  currentPlan=plan;
+  ['probny','start','standard','premium'].forEach(function(p){
+    var card=document.getElementById('card-'+p);
+    if(!card)return;
+    if(p===plan){card.classList.add('selected');card.setAttribute('aria-checked','true');}
+    else{card.classList.remove('selected');card.setAttribute('aria-checked','false');}
   });
-
-  // Pokaz/ukryj zgodę na auto-odnowienie (nie dotyczy Probnego)
-  var row1 = document.getElementById('row-cb1');
-  if (row1) {
-    if (plan === 'probny') {
-      row1.classList.add('hidden');
-      var cb1 = document.getElementById('cb1');
-      if (cb1) cb1.checked = false;
-    } else {
-      row1.classList.remove('hidden');
-    }
+  var row1=document.getElementById('row-cb1');
+  if(row1){
+    if(plan==='probny'){row1.classList.add('hidden');var cb1=document.getElementById('cb1');if(cb1)cb1.checked=false;}
+    else{row1.classList.remove('hidden');}
   }
-
-  // Resetuj zgody
-  ['cb1','cb2','cb3'].forEach(function(id) {
-    var cb  = document.getElementById(id);
-    var row = document.getElementById('row-' + id);
-    if (cb) cb.checked = false;
-    if (row) row.classList.remove('checked');
+  ['cb1','cb2','cb3'].forEach(function(id){
+    var cb=document.getElementById(id);var row=document.getElementById('row-'+id);
+    if(cb)cb.checked=false;if(row)row.classList.remove('checked');
   });
-
-  var alert = document.getElementById('consent-alert');
-  if (alert) alert.classList.remove('visible');
+  var al=document.getElementById('consent-alert');if(al)al.classList.remove('visible');
   updatePayButton();
 }
-
-function toggleConsent(id) {
-  var cb  = document.getElementById(id);
-  var row = document.getElementById('row-' + id);
-  if (!cb || !row || row.classList.contains('hidden')) return;
-  cb.checked = !cb.checked;
-  row.classList.toggle('checked', cb.checked);
-  var alert = document.getElementById('consent-alert');
-  if (alert) alert.classList.remove('visible');
+function toggleConsent(id){
+  var cb=document.getElementById(id);var row=document.getElementById('row-'+id);
+  if(!cb||!row||row.classList.contains('hidden'))return;
+  cb.checked=!cb.checked;row.classList.toggle('checked',cb.checked);
+  var al=document.getElementById('consent-alert');if(al)al.classList.remove('visible');
   updatePayButton();
 }
-
-function updatePayButton() {
-  if (!currentPlan) { document.getElementById('btn-pay').disabled = true; return; }
-  var plan = PLANS[currentPlan];
-  var btn  = document.getElementById('btn-pay');
-  var note = document.getElementById('btn-note');
-  var allOk = plan.required.every(function(id) {
-    var cb = document.getElementById(id);
-    return cb && cb.checked;
-  });
-  btn.textContent = 'Przejdź do płatności — ' + plan.label;
-  if (allOk) {
-    btn.disabled = false;
-    btn.setAttribute('aria-disabled', 'false');
-    btn.onclick = function() { window.location.href = plan.url; };
-    note.textContent = 'Zostaniesz przekierowany do bezpiecznej bramki płatności (' + plan.price + '/30 dni).';
-  } else {
-    btn.disabled = true;
-    btn.setAttribute('aria-disabled', 'true');
-    btn.onclick = function() {
+function updatePayButton(){
+  if(!currentPlan){document.getElementById('btn-pay').disabled=true;return;}
+  var plan=PLANS[currentPlan];
+  var btn=document.getElementById('btn-pay');
+  var note=document.getElementById('btn-note');
+  var allOk=plan.required.every(function(id){var cb=document.getElementById(id);return cb&&cb.checked;});
+  btn.textContent='Przejdź do płatności — '+plan.label;
+  if(allOk){
+    btn.disabled=false;btn.setAttribute('aria-disabled','false');
+    btn.onclick=function(){window.location.href=plan.url;};
+    note.textContent='Zostaniesz przekierowany do bezpiecznej bramki płatności ('+plan.price+' / 30 dni).';
+  }else{
+    btn.disabled=true;btn.setAttribute('aria-disabled','true');
+    btn.onclick=function(){
       document.getElementById('consent-alert').classList.add('visible');
-      plan.required.forEach(function(id) {
-        var cb  = document.getElementById(id);
-        var row = document.getElementById('row-' + id);
-        if (cb && !cb.checked && row && !row.classList.contains('hidden')) {
-          row.style.borderColor = 'rgba(255,107,107,0.5)';
-          row.style.background  = 'rgba(255,107,107,0.08)';
-          setTimeout(function() { row.style.borderColor=''; row.style.background=''; }, 2000);
+      plan.required.forEach(function(id){
+        var cb=document.getElementById(id);var row=document.getElementById('row-'+id);
+        if(cb&&!cb.checked&&row&&!row.classList.contains('hidden')){
+          row.style.borderColor='rgba(255,107,107,0.5)';row.style.background='rgba(255,107,107,0.08)';
+          setTimeout(function(){row.style.borderColor='';row.style.background='';},2000);
         }
       });
     };
-    var missing = plan.required.filter(function(id) {
-      var cb = document.getElementById(id);
-      return !(cb && cb.checked);
-    }).length;
-    note.textContent = 'Zaznacz jeszcze ' + missing + ' ' + (missing === 1 ? 'zgodę' : 'zgody') + ' powyżej.';
+    var missing=plan.required.filter(function(id){var cb=document.getElementById(id);return!(cb&&cb.checked);}).length;
+    note.textContent='Zaznacz jeszcze '+missing+' '+(missing===1?'zgodę':'zgody')+' powyżej.';
   }
 }
-
-// Inicjalizacja po zaladowaniu DOM
-document.addEventListener('DOMContentLoaded', function() {
-  // Nasluchiwanie na zmiany checkboxow
-  ['cb1','cb2','cb3'].forEach(function(id) {
-    var cb = document.getElementById(id);
-    if (!cb) return;
-    cb.addEventListener('change', function() {
-      var row = document.getElementById('row-' + id);
-      if (row) row.classList.toggle('checked
+document.addEventListener('DOMContentLoaded',function(){
+  ['cb1','cb2','cb3'].forEach(function(id){
+    var cb=document.getElementById(id);if(!cb)return;
+    cb.addEventListener('change',function(){
+      var row=document.getElementById('row-'+id);if(row)row.classList.toggle('checked',cb.checked);
+      var al=document.getElementById('consent-alert');if(al)al.classList.remove('visible');
+      updatePayButton();
+    });
+  });
+  var search=window.location.search;
+  if(search){
+    var params=new URLSearchParams(search);
+    var planParam=params.get('plan');
+    if(planParam&&PLANS[planParam]){selectPlan(planParam);}
+  }
+});
+</script>
+</body>
+</html>
