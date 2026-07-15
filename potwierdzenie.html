@@ -196,7 +196,7 @@ nav {
         <div class="plan-check" aria-hidden="true">✓</div>
         <div class="badge-pop">Najpopularniejszy</div>
         <p class="plan-name">Standard</p>
-        <p class="plan-price">999 <span>zł</span></p>
+        <p class="plan-price">999 <span>zł netto</span></p>
         <p class="plan-period">/ 30 dni · auto-odnowienie</p>
         <p class="plan-feat">✓ 10 zleceń / miesiąc</p>
         <p class="plan-feat">✓ Zasięg 35 km</p>
@@ -207,7 +207,7 @@ nav {
         onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('start')">
         <div class="plan-check" aria-hidden="true">✓</div>
         <p class="plan-name">Start</p>
-        <p class="plan-price">499 <span>zł</span></p>
+        <p class="plan-price">499 <span>zł netto</span></p>
         <p class="plan-period">/ 30 dni · auto-odnowienie</p>
         <p class="plan-feat">✓ 5 zleceń / miesiąc</p>
         <p class="plan-feat">✓ Zasięg 25 km</p>
@@ -218,7 +218,7 @@ nav {
         onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('premium')">
         <div class="plan-check" aria-hidden="true">✓</div>
         <p class="plan-name">Premium</p>
-        <p class="plan-price">1799 <span>zł</span></p>
+        <p class="plan-price">1799 <span>zł netto</span></p>
         <p class="plan-period">/ 30 dni · auto-odnowienie</p>
         <p class="plan-feat">✓ 20 zleceń / miesiąc</p>
         <p class="plan-feat">✓ Zasięg 50 km</p>
@@ -229,7 +229,7 @@ nav {
         onkeydown="if(event.key==='Enter'||event.key===' ')selectPlan('probny')">
         <div class="plan-check" aria-hidden="true">✓</div>
         <p class="plan-name">Plan Próbny</p>
-        <p class="plan-price">249 <span>zł</span></p>
+        <p class="plan-price">249 <span>zł netto</span></p>
         <p class="plan-period">jednorazowo</p>
         <p class="plan-feat">✓ 1 zlecenie próbne</p>
         <p class="plan-feat">✓ Bez auto-odnowienia</p>
@@ -294,10 +294,10 @@ nav {
    (np. Stripe Checkout, PayU, Przelewy24 itp.)
 ──────────────────────────────── */
 var PLANS = {
-  probny:   { label:'PRÓBNY',   price:'249 zł',  url:'https://platnosci.remontylazienek.com/checkout?plan=probny',   required:['cb2','cb3'] },
-  start:    { label:'START',    price:'499 zł',  url:'https://platnosci.remontylazienek.com/checkout?plan=start',    required:['cb1','cb2','cb3'] },
-  standard: { label:'STANDARD', price:'999 zł',  url:'https://platnosci.remontylazienek.com/checkout?plan=standard', required:['cb1','cb2','cb3'] },
-  premium:  { label:'PREMIUM',  price:'1799 zł', url:'https://platnosci.remontylazienek.com/checkout?plan=premium',  required:['cb1','cb2','cb3'] }
+  probny:   { label:'PRÓBNY',   price:'249 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=probny',   required:['cb2','cb3'] },
+  start:    { label:'START',    price:'499 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=start',    required:['cb1','cb2','cb3'] },
+  standard: { label:'STANDARD', price:'999 zł netto',  url:'https://platnosci.remontylazienek.com/checkout?plan=standard', required:['cb1','cb2','cb3'] },
+  premium:  { label:'PREMIUM',  price:'1799 zł netto', url:'https://platnosci.remontylazienek.com/checkout?plan=premium',  required:['cb1','cb2','cb3'] }
 };
 
 var currentPlan = null;
@@ -393,8 +393,3 @@ function updatePayButton() {
     var params   = new URLSearchParams(window.location.search);
     var planParam = params.get('plan');
     if (planParam && PLANS[planParam]) selectPlan(planParam);
-  } catch(e) {}
-})();
-</script>
-</body>
-</html>
