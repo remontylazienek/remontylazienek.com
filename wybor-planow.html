@@ -425,7 +425,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
       </div>
       <div class="plan-featured-price">
         <p class="price-label">Co 30 dni</p>
-        <p class="price-amount">999 <span class="price-currency">zł</span></p>
+        <p class="price-amount">999 <span class="price-currency">zł netto</span></p>
         <p class="price-period">auto-odnowienie</p>
         <a href="potwierdzenie.html?plan=standard" class="btn-plan-primary">Wybieram STANDARD</a>
         <p class="price-note">Rezygnacja w dowolnej chwili</p>
@@ -439,7 +439,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
     <div class="plan-card">
       <div class="plan-card-body">
         <p class="plan-card-name">START</p>
-        <p class="plan-card-price">499 <span class="zl">zł</span></p>
+        <p class="plan-card-price">499 <span class="zl">zł netto</span></p>
         <p class="plan-card-period">/ 30 dni · auto-odnowienie</p>
         <div class="plan-card-divider"></div>
         <p class="plan-card-feature">✓ 5 zleceń / miesiąc</p>
@@ -455,7 +455,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
     <div class="plan-card">
       <div class="plan-card-body">
         <p class="plan-card-name">PREMIUM</p>
-        <p class="plan-card-price">1799 <span class="zl">zł</span></p>
+        <p class="plan-card-price">1799 <span class="zl">zł netto</span></p>
         <p class="plan-card-period">/ 30 dni · auto-odnowienie</p>
         <div class="plan-card-divider"></div>
         <p class="plan-card-feature">✓ 20 zleceń / miesiąc</p>
@@ -480,13 +480,13 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
         <p class="plan-probny-name">Plan PRÓBNY</p>
         <p class="plan-probny-desc">Idealne rozwiązanie na start. Otrzymujesz jedno gwarantowane zlecenie w Twoim rejonie, dopasowane do Twoich potrzeb.</p>
         <div class="plan-probny-highlight">
-          <strong>Zwrot inwestycji 100%:</strong> Jeśli w ciągu <strong>14 dni</strong> zdecydujesz się przejść na wyższy pakiet, kwota <strong>249 zł zostanie w całości odliczona</strong> od pierwszego abonamentu.
+          <strong>Zwrot inwestycji 100%:</strong> Jeśli w ciągu <strong>14 dni</strong> zdecydujesz się przejść na wyższy pakiet, kwota <strong>249 zł netto zostanie w całości odliczona</strong> od pierwszego abonamentu.
         </div>
       </div>
       <div class="plan-probny-right">
         <div>
           <p class="price-label">Jednorazowo</p>
-          <p class="probny-price">249 <span style="font-size:14px;color:var(--gray);font-family:'DM Sans',sans-serif;font-weight:300;">zł</span></p>
+          <p class="probny-price">249 <span style="font-size:14px;color:var(--gray);font-family:'DM Sans',sans-serif;font-weight:300;">zł netto</span></p>
           <p class="probny-period">bez auto-odnowienia</p>
           <a href="potwierdzenie.html?plan=probny" class="btn-plan-ghost">Wybieram PRÓBNY</a>
         </div>
@@ -527,4 +527,10 @@ burger.addEventListener('click', function() {
 });
 navMobile.querySelectorAll('a').forEach(function(a) {
   a.addEventListener('click', function() {
-    navMobile.classList.remov
+    navMobile.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  });
+});
+</script>
+</body>
+</html>
