@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Regulamin – Remonty Łazienek</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --navy:#0D1B2A; --blue:#1A3A5C; --gold:#C9A84C; --gold2:#E8C97A; --light:#F4F1EB; --white:#FFFFFF; --gray:#8A9BAD; }
@@ -47,14 +47,17 @@ nav { position:sticky; top:0; z-index:100; background:rgba(13,27,42,0.95); backd
 }
 .reg-section h2 .para-num {
   display:inline-flex; align-items:center; justify-content:center;
-  width:28px; height:28px; background:rgba(201,168,76,0.15);
+  min-width:28px; height:28px; padding:0 4px; background:rgba(201,168,76,0.15);
   border:1px solid rgba(201,168,76,0.35); border-radius:50%;
   font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500;
   color:var(--gold); flex-shrink:0;
 }
-
+.reg-section h3 { font-size:14px; font-weight:500; color:var(--gold2); margin:18px 0 8px; letter-spacing:0.5px; }
 .reg-section p { font-size:15px; color:rgba(244,241,235,0.82); margin-bottom:10px; }
 .reg-section p:last-child { margin-bottom:0; }
+.reg-section ol { margin:8px 0 10px 0; padding-left:22px; }
+.reg-section ol li { font-size:15px; color:rgba(244,241,235,0.78); padding:4px 0; }
+.reg-section ol li::marker { color:var(--gold); }
 .reg-section ul { list-style:none; padding:0; margin:8px 0 10px 0; }
 .reg-section ul li { font-size:15px; color:rgba(244,241,235,0.78); padding:4px 0 4px 20px; position:relative; }
 .reg-section ul li::before { content:'—'; position:absolute; left:0; color:var(--gold); opacity:0.6; }
@@ -64,6 +67,18 @@ nav { position:sticky; top:0; z-index:100; background:rgba(13,27,42,0.95); backd
 .limits-table td { padding:12px 16px; color:rgba(244,241,235,0.8); border-bottom:1px solid rgba(255,255,255,0.06); }
 .limits-table tr:hover td { background:rgba(201,168,76,0.04); }
 .limits-table td:first-child { color:var(--gold2); font-weight:500; }
+
+/* ── INFO / WARNING BOXES ── */
+.info-box { background:rgba(26,58,92,0.35); border:1px solid rgba(201,168,76,0.25); border-left:3px solid var(--gold); border-radius:8px; padding:18px 22px; margin:14px 0; }
+.info-box p { font-size:14px; color:rgba(244,241,235,0.8); }
+.info-box .box-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:8px; }
+.formula-box { background:#101d2e; border:1px solid rgba(201,168,76,0.3); border-radius:8px; padding:16px 20px; margin:12px 0; font-family:'Courier New',monospace; }
+.formula-box p { font-size:13px; color:var(--gold2); margin-bottom:6px; }
+.formula-box p.sub { color:var(--gray); font-size:12px; }
+
+.badge-ok { color:#7FD1A8; font-weight:500; }
+.badge-no { color:#E0938C; font-weight:500; }
+.badge-part { color:var(--gold2); font-weight:500; }
 
 /* ── CTA ── */
 .cta-box { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-radius:12px; padding:28px 32px; margin-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
@@ -83,6 +98,8 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
   .wrapper { padding:40px 20px 80px; }
   .cta-box { flex-direction:column; }
   footer { padding:20px 16px; }
+  .limits-table { font-size:12px; }
+  .limits-table td, .limits-table th { padding:8px 10px; }
 }
 </style>
 </head>
@@ -93,6 +110,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
   <div class="nav-links">
     <a href="index.html">Dla Wykonawców</a>
     <a href="dla-klientow.html">Dla Klientów</a>
+    <a href="regulamin.html">Regulamin</a>
     <a href="polityka-prywatnosci.html">Polityka prywatności</a>
     <a href="anulowanie.html">Anulowanie</a>
     <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
@@ -104,6 +122,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
 <div class="nav-mobile" id="nav-mobile">
   <a href="index.html">Dla Wykonawców</a>
   <a href="dla-klientow.html">Dla Klientów</a>
+  <a href="regulamin.html">Regulamin</a>
   <a href="polityka-prywatnosci.html">Polityka prywatności</a>
   <a href="anulowanie.html">Anulowanie subskrypcji</a>
   <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
@@ -111,119 +130,296 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
 
 <div class="wrapper">
 
-  <span class="page-eyebrow">Dokument prawny</span>
+  <span class="page-eyebrow">Dokument prawny · wersja 2.0</span>
   <h1 class="page-h1">Regulamin <em>Platformy</em></h1>
-  <p class="page-date">Obowiązuje od dnia 01.03.2026</p>
+  <p class="page-date">Obowiązuje od dnia 01.09.2026 r. &nbsp;|&nbsp; Stan prawny: sierpień 2026 r. &nbsp;|&nbsp; Obejmuje Politykę Zwrotów i Reklamacji (dawny Aneks)</p>
 
   <div class="divider"></div>
 
-  <div class="reg-section">
+  <div class="reg-section" id="par1">
     <h2><span class="para-num">§1</span>Postanowienia ogólne</h2>
-    <p>Regulamin określa zasady korzystania z Platformy internetowej prowadzonej przez Operatora.</p>
-    <p>Operatorem Platformy jest: <strong style="color:var(--white);">[Nazwa firmy, forma prawna, adres, NIP, e-mail]</strong>.</p>
-    <p>Platforma świadczy usługę drogą elektroniczną. Umowa zawierana jest w formie elektronicznej. Regulamin stanowi integralną część umowy.</p>
+    <ol>
+      <li>Niniejszy Regulamin określa zasady i warunki korzystania z Platformy internetowej „Remonty Łazienek”, prowadzonej przez Operatora, w tym zasady świadczenia usług drogą elektroniczną w rozumieniu ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną (t.j. Dz.U. z 2024 r. poz. 1513).</li>
+      <li>Operatorem Platformy jest: <strong style="color:var(--white);">[Nazwa firmy, forma prawna, adres siedziby, NIP, REGON, e-mail]</strong>, zwany dalej „Operatorem”.</li>
+      <li>Umowa o świadczenie Usług zawierana jest w formie elektronicznej z chwilą łącznego spełnienia następujących przesłanek: (a) akceptacji Regulaminu, (b) dokonania rejestracji Konta, (c) zaksięgowania opłaty abonamentowej (Aktywacja).</li>
+      <li>Regulamin stanowi integralną część umowy. Integralną częścią Regulaminu są ponadto: Polityka Zwrotów i Reklamacji (§8–§10, §13), Polityka Prywatności oraz cennik planów abonamentowych.</li>
+      <li>Regulamin udostępniany jest nieodpłatnie, przed zawarciem umowy, w sposób umożliwiający jego pozyskanie, odtwarzanie i utrwalanie jego treści za pomocą systemu teleinformatycznego, którym posługuje się Wykonawca (trwały nośnik).</li>
+    </ol>
   </div>
 
-  <div class="reg-section">
+  <div class="reg-section" id="par2">
     <h2><span class="para-num">§2</span>Definicje</h2>
     <ul>
-      <li><strong style="color:var(--white);">Platforma</strong> – system teleinformatyczny umożliwiający przekazywanie Wykonawcom zapytań od Klientów.</li>
-      <li><strong style="color:var(--white);">Operator</strong> – właściciel Platformy.</li>
-      <li><strong style="color:var(--white);">Wykonawca</strong> – przedsiębiorca korzystający z Platformy.</li>
-      <li><strong style="color:var(--white);">Wykonawca uprzywilejowany</strong> – osoba fizyczna prowadząca JDG zawierająca umowę niezwiązaną bezpośrednio z jej zawodowym charakterem.</li>
-      <li><strong style="color:var(--white);">Klient</strong> – osoba zainteresowana usługą.</li>
-      <li><strong style="color:var(--white);">Zlecenie (Lead)</strong> – przekazanie danych kontaktowych Klienta.</li>
-      <li><strong style="color:var(--white);">Subskrypcja</strong> – cykliczna, automatycznie odnawialna usługa dostępu do Platformy.</li>
-      <li><strong style="color:var(--white);">Okres rozliczeniowy</strong> – 30 dni, o ile nie wskazano inaczej.</li>
+      <li><strong style="color:var(--white);">Platforma</strong> – system teleinformatyczny prowadzony przez Operatora, umożliwiający przekazywanie Wykonawcom zapytań ofertowych (Zleceń) pochodzących od Klientów.</li>
+      <li><strong style="color:var(--white);">Operator</strong> – właściciel i administrator Platformy, o którym mowa w §1 ust. 2.</li>
+      <li><strong style="color:var(--white);">Wykonawca</strong> – przedsiębiorca w rozumieniu art. 43&sup1; Kodeksu cywilnego, wpisany do CEIDG albo rejestru przedsiębiorców KRS, korzystający z Platformy w ramach Subskrypcji.</li>
+      <li><strong style="color:var(--white);">Wykonawca uprzywilejowany</strong> – osoba fizyczna prowadząca jednoosobową działalność gospodarczą, zawierająca umowę bezpośrednio związaną z jej działalnością gospodarczą, gdy z treści tej umowy wynika, że nie ma ona dla niej charakteru zawodowego (art. 385&#8309; i art. 556&#8308; Kodeksu cywilnego oraz art. 7aa ustawy o prawach konsumenta).</li>
+      <li><strong style="color:var(--white);">Klient</strong> – osoba zainteresowana usługą remontową, składająca zapytanie za pośrednictwem Platformy.</li>
+      <li><strong style="color:var(--white);">Zlecenie (Lead)</strong> – przekazanie Wykonawcy danych kontaktowych Klienta wraz z opisem zapytania.</li>
+      <li><strong style="color:var(--white);">Subskrypcja (Abonament)</strong> – odpłatna, cykliczna, automatycznie odnawialna usługa dostępu do Platformy, uprawniająca do odbioru Zleceń zgodnie z wybranym planem.</li>
+      <li><strong style="color:var(--white);">Okres rozliczeniowy (abonamentowy)</strong> – 30 dni od daty Aktywacji, o ile nie wskazano inaczej.</li>
+      <li><strong style="color:var(--white);">Aktywacja</strong> – chwila zaksięgowania płatności i uruchomienia dostępu do Zleceń.</li>
+      <li><strong style="color:var(--white);">Plan PRÓBNY</strong> – jednorazowy, 30-dniowy dostęp testowy z limitem 1 Zlecenia, bez możliwości odnowienia.</li>
+      <li><strong style="color:var(--white);">Wniosek o zwrot</strong> – oświadczenie Wykonawcy zawierające żądanie zwrotu całości lub części opłaty abonamentowej, złożone w trybie §10.</li>
+      <li><strong style="color:var(--white);">Dni robocze</strong> – dni od poniedziałku do piątku, z wyłączeniem dni ustawowo wolnych od pracy.</li>
     </ul>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§3</span>Charakter usługi</h2>
-    <p>Platforma świadczy wyłącznie usługę pośrednictwa polegającą na przekazaniu danych kontaktowych. Operator nie jest stroną umowy między Wykonawcą a Klientem.</p>
-    <p>Operator nie gwarantuje:</p>
-    <ul>
-      <li>określonej liczby zleceń</li>
-      <li>minimalnej wartości zlecenia</li>
-      <li>skuteczności sprzedaży</li>
-      <li>zawarcia umowy z Klientem</li>
-      <li>jakości zapytania</li>
-      <li>dostępności Klienta</li>
-    </ul>
-    <p>Przekazanie Zlecenia oznacza prawidłowe wykonanie świadczenia przez Operatora. Subskrypcja obejmuje dostęp do systemu oraz gotowość przekazywania zleceń, a nie gwarancję ich uzyskania.</p>
-  </div>
-
-  <div class="reg-section">
-    <h2><span class="para-num">§4</span>Zasady przydzielania zleceń</h2>
-    <p>Zlecenia przydzielane są automatycznie według: lokalizacji, aktywnej Subskrypcji, limitu planu oraz parametrów systemowych. Algorytm przydziału stanowi tajemnicę przedsiębiorstwa Operatora.</p>
-    <p>Limity miesięczne:</p>
+  <div class="reg-section" id="par3">
+    <h2><span class="para-num">§3</span>Podstawy prawne i charakter B2B</h2>
+    <p>Usługi Platformy świadczone są wyłącznie na rzecz przedsiębiorców (relacja B2B). Do umów zawieranych na podstawie Regulaminu zastosowanie znajdują w szczególności:</p>
     <table class="limits-table">
-      <thead><tr><th>Plan</th><th>Zleceń / miesiąc</th><th>Max dziennie</th></tr></thead>
+      <thead><tr><th>Akt prawny</th><th>Zakres zastosowania</th></tr></thead>
       <tbody>
-        <tr><td>PRÓBNY</td><td>1 zlecenie</td><td>1</td></tr>
-        <tr><td>START</td><td>5 zleceń</td><td>1</td></tr>
-        <tr><td>STANDARD</td><td>10 zleceń</td><td>2</td></tr>
-        <tr><td>PREMIUM</td><td>20 zleceń</td><td>4</td></tr>
+        <tr><td>Kodeks cywilny (t.j. Dz.U. z 2024 r. poz. 1061 ze zm.)</td><td>Podstawa główna — umowa o świadczenie usług (art. 750 w zw. z art. 734–751 KC), odpowiedzialność kontraktowa (art. 471 i n.), swoboda umów (art. 353&sup1;)</td></tr>
+        <tr><td>Ustawa o świadczeniu usług drogą elektroniczną (t.j. Dz.U. z 2024 r. poz. 1513)</td><td>Świadczenie usług Platformy drogą elektroniczną, wymogi regulaminu</td></tr>
+        <tr><td>Prawo komunikacji elektronicznej (Dz.U. z 2024 r. poz. 1221, obow. od 10.11.2024 r.)</td><td>Komunikacja marketingowa — wymagana uprzednia zgoda również w relacjach B2B; przechowywanie informacji na urządzeniach końcowych (cookies)</td></tr>
+        <tr><td>Rozporządzenie (UE) 2019/1150 (P2B)</td><td>Przejrzystość warunków dla użytkowników biznesowych platform pośrednictwa internetowego: minimalny 15-dniowy termin powiadomienia o zmianach warunków, przejrzystość plasowania, tryb rozpatrywania skarg</td></tr>
+        <tr><td>Rozporządzenie (UE) 2022/2065 (Akt o usługach cyfrowych, DSA)</td><td>Obowiązki dostawcy usługi pośredniej w zakresie punktu kontaktowego i przejrzystości warunków korzystania z usług</td></tr>
+        <tr><td>RODO — rozporządzenie (UE) 2016/679 oraz ustawa o ochronie danych osobowych (Dz.U. z 2019 r. poz. 1781)</td><td>Przetwarzanie danych osobowych — szczegóły w Polityce Prywatności</td></tr>
+        <tr><td>Ustawa o prawach konsumenta (t.j. Dz.U. z 2024 r. poz. 1796 ze zm.)</td><td>Nie stosuje się do relacji B2B, z wyjątkiem uprawnień Wykonawcy uprzywilejowanego (§7 i §14)</td></tr>
+        <tr><td>Dyrektywa (UE) 2023/2673 („przycisk odstąpienia”, stosowana od 19.06.2026 r.)</td><td>Nie stosuje się — zakres obejmuje wyłącznie umowy z konsumentami (B2C); na dzień publikacji Regulaminu krajowa transpozycja pozostaje w toku prac legislacyjnych</td></tr>
       </tbody>
     </table>
-    <p>Niewykorzystane limity nie przechodzą na kolejny okres. Operator może odmówić przekazania zlecenia w przypadku zaległości w płatnościach, naruszenia Regulaminu lub podejrzenia nadużycia systemu.</p>
+    <div class="info-box">
+      <p class="box-title">Zasada swobody umów w B2B</p>
+      <p>W relacjach między przedsiębiorcami zasada swobody umów (art. 353&sup1; KC) pozwala stronom swobodnie kształtować warunki zwrotów, bez rygorów ustawowych właściwych dla obrotu konsumenckiego. Operator mógłby prawo zwrotu wyłączyć w całości; przyjęta w §8–§10 dobrowolna polityka zwrotów stanowi wyraz rzetelności kupieckiej i standardu rynkowego, a nie wykonanie obowiązku ustawowego.</p>
+    </div>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§5</span>Subskrypcja i płatności cykliczne</h2>
-    <p>Subskrypcja odnawia się automatycznie na kolejny Okres rozliczeniowy. Wykonawca wyraża zgodę na cykliczne obciążenie wybranej metody płatności. Informacja o cenie, okresie oraz automatycznym odnowieniu prezentowana jest przed zawarciem umowy.</p>
-    <p>Rezygnacja z Subskrypcji możliwa jest najpóźniej 24h przed końcem okresu. Brak rezygnacji oznacza przedłużenie Subskrypcji. Opłaty są bezzwrotne za rozpoczęty okres rozliczeniowy.</p>
+  <div class="reg-section" id="par4">
+    <h2><span class="para-num">§4</span>Charakter usługi</h2>
+    <ol>
+      <li>Umowa abonamentowa jest umową o świadczenie usług, do której na podstawie art. 750 Kodeksu cywilnego stosuje się odpowiednio przepisy o zleceniu (umowa starannego działania, nie rezultatu).</li>
+      <li>Platforma świadczy wyłącznie usługę pośrednictwa polegającą na udostępnianiu Wykonawcy danych kontaktowych potencjalnych Klientów. Operator nie jest stroną umowy zawieranej między Wykonawcą a Klientem, nie działa jako pełnomocnik, agent ani gwarant którejkolwiek ze stron.</li>
+      <li>Operator nie gwarantuje: określonej liczby Zleceń (jeżeli popyt rynkowy jest niższy od limitu planu), minimalnej wartości Zlecenia, skuteczności sprzedaży, zawarcia umowy z Klientem, jakości zapytania ani dostępności Klienta.</li>
+      <li>Świadczenie Operatora uważa się za prawidłowo wykonane z chwilą przekazania Zlecenia zgodnie z parametrami planu. Subskrypcja obejmuje dostęp do systemu oraz gotowość przekazywania Zleceń, nie zaś gwarancję ich uzyskania.</li>
+      <li>Zlecenie raz przekazane Wykonawcy nie podlega „zwrotowi” w rozumieniu właściwym dla towarów — dane Klienta zostały już ujawnione. Wartość usługi jest konsumowana sukcesywnie przez cały Okres rozliczeniowy; z tego względu liczba przekazanych Zleceń stanowi kluczowe kryterium rozliczeń w ramach polityki zwrotów (§8).</li>
+    </ol>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§6</span>Prawo odstąpienia (JDG na prawach konsumenta)</h2>
-    <p>Wykonawcy uprzywilejowanemu przysługuje 14-dniowe prawo odstąpienia. Prawo wygasa, jeżeli Wykonawca wyraził zgodę na rozpoczęcie świadczenia, został poinformowany o utracie prawa i otrzymał pierwsze Zlecenie. W przypadku odstąpienia przed wykonaniem świadczenia zwrot następuje proporcjonalnie.</p>
+  <div class="reg-section" id="par5">
+    <h2><span class="para-num">§5</span>Zasady przydzielania Zleceń</h2>
+    <ol>
+      <li>Zlecenia przydzielane są automatycznie. Głównymi parametrami determinującymi przydział — wskazanymi stosownie do wymogów przejrzystości wynikających z rozporządzenia (UE) 2019/1150 — są: (a) lokalizacja Wykonawcy względem miejsca realizacji Zlecenia, (b) posiadanie aktywnej Subskrypcji, (c) limit dzienny i miesięczny planu, (d) kolejność i parametry systemowe.</li>
+      <li>Szczegółowy algorytm przydziału stanowi tajemnicę przedsiębiorstwa Operatora w rozumieniu ustawy o zwalczaniu nieuczciwej konkurencji i nie podlega ujawnieniu w zakresie wykraczającym poza ust. 1.</li>
+      <li>Limity Zleceń w planach abonamentowych:</li>
+    </ol>
+    <table class="limits-table">
+      <thead><tr><th>Plan</th><th>Cena</th><th>Zleceń / miesiąc</th><th>Max dziennie</th></tr></thead>
+      <tbody>
+        <tr><td>PRÓBNY</td><td>249 zł (jednorazowo)</td><td>1 zlecenie</td><td>1</td></tr>
+        <tr><td>START</td><td>499 zł/mies.</td><td>5 zleceń</td><td>1</td></tr>
+        <tr><td>STANDARD</td><td>999 zł/mies.</td><td>10 zleceń</td><td>2</td></tr>
+        <tr><td>PREMIUM</td><td>1&nbsp;799 zł/mies.</td><td>20 zleceń</td><td>4</td></tr>
+      </tbody>
+    </table>
+    <ol start="4">
+      <li>Niewykorzystane limity nie przechodzą na kolejny Okres rozliczeniowy.</li>
+      <li>Operator może wstrzymać przekazywanie Zleceń w przypadku: zaległości w płatnościach, naruszenia Regulaminu lub uzasadnionego podejrzenia nadużycia systemu (§12).</li>
+    </ol>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§7</span>Obowiązki Wykonawcy</h2>
+  <div class="reg-section" id="par6">
+    <h2><span class="para-num">§6</span>Subskrypcja i płatności cykliczne</h2>
+    <ol>
+      <li>Subskrypcja odnawia się automatycznie na kolejny Okres rozliczeniowy. Wykonawca, zawierając umowę, wyraża zgodę na cykliczne obciążanie wybranej metody płatności za pośrednictwem operatora płatności (PayU).</li>
+      <li>Informacja o cenie, długości Okresu rozliczeniowego oraz automatycznym odnawianiu prezentowana jest w sposób jednoznaczny przed zawarciem umowy oraz w podsumowaniu zamówienia.</li>
+      <li>Operator powiadamia Wykonawcę pocztą elektroniczną o zbliżającym się odnowieniu Subskrypcji nie później niż na 7 dni przed obciążeniem. Automatyczne przedłużenie bez uprzedniego powiadomienia jest wyłączone.</li>
+      <li>Rezygnacja z Subskrypcji (anulowanie przyszłych odnowień) możliwa jest w panelu użytkownika lub na stronie „Anulowanie subskrypcji” najpóźniej na 24 godziny przed końcem bieżącego Okresu rozliczeniowego. Brak rezygnacji oznacza przedłużenie Subskrypcji na kolejny okres.</li>
+      <li>Rezygnacja nie wiąże się ze zwrotem opłaty za bieżący okres — Wykonawca zachowuje dostęp do usługi do końca opłaconego Okresu rozliczeniowego.</li>
+      <li>Opłaty za rozpoczęty Okres rozliczeniowy są bezzwrotne, z zastrzeżeniem dobrowolnej polityki zwrotów (§8–§10) oraz uprawnień Wykonawcy uprzywilejowanego (§7).</li>
+      <li>W przypadku nieskutecznego obciążenia metody płatności Operator może ponowić próbę obciążenia oraz zawiesić dostęp do Platformy do czasu uregulowania należności.</li>
+    </ol>
+  </div>
+
+  <div class="reg-section" id="par7">
+    <h2><span class="para-num">§7</span>Prawo odstąpienia — Wykonawca uprzywilejowany</h2>
+    <ol>
+      <li>Wykonawcy uprzywilejowanemu przysługuje prawo odstąpienia od umowy w terminie 14 dni od jej zawarcia, bez podawania przyczyny (art. 27 w zw. z art. 7aa ustawy o prawach konsumenta).</li>
+      <li>Prawo odstąpienia wygasa, jeżeli Wykonawca uprzywilejowany: (a) zażądał rozpoczęcia świadczenia usługi przed upływem terminu odstąpienia i wyraził na to wyraźną zgodę, (b) został poinformowany o utracie prawa odstąpienia z chwilą pełnego wykonania usługi i przyjął to do wiadomości, oraz (c) usługa została w pełni wykonana, w szczególności poprzez przekazanie pierwszego Zlecenia w ramach limitu planu.</li>
+      <li>W przypadku odstąpienia przed pełnym wykonaniem usługi Wykonawca uprzywilejowany ponosi koszt świadczeń spełnionych do chwili odstąpienia, obliczony proporcjonalnie (art. 35 ustawy o prawach konsumenta); pozostała część opłaty podlega zwrotowi w terminie 14 dni.</li>
+      <li>Zakup Subskrypcji przez przedsiębiorcę remontowego w celu pozyskiwania zleceń remontowych pozostaje co do zasady w bezpośrednim związku zawodowym z jego działalnością, co może wyłączać status Wykonawcy uprzywilejowanego. W razie wątpliwości Operator przyjmuje wykładnię korzystną dla Wykonawcy.</li>
+    </ol>
+  </div>
+
+  <div class="reg-section" id="par8">
+    <h2><span class="para-num">§8</span>Dobrowolna polityka zwrotów</h2>
+    <h3>8.1 Zasada ogólna</h3>
+    <p>Operator dobrowolnie przyznaje Wykonawcom prawo do złożenia Wniosku o zwrot opłaty abonamentowej na warunkach opisanych w niniejszym paragrafie. Uprawnienie to wykracza poza obowiązki ustawowe Operatora w obrocie B2B.</p>
+    <h3>8.2 Okno „chłodzenia” — 3 dni, zwrot 100%</h3>
+    <p>Jeżeli Wykonawca złoży Wniosek o zwrot w ciągu 3 dni kalendarzowych od Aktywacji i nie otrzymał żadnego Zlecenia, Operator zwraca 100% wniesionej opłaty.</p>
+    <h3>8.3 Zwrot proporcjonalny — od 4. do 14. dnia</h3>
+    <p>Jeżeli Wniosek zostanie złożony po upływie 3 dni, lecz nie później niż 14. dnia od Aktywacji, a Wykonawcy nie przekazano żadnego Zlecenia, zwrot obliczany jest proporcjonalnie do liczby dni pozostałych do końca Okresu rozliczeniowego, z pomniejszeniem o równowartość przekazanych Zleceń:</p>
+    <div class="formula-box">
+      <p><strong>Zwrot = Opłata × (Dni pozostałe / Dni w okresie) − Wartość przekazanych Zleceń</strong></p>
+      <p class="sub">Wartość Zlecenia = Opłata ÷ limit Zleceń w planie&nbsp;&nbsp;|&nbsp;&nbsp;Minimalny zwrot: 0 zł (Operator nie pobiera dopłat)</p>
+    </div>
+    <h3>8.4 Plan PRÓBNY — zasady szczególne</h3>
+    <p>Z uwagi na promocyjną cenę i jednorazowy charakter planu PRÓBNY zwrot przysługuje wyłącznie, jeżeli żadne Zlecenie nie zostało przekazane. Przekazanie Zlecenia — niezależnie od jego rezultatu — wyłącza prawo do zwrotu.</p>
+    <h3>8.5 Wyłączenia prawa do zwrotu</h3>
     <ul>
-      <li>Kontakt z Klientem w 24h od otrzymania informacji o nowym zleceniu.</li>
-      <li>Zakaz wykorzystania danych poza realizacją danego Zlecenia.</li>
-      <li>Zakaz omijania Platformy.</li>
-      <li>Zakaz działań szkodzących reputacji Platformy.</li>
-      <li>Zakaz składania nieuzasadnionych roszczeń w złej wierze.</li>
+      <li>Zlecenie zostało przekazane Wykonawcy (niezależnie od rezultatu kontaktu z Klientem);</li>
+      <li>Wniosek złożono po upływie 14 dni od Aktywacji;</li>
+      <li>konto dezaktywowano z powodu naruszenia Regulaminu przez Wykonawcę;</li>
+      <li>opłata abonamentowa nie została zaksięgowana w pełnej wysokości;</li>
+      <li>Wykonawca korzystał już z planu PRÓBNY i ponownie nabył ten sam plan.</li>
     </ul>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§8</span>Nadużycia i ochrona systemu</h2>
-    <p>Za nadużycie uznaje się m.in.: fikcyjne zgłoszenia reklamacyjne, celowe generowanie sporów, próby testowania systemu w celu jego obejścia, podawanie nieprawdziwych danych, próby odzyskania środków mimo wykonania usługi.</p>
-    <p>W takich przypadkach Operator może zablokować konto, rozwiązać umowę natychmiast, dochodzić odszkodowania na zasadach ogólnych lub zgłosić sprawę do operatora płatności.</p>
+  <div class="reg-section" id="par9">
+    <h2><span class="para-num">§9</span>Tabela zwrotów — scenariusze</h2>
+    <table class="limits-table">
+      <thead><tr><th>Sytuacja</th><th>Termin zgłoszenia</th><th>Zwrot</th><th>Warunek</th></tr></thead>
+      <tbody>
+        <tr><td>Aktywacja, 0 zleceń</td><td>&le; 3 dni od aktywacji</td><td class="badge-ok">100% zwrotu</td><td>Brak przekazanych zleceń</td></tr>
+        <tr><td>Aktywacja, 0 zleceń</td><td>4–14 dni od aktywacji</td><td class="badge-part">Proporcjonalny</td><td>Wzór z §8.3</td></tr>
+        <tr><td>Aktywacja, 0 zleceń</td><td>&gt; 14 dni od aktywacji</td><td class="badge-no">Brak zwrotu</td><td>Termin upłynął</td></tr>
+        <tr><td>Aktywacja, 1+ zlecenie</td><td>&le; 3 dni od aktywacji</td><td class="badge-no">Brak zwrotu</td><td>Zlecenie przekazane</td></tr>
+        <tr><td>Aktywacja, 1+ zlecenie</td><td>4–14 dni od aktywacji</td><td class="badge-no">Brak zwrotu</td><td>Zlecenie przekazane</td></tr>
+        <tr><td>Plan PRÓBNY, 0 zleceń</td><td>&le; 3 dni od aktywacji</td><td class="badge-ok">100% zwrotu</td><td>Wyjątkowo — brak zleceń</td></tr>
+        <tr><td>Plan PRÓBNY, 1 zlecenie</td><td>dowolny</td><td class="badge-no">Brak zwrotu</td><td>Zlecenie przekazane</td></tr>
+        <tr><td>Anulowanie odnowienia</td><td>dowolny moment</td><td class="badge-no">Brak zwrotu</td><td>Dostęp do końca okresu</td></tr>
+        <tr><td>Awaria systemu (§13.4)</td><td>w trakcie awarii</td><td class="badge-part">Proporcjonalny</td><td>Udokumentowana awaria</td></tr>
+        <tr><td>Naruszenie Regulaminu</td><td>—</td><td class="badge-no">Brak zwrotu</td><td>Dezaktywacja z winy Wykonawcy</td></tr>
+      </tbody>
+    </table>
+    <div class="info-box">
+      <p class="box-title">Przykład obliczenia zwrotu proporcjonalnego</p>
+      <p>Plan STANDARD (999 zł, limit 10 Zleceń, okres 30 dni). Wniosek złożono 18. dnia, żadne Zlecenie nie zostało przekazane. Dni pozostałe: 30 − 18 = 12. Zwrot = 999 zł × (12/30) − 0 zł = <strong style="color:var(--gold2);">399,60 zł</strong> (przelew w terminie 7 dni roboczych od decyzji).</p>
+    </div>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§9</span>Reklamacje</h2>
-    <p>Reklamacje należy zgłaszać w terminie 7 dni. Brak zgłoszenia w terminie oznacza akceptację wykonania usługi. Reklamacje nie obejmują: braku zawarcia umowy, braku odpowiedzi Klienta, ceny zlecenia, subiektywnej oceny jakości zapytania.</p>
+  <div class="reg-section" id="par10">
+    <h2><span class="para-num">§10</span>Procedura Wniosku o zwrot</h2>
+    <h3>10.1 Forma i kanał złożenia</h3>
+    <p>Wniosek o zwrot składa się w formie dokumentowej — pocztą elektroniczną na adres <a href="mailto:platforma@remontylazienek.com" style="color:var(--gold);">platforma@remontylazienek.com</a>, z tytułem wiadomości: <em>[WNIOSEK O ZWROT] — nazwa firmy — plan abonamentowy</em>.</p>
+    <h3>10.2 Wymagana treść Wniosku</h3>
+    <ul>
+      <li>pełna nazwa firmy i NIP;</li>
+      <li>adres e-mail zarejestrowany na koncie;</li>
+      <li>nazwa planu abonamentowego i data Aktywacji;</li>
+      <li>numer transakcji operatora płatności (z e-maila potwierdzającego płatność);</li>
+      <li>powód wniosku (fakultatywnie);</li>
+      <li>numer rachunku bankowego właściwego do zwrotu.</li>
+    </ul>
+    <h3>10.3 Terminy rozpatrzenia</h3>
+    <table class="limits-table">
+      <thead><tr><th>Etap</th><th>Termin</th></tr></thead>
+      <tbody>
+        <tr><td>Potwierdzenie otrzymania Wniosku</td><td>1 dzień roboczy od wpłynięcia</td></tr>
+        <tr><td>Weryfikacja uprawnień do zwrotu</td><td>3 dni robocze</td></tr>
+        <tr><td>Decyzja i zawiadomienie Wykonawcy</td><td>5 dni roboczych od wpłynięcia</td></tr>
+        <tr><td>Przelew zwrotu (po pozytywnej decyzji)</td><td>7 dni roboczych od decyzji</td></tr>
+        <tr><td>Łączny czas — od wniosku do przelewu</td><td>maksymalnie 12 dni roboczych</td></tr>
+      </tbody>
+    </table>
+    <h3>10.4 Odwołanie od decyzji odmownej</h3>
+    <p>Od decyzji odmownej Wykonawca może wnieść odwołanie w terminie 14 dni od jej doręczenia. Odwołanie rozpatruje właściciel Platformy (szczebel wyższy niż obsługa klienta). Decyzja odwoławcza jest ostateczna w ramach wewnętrznego trybu rozpatrywania skarg, prowadzonego z uwzględnieniem zasad art. 11 rozporządzenia (UE) 2019/1150; nie zamyka to drogi do dochodzenia roszczeń na zasadach ogólnych.</p>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§10</span>Odpowiedzialność</h2>
-    <p>Wobec przedsiębiorców odpowiedzialność ograniczona jest do wysokości jednej miesięcznej Subskrypcji. Wobec Wykonawców uprzywilejowanych — do wysokości rzeczywiście poniesionej szkody. Operator nie odpowiada za utracone korzyści, utratę reputacji, utracone kontrakty, szkody pośrednie ani zdarzenia siły wyższej.</p>
+  <div class="reg-section" id="par11">
+    <h2><span class="para-num">§11</span>Obowiązki Wykonawcy</h2>
+    <ul>
+      <li>podjęcie kontaktu z Klientem w ciągu 24 godzin od otrzymania powiadomienia o nowym Zleceniu;</li>
+      <li>zakaz wykorzystywania danych Klienta w celu innym niż realizacja danego Zlecenia (Wykonawca staje się odrębnym administratorem danych — zob. Polityka Prywatności);</li>
+      <li>zakaz omijania Platformy, w tym nakłaniania Klientów do zawierania umów z pominięciem systemu;</li>
+      <li>zakaz działań szkodzących renomie Platformy lub Operatora;</li>
+      <li>zakaz składania nieuzasadnionych roszczeń w złej wierze;</li>
+      <li>podawanie prawdziwych, kompletnych i aktualnych danych rejestrowych.</li>
+    </ul>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§11</span>Rozwiązanie umowy</h2>
-    <p>Umowa zawierana jest na czas nieokreślony. Rezygnacja skutkuje zakończeniem po bieżącym okresie. Operator może rozwiązać umowę natychmiast w przypadku naruszenia Regulaminu, nadużyć lub działań na szkodę Platformy.</p>
+  <div class="reg-section" id="par12">
+    <h2><span class="para-num">§12</span>Nadużycia i ochrona systemu</h2>
+    <ol>
+      <li>Za nadużycie uznaje się w szczególności: fikcyjne zgłoszenia reklamacyjne, celowe generowanie sporów, testowanie systemu w celu jego obejścia, podawanie nieprawdziwych danych, próby odzyskania środków (w tym chargeback) pomimo prawidłowego wykonania usługi.</li>
+      <li>W przypadku nadużycia Operator może: (a) zablokować konto, (b) rozwiązać umowę ze skutkiem natychmiastowym, (c) dochodzić naprawienia szkody na zasadach ogólnych (art. 471 i n. KC), (d) zgłosić sprawę operatorowi płatności.</li>
+    </ol>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§12</span>Zmiany Regulaminu i cen</h2>
-    <p>Operator może zmienić Regulamin lub cenę z ważnych przyczyn. Informacja przekazywana 14 dni wcześniej. Brak rezygnacji oznacza akceptację zmian.</p>
+  <div class="reg-section" id="par13">
+    <h2><span class="para-num">§13</span>Reklamacje jakości usługi</h2>
+    <h3>13.1 Podstawa i standard rozpatrywania</h3>
+    <p>W relacjach B2B odpowiedzialność za jakość świadczenia może być umownie kształtowana (art. 558 §1 KC stosowany odpowiednio). Operator zobowiązuje się jednak rozpatrywać uzasadnione reklamacje dotyczące jakości usługi jako standard biznesowy.</p>
+    <h3>13.2 Przesłanki uzasadnionej reklamacji</h3>
+    <ul>
+      <li>Zlecenie zawierało dane kontaktowe nieistniejące lub błędne (np. błędny numer telefonu, fikcyjny adres);</li>
+      <li>Zlecenie dotyczyło usługi niezgodnej z profilem działalności Wykonawcy (np. remont inny niż łazienka);</li>
+      <li>to samo Zlecenie przekazano Wykonawcy dwukrotnie w tym samym Okresie rozliczeniowym;</li>
+      <li>Platforma była niedostępna łącznie dłużej niż 48 godzin w miesiącu z przyczyn leżących po stronie Operatora.</li>
+    </ul>
+    <h3>13.3 Termin i tryb</h3>
+    <p>Reklamację zgłasza się pocztą elektroniczną w terminie 7 dni od zdarzenia stanowiącego jej podstawę. Operator rozpatruje reklamację w terminie 14 dni od otrzymania. Brak zgłoszenia w terminie poczytuje się — w stosunkach z przedsiębiorcami — za akceptację wykonania usługi; nie dotyczy to Wykonawcy uprzywilejowanego.</p>
+    <h3>13.4 Rekompensata za awarię systemu</h3>
+    <p>W przypadku udokumentowanej awarii trwającej łącznie ponad 48 godzin w miesiącu Operator z własnej inicjatywy przyznaje Wykonawcy kredyt na kolejny miesiąc albo przedłuża Okres rozliczeniowy o czas przestoju.</p>
+    <h3>13.5 Zakres wyłączony spod reklamacji</h3>
+    <ul>
+      <li>brak zainteresowania Klienta po kontakcie Wykonawcy albo wybór innego wykonawcy przez Klienta;</li>
+      <li>niska liczba Zleceń wynikająca z popytu rynkowego, a nie z awarii systemu;</li>
+      <li>cena i wartość Zlecenia oraz subiektywna ocena jakości zapytania;</li>
+      <li>utracone korzyści.</li>
+    </ul>
   </div>
 
-  <div class="reg-section">
-    <h2><span class="para-num">§13</span>Postanowienia końcowe</h2>
-    <p>Spory z przedsiębiorcami rozstrzyga sąd właściwy dla siedziby Operatora. Wobec Wykonawcy uprzywilejowanego stosuje się przepisy ogólne. Jeżeli jakiekolwiek postanowienie okaże się nieważne, pozostałe pozostają w mocy.</p>
+  <div class="reg-section" id="par14">
+    <h2><span class="para-num">§14</span>Ochrona Wykonawcy uprzywilejowanego (JDG)</h2>
+    <ol>
+      <li>Od 1 stycznia 2021 r. (ustawa z 31.07.2019 r., Dz.U. 2020 poz. 1086) osoba fizyczna prowadząca JDG korzysta z ochrony właściwej konsumentom w zakresie klauzul abuzywnych (art. 385&sup1;–385&sup3; KC) oraz rękojmi, o ile umowa nie ma dla niej charakteru zawodowego.</li>
+      <li>Niezależnie od oceny statusu Wykonawcy Operator oświadcza, że Regulamin nie zawiera postanowień rażąco naruszających interesy Wykonawcy ani kształtujących jego prawa i obowiązki w sposób sprzeczny z dobrymi obyczajami, w szczególności: całkowitego wyłączenia odpowiedzialności Operatora, jednostronnego prawa zmiany cen w trakcie opłaconego okresu, automatycznego przedłużania Subskrypcji bez uprzedniego powiadomienia ani postanowień pozbawiających Wykonawcę prawa do reklamacji.</li>
+      <li>W razie wątpliwości co do statusu Wykonawcy Operator przyjmuje podejście korzystne dla Wykonawcy.</li>
+    </ol>
+  </div>
+
+  <div class="reg-section" id="par15">
+    <h2><span class="para-num">§15</span>Odpowiedzialność</h2>
+    <ol>
+      <li>Odpowiedzialność Operatora wobec Wykonawcy będącego przedsiębiorcą ograniczona jest do wysokości opłaty abonamentowej uiszczonej za Okres rozliczeniowy, w którym wystąpiło zdarzenie szkodzące.</li>
+      <li>Operator nie odpowiada wobec przedsiębiorców za utracone korzyści (lucrum cessans), utratę renomy, utracone kontrakty ani szkody pośrednie.</li>
+      <li>Ograniczenia z ust. 1–2 nie mają zastosowania do szkody wyrządzonej umyślnie (art. 473 §2 KC) ani do Wykonawcy uprzywilejowanego, wobec którego Operator odpowiada do wysokości rzeczywiście poniesionej szkody na zasadach ogólnych.</li>
+      <li>Operator nie ponosi odpowiedzialności za niewykonanie lub nienależyte wykonanie usługi wskutek siły wyższej, w tym: awarii infrastruktury zewnętrznej (m.in. usług Google), przerw w dostępie do internetu po stronie Wykonawcy, działań organów państwowych, klęsk żywiołowych oraz cyberataków na infrastrukturę zewnętrzną.</li>
+      <li>Operator gwarantuje dostępność Platformy i przekazywanie Zleceń zgodnie z planem; nie gwarantuje liczby Zleceń odpowiadającej limitowi przy niższym popycie rynkowym, finalizacji zleceń przez Klientów ani przychodu Wykonawcy.</li>
+    </ol>
+  </div>
+
+  <div class="reg-section" id="par16">
+    <h2><span class="para-num">§16</span>Rozwiązanie umowy</h2>
+    <ol>
+      <li>Umowa zawierana jest na czas nieokreślony. Rezygnacja z Subskrypcji skutkuje rozwiązaniem umowy z upływem bieżącego Okresu rozliczeniowego.</li>
+      <li>Operator może rozwiązać umowę ze skutkiem natychmiastowym w przypadku: istotnego naruszenia Regulaminu, nadużyć (§12) lub działań na szkodę Platformy; oświadczenie wraz z uzasadnieniem przekazywane jest na trwałym nośniku.</li>
+      <li>Ograniczenie lub zawieszenie świadczenia usług na rzecz Wykonawcy następuje z podaniem uzasadnienia, stosownie do art. 4 rozporządzenia (UE) 2019/1150.</li>
+    </ol>
+  </div>
+
+  <div class="reg-section" id="par17">
+    <h2><span class="para-num">§17</span>Zmiany Regulaminu i cen</h2>
+    <ol>
+      <li>Operator może zmienić Regulamin lub cennik z ważnych przyczyn, w szczególności: zmiany przepisów prawa, zmiany modelu biznesowego, względów bezpieczeństwa lub rozwoju funkcjonalności Platformy.</li>
+      <li>O proponowanych zmianach Operator powiadamia Wykonawców na trwałym nośniku (e-mail) z wyprzedzeniem co najmniej <strong style="color:var(--gold2);">15 dni</strong> (art. 3 ust. 2 rozporządzenia (UE) 2019/1150), chyba że dłuższy termin jest konieczny dla dostosowania się do zmian.</li>
+      <li>Przed upływem terminu, o którym mowa w ust. 2, Wykonawca może wypowiedzieć umowę ze skutkiem na koniec bieżącego Okresu rozliczeniowego. Brak wypowiedzenia oznacza akceptację zmian.</li>
+      <li>Zmiana cen nie dotyczy Okresu rozliczeniowego już opłaconego.</li>
+      <li>Zmiany Polityki Zwrotów nie mają zastosowania do Subskrypcji aktywowanych przed datą ich wejścia w życie.</li>
+    </ol>
+  </div>
+
+  <div class="reg-section" id="par18">
+    <h2><span class="para-num">§18</span>Dane osobowe</h2>
+    <p>Zasady przetwarzania danych osobowych Wykonawców i Klientów, w tym danych przetwarzanych przy obsłudze zwrotów i reklamacji, określa <a href="polityka-prywatnosci.html" style="color:var(--gold);">Polityka Prywatności</a>, stanowiąca integralną część Regulaminu.</p>
+  </div>
+
+  <div class="reg-section" id="par19">
+    <h2><span class="para-num">§19</span>Postanowienia końcowe</h2>
+    <ol>
+      <li>Prawem właściwym dla umów zawieranych na podstawie Regulaminu jest prawo polskie.</li>
+      <li>Przed skierowaniem sprawy na drogę sądową strony podejmą próbę polubownego rozwiązania sporu w terminie 30 dni od zgłoszenia roszczenia.</li>
+      <li>Spory z przedsiębiorcami rozstrzyga sąd powszechny właściwy miejscowo dla siedziby Operatora. Wobec Wykonawcy uprzywilejowanego właściwość sądu ustala się na zasadach ogólnych.</li>
+      <li>Jeżeli którekolwiek postanowienie Regulaminu okaże się nieważne lub bezskuteczne, pozostałe postanowienia pozostają w mocy, a w miejsce postanowienia nieważnego stosuje się przepis prawa najbliższy celowi tego postanowienia (klauzula salwatoryjna).</li>
+      <li>Regulamin w niniejszym brzmieniu (wersja 2.0, obejmująca dotychczasowy Aneks — Politykę Zwrotów i Reklamacji) wchodzi w życie z dniem 01.09.2026 r.</li>
+    </ol>
   </div>
 
   <div class="cta-box">
-    <p>Masz pytania dotyczące regulaminu? Napisz do nas lub wybierz plan subskrypcji.</p>
+    <p>Masz pytania dotyczące regulaminu lub polityki zwrotów? Napisz do nas lub wybierz plan subskrypcji.</p>
     <div style="display:flex;gap:12px;flex-wrap:wrap;">
       <a href="mailto:platforma@remontylazienek.com" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:var(--light);">Napisz do nas</a>
       <a href="wybor-planow.html">Wybierz plan</a>
@@ -239,7 +435,7 @@ footer p { font-size:11px; color:var(--gray); opacity:0.7; }
     <a href="anulowanie.html">Anuluj subskrypcję</a>
     <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
   </div>
-  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.</p>
+  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone. Dokument nie stanowi porady prawnej; przed publikacją zalecana weryfikacja przez radcę prawnego (www.oirp.pl).</p>
 </footer>
 
 <script>
