@@ -1,448 +1,295 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Regulamin – Remonty Łazienek</title>
+<meta name="description" content="Regulamin Platformy Remonty Łazienek – zasady korzystania z usług, subskrypcje, prawa Wykonawców i Klientów. Stan prawny: sierpień 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --navy:#0D1B2A; --blue:#1A3A5C; --gold:#C9A84C; --gold2:#E8C97A; --light:#F4F1EB; --white:#FFFFFF; --gray:#8A9BAD; }
-html { scroll-behavior: smooth; }
-body { background:var(--navy); color:var(--light); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.8; min-height:100vh; overflow-x:hidden; }
-body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse at 20% 0%,rgba(26,58,92,0.45) 0%,transparent 60%); pointer-events:none; z-index:0; }
-
-nav { position:sticky; top:0; z-index:100; background:rgba(13,27,42,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.18); padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:64px; }
-.nav-logo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); text-decoration:none; }
-.nav-logo span { color:var(--gold); }
-.nav-links { display:flex; align-items:center; gap:28px; }
-.nav-links a { font-size:13px; color:rgba(244,241,235,0.75); text-decoration:none; transition:color 0.2s; }
-.nav-links a:hover { color:var(--white); }
-.nav-cta { padding:9px 22px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy)!important; font-weight:500!important; border-radius:7px; }
-.nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; }
-.nav-burger span { display:block; width:22px; height:2px; background:var(--light); border-radius:2px; }
-.nav-mobile { display:none; position:fixed; top:64px; left:0; right:0; background:rgba(13,27,42,0.98); border-bottom:1px solid rgba(201,168,76,0.18); padding:24px 32px; flex-direction:column; gap:20px; z-index:99; }
-.nav-mobile.open { display:flex; }
-.nav-mobile a { font-size:15px; color:rgba(244,241,235,0.85); text-decoration:none; padding:4px 0; }
-
-.wrapper { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:60px 32px 100px; }
-
-/* ── PAGE HEADER ── */
-.page-eyebrow { display:inline-block; font-size:11px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border-bottom:1px solid rgba(201,168,76,0.4); padding-bottom:6px; margin-bottom:28px; }
-.page-h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,52px); font-weight:900; color:var(--white); line-height:1.1; margin-bottom:12px; }
-.page-h1 em { font-style:normal; color:var(--gold2); }
-.page-date { font-size:13px; color:var(--gray); margin-bottom:48px; }
-
-/* ── DIVIDER ── */
-.divider { height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent); margin:40px 0; }
-
-/* ── SECTIONS ── */
-.reg-section { margin-bottom:36px; }
-.reg-section h2 {
-  font-family:'Playfair Display',serif; font-size:20px; font-weight:700;
-  color:var(--white); margin-bottom:16px; padding-bottom:10px;
-  border-bottom:1px solid rgba(201,168,76,0.2);
-  display:flex; align-items:center; gap:12px;
-}
-.reg-section h2 .para-num {
-  display:inline-flex; align-items:center; justify-content:center;
-  min-width:28px; height:28px; padding:0 4px; background:rgba(201,168,76,0.15);
-  border:1px solid rgba(201,168,76,0.35); border-radius:50%;
-  font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500;
-  color:var(--gold); flex-shrink:0;
-}
-.reg-section h3 { font-size:14px; font-weight:500; color:var(--gold2); margin:18px 0 8px; letter-spacing:0.5px; }
-.reg-section p { font-size:15px; color:rgba(244,241,235,0.82); margin-bottom:10px; }
-.reg-section p:last-child { margin-bottom:0; }
-.reg-section ol { margin:8px 0 10px 0; padding-left:22px; }
-.reg-section ol li { font-size:15px; color:rgba(244,241,235,0.78); padding:4px 0; }
-.reg-section ol li::marker { color:var(--gold); }
-.reg-section ul { list-style:none; padding:0; margin:8px 0 10px 0; }
-.reg-section ul li { font-size:15px; color:rgba(244,241,235,0.78); padding:4px 0 4px 20px; position:relative; }
-.reg-section ul li::before { content:'—'; position:absolute; left:0; color:var(--gold); opacity:0.6; }
-
-.limits-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:14px; }
-.limits-table th { padding:10px 16px; text-align:left; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:500; border-bottom:1px solid rgba(255,255,255,0.1); }
-.limits-table td { padding:12px 16px; color:rgba(244,241,235,0.8); border-bottom:1px solid rgba(255,255,255,0.06); }
-.limits-table tr:hover td { background:rgba(201,168,76,0.04); }
-.limits-table td:first-child { color:var(--gold2); font-weight:500; }
-
-/* ── INFO / WARNING BOXES ── */
-.info-box { background:rgba(26,58,92,0.35); border:1px solid rgba(201,168,76,0.25); border-left:3px solid var(--gold); border-radius:8px; padding:18px 22px; margin:14px 0; }
-.info-box p { font-size:14px; color:rgba(244,241,235,0.8); }
-.info-box .box-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:8px; }
-.formula-box { background:#101d2e; border:1px solid rgba(201,168,76,0.3); border-radius:8px; padding:16px 20px; margin:12px 0; font-family:'Courier New',monospace; }
-.formula-box p { font-size:13px; color:var(--gold2); margin-bottom:6px; }
-.formula-box p.sub { color:var(--gray); font-size:12px; }
-
-.badge-ok { color:#7FD1A8; font-weight:500; }
-.badge-no { color:#E0938C; font-weight:500; }
-.badge-part { color:var(--gold2); font-weight:500; }
-
-/* ── CTA ── */
-.cta-box { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-radius:12px; padding:28px 32px; margin-top:48px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
-.cta-box p { font-size:15px; color:rgba(244,241,235,0.8); }
-.cta-box a { display:inline-block; padding:12px 28px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy); font-size:13px; font-weight:500; border-radius:7px; text-decoration:none; white-space:nowrap; }
-
-footer { position:relative; z-index:1; border-top:1px solid rgba(201,168,76,0.15); background:rgba(10,22,36,0.7); padding:28px 32px; text-align:center; }
-.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 24px; margin-bottom:12px; }
-.footer-links a { font-size:12px; color:rgba(201,168,76,0.7); text-decoration:none; }
-.footer-links a:hover { color:var(--gold2); }
-footer p { font-size:11px; color:var(--gray); opacity:0.7; }
-
-@media (max-width:680px) {
-  nav { padding:0 20px; }
-  .nav-links { display:none; }
-  .nav-burger { display:flex; }
-  .wrapper { padding:40px 20px 80px; }
-  .cta-box { flex-direction:column; }
-  footer { padding:20px 16px; }
-  .limits-table { font-size:12px; }
-  .limits-table td, .limits-table th { padding:8px 10px; }
-}
+:root{--navy:#0D1B2A;--blue:#1A3A5C;--gold:#C9A84C;--gold2:#E8C97A;--light:#F4F1EB;--white:#FFFFFF;--gray:#8A9BAD}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--navy);color:var(--light);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.75}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(26,58,92,.55) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(201,168,76,.07) 0%,transparent 50%);pointer-events:none;z-index:0}
+a{color:var(--gold2);text-decoration:none;transition:color .2s}
+a:hover{color:var(--gold)}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(13,27,42,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.18)}
+.topbar .wrap{max-width:1040px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.brand{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);letter-spacing:.5px}
+.brand:hover{color:var(--white)}
+.brand span{color:var(--gold)}
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px}
+nav a{font-size:13px;font-weight:400;color:rgba(244,241,235,.75);letter-spacing:.3px}
+nav a:hover{color:var(--white)}
+nav a.cta{padding:9px 22px;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);font-weight:500;border-radius:7px;box-shadow:0 2px 14px rgba(201,168,76,.3)}
+nav a.cta:hover{color:var(--navy)}
+.hero{position:relative;z-index:1;text-align:center;padding:72px 32px 48px}
+.badge{display:inline-block;font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4);padding-bottom:6px;margin-bottom:28px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:900;line-height:1.1;color:var(--white)}
+.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p{color:rgba(244,241,235,.8);margin-top:16px;font-size:15px}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:24px 32px 100px}
+section.par{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 32px;margin-bottom:22px;transition:background .3s,border-color .3s}
+section.par:hover{background:rgba(201,168,76,.06);border-color:rgba(201,168,76,.22)}
+section.par h2{display:flex;align-items:baseline;gap:14px;font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--white);margin-bottom:16px}
+section.par h2 .no{flex:0 0 auto;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);font-size:12px;font-weight:500;padding:4px 11px;border-radius:7px}
+section.par h3{font-size:16px;font-weight:500;color:var(--gold2);margin:20px 0 8px}
+section.par p{font-size:15px;color:rgba(244,241,235,.8);margin-bottom:12px}
+section.par ul,section.par ol{margin:10px 0 14px 22px}
+section.par li{font-size:15px;color:rgba(244,241,235,.8);margin-bottom:7px}
+section.par strong{color:var(--white);font-weight:500}
+.note{background:rgba(201,168,76,.07);border-left:3px solid var(--gold);padding:16px 20px;border-radius:0 12px 12px 0;font-size:14.5px;color:rgba(244,241,235,.85);margin:14px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+th{background:var(--blue);color:var(--white);text-align:left;padding:11px 13px;font-weight:500}
+td{border:1px solid rgba(255,255,255,.09);padding:10px 13px;background:rgba(255,255,255,.02);color:rgba(244,241,235,.8);vertical-align:top}
+tr:nth-child(even) td{background:rgba(255,255,255,.045)}
+dfn{font-style:normal;font-weight:500;color:var(--gold2)}
+.contactbox{background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:36px 32px;text-align:center;margin-top:36px}
+.contactbox h2{font-family:'Playfair Display',serif;color:var(--white);margin-bottom:8px;font-size:22px;font-weight:700}
+.contactbox p{color:rgba(244,241,235,.8);font-size:15px}
+.contactbox a.btn{display:inline-block;margin:18px 8px 0;padding:15px 32px;border-radius:8px;font-size:15px;font-weight:500;letter-spacing:.5px}
+.btn.gold{background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);box-shadow:0 4px 24px rgba(201,168,76,.3)}
+.btn.gold:hover{color:var(--navy)}
+.btn.ghost{border:1px solid rgba(255,255,255,.2);color:var(--light)}
+.btn.ghost:hover{border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.05);color:var(--light)}
+footer{position:relative;z-index:1;border-top:1px solid rgba(201,168,76,.15);background:rgba(10,22,36,.7);color:var(--gray);text-align:center;padding:32px;font-size:11px}
+footer a{font-size:12px;color:rgba(201,168,76,.7);margin:0 12px}
+footer a:hover{color:var(--gold2)}
+footer .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 12px;margin-bottom:16px}
+@media(max-width:680px){.topbar .wrap{padding:12px 20px}.hero{padding:48px 20px 36px}main{padding:16px 20px 80px}section.par{padding:22px 20px}.contactbox a.btn{display:block;margin:12px 0 0}}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
-  <div class="nav-links">
-    <a href="index.html">Dla Wykonawców</a>
-    <a href="dla-klientow.html">Dla Klientów</a>
-    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-    <a href="anulowanie.html">Anulowanie</a>
-    <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Remonty <span>Łazienek</span></a>
+    <nav>
+      <a href="index.html">Dla Wykonawców</a>
+      <a href="dla-klientow.html">Dla Klientów</a>
+      <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+      <a href="polityka-cookies.html">Polityka cookies</a>
+      <a href="anulowanie.html">Anulowanie</a>
+      <a class="cta" href="wybor-planow.html">Wybierz plan</a>
+    </nav>
   </div>
-  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="nav-mobile" id="nav-mobile">
-  <a href="index.html">Dla Wykonawców</a>
-  <a href="dla-klientow.html">Dla Klientów</a>
-  <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-  <a href="anulowanie.html">Anulowanie subskrypcji</a>
-  <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+</header>
+
+<div class="hero">
+  <span class="badge">Dokument prawny · wersja 2.1</span>
+  <h1>Regulamin <em>Platformy</em></h1>
+  <p>Obowiązuje od dnia 01.09.2026 r. | Stan prawny: sierpień 2026 r.</p>
 </div>
 
-<div class="wrapper">
+<main>
 
-  <span class="page-eyebrow">Dokument prawny · wersja 2.0</span>
-  <h1 class="page-h1">Regulamin <em>Platformy</em></h1>
-  <p class="page-date">Obowiązuje od dnia 01.09.2026 r. &nbsp;|&nbsp; Stan prawny: sierpień 2026 r. &nbsp;|&nbsp; Obejmuje Politykę Zwrotów i Reklamacji (dawny Aneks)</p>
+<section class="par" id="par1">
+  <h2><span class="no">§1</span> Postanowienia ogólne</h2>
+  <p>1. Regulamin określa zasady korzystania z Platformy internetowej „Remonty Łazienek" prowadzonej przez Operatora, w tym rodzaje i zakres usług świadczonych drogą elektroniczną, warunki ich świadczenia, warunki zawierania i rozwiązywania umów oraz tryb postępowania reklamacyjnego (art. 8 ust. 3 ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną, dalej: „u.ś.u.d.e.").</p>
+  <p>2. Operatorem Platformy jest: <strong>[Nazwa firmy, forma prawna, adres siedziby, NIP, REGON/KRS]</strong>, e-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a> (dalej: „Operator").</p>
+  <p>3. Regulamin jest udostępniany nieodpłatnie na stronie Platformy przed zawarciem umowy, w sposób umożliwiający jego pozyskanie, odtwarzanie i utrwalanie (pobranie, wydruk, zapis) za pomocą systemu teleinformatycznego, którym posługuje się usługobiorca.</p>
+  <p>4. Regulamin stanowi integralną część umowy o świadczenie usług drogą elektroniczną zawieranej między Operatorem a Wykonawcą oraz między Operatorem a Klientem. Umowa zawierana jest w formie elektronicznej.</p>
+  <p>5. Integralnymi dokumentami powiązanymi z Regulaminem są: <a href="polityka-prywatnosci.html">Polityka prywatności</a> oraz <a href="polityka-cookies.html">Polityka cookies</a>.</p>
+</section>
 
-  <div class="divider"></div>
+<section class="par" id="par2">
+  <h2><span class="no">§2</span> Definicje</h2>
+  <ul>
+    <li><dfn>Platforma</dfn> – system teleinformatyczny prowadzony przez Operatora, umożliwiający przekazywanie Wykonawcom zapytań ofertowych pochodzących od Klientów.</li>
+    <li><dfn>Operator</dfn> – podmiot wskazany w §1 ust. 2, właściciel Platformy.</li>
+    <li><dfn>Wykonawca</dfn> – przedsiębiorca korzystający z Platformy w związku ze swoją działalnością gospodarczą.</li>
+    <li><dfn>Wykonawca uprzywilejowany</dfn> – Wykonawca będący osobą fizyczną prowadzącą jednoosobową działalność gospodarczą, zawierający umowę bezpośrednio związaną z tą działalnością, gdy z treści umowy wynika, że nie ma ona dla niego charakteru zawodowego (art. 385⁵, art. 556⁴ Kodeksu cywilnego, art. 7aa ustawy o prawach konsumenta).</li>
+    <li><dfn>Klient</dfn> – osoba fizyczna zainteresowana wykonaniem usługi remontowej, składająca zapytanie ofertowe za pośrednictwem Platformy.</li>
+    <li><dfn>Konsument</dfn> – Klient będący konsumentem w rozumieniu art. 22¹ Kodeksu cywilnego.</li>
+    <li><dfn>Zlecenie (Lead)</dfn> – przekazanie Wykonawcy danych kontaktowych Klienta wraz z opisem zapytania.</li>
+    <li><dfn>Subskrypcja</dfn> – odpłatna, cykliczna, automatycznie odnawialna usługa dostępu do Platformy.</li>
+    <li><dfn>Okres rozliczeniowy</dfn> – 30 dni, o ile w opisie planu nie wskazano inaczej.</li>
+    <li><dfn>Trwały nośnik</dfn> – materiał lub narzędzie umożliwiające przechowywanie informacji w sposób umożliwiający dostęp do nich w przyszłości i ich odtworzenie w niezmienionej postaci (w szczególności wiadomość e-mail).</li>
+    <li><dfn>Usługa elektroniczna</dfn> – usługa świadczona drogą elektroniczną w rozumieniu u.ś.u.d.e.</li>
+  </ul>
+</section>
 
-  <div class="reg-section" id="par1">
-    <h2><span class="para-num">§1</span>Postanowienia ogólne</h2>
-    <ol>
-      <li>Niniejszy Regulamin określa zasady i warunki korzystania z Platformy internetowej „Remonty Łazienek”, prowadzonej przez Operatora, w tym zasady świadczenia usług drogą elektroniczną w rozumieniu ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną (t.j. Dz.U. z 2024 r. poz. 1513).</li>
-      <li>Operatorem Platformy jest: <strong style="color:var(--white);">[Nazwa firmy, forma prawna, adres siedziby, NIP, REGON, e-mail]</strong>, zwany dalej „Operatorem”.</li>
-      <li>Umowa o świadczenie Usług zawierana jest w formie elektronicznej z chwilą łącznego spełnienia następujących przesłanek: (a) akceptacji Regulaminu, (b) dokonania rejestracji Konta, (c) zaksięgowania opłaty abonamentowej (Aktywacja).</li>
-      <li>Regulamin stanowi integralną część umowy. Integralną częścią Regulaminu są ponadto: Polityka Zwrotów i Reklamacji (§8–§10, §13), Polityka Prywatności oraz cennik planów abonamentowych.</li>
-      <li>Regulamin udostępniany jest nieodpłatnie, przed zawarciem umowy, w sposób umożliwiający jego pozyskanie, odtwarzanie i utrwalanie jego treści za pomocą systemu teleinformatycznego, którym posługuje się Wykonawca (trwały nośnik).</li>
-    </ol>
-  </div>
+<section class="par" id="par3">
+  <h2><span class="no">§3</span> Rodzaje i zakres usług elektronicznych</h2>
+  <p>1. Operator świadczy za pośrednictwem Platformy następujące Usługi elektroniczne:</p>
+  <ul>
+    <li>dla <strong>Wykonawców</strong>: prowadzenie konta, obsługa Subskrypcji oraz przekazywanie Zleceń (Leadów) — odpłatnie, zgodnie z wybranym planem;</li>
+    <li>dla <strong>Klientów</strong>: udostępnienie formularza zapytania ofertowego oraz przekazanie zapytania Wykonawcom — nieodpłatnie.</li>
+  </ul>
+  <p>2. Umowa o świadczenie Usługi elektronicznej z Wykonawcą zostaje zawarta z chwilą aktywacji Subskrypcji, a z Klientem — z chwilą wysłania formularza zapytania.</p>
+</section>
 
-  <div class="reg-section" id="par2">
-    <h2><span class="para-num">§2</span>Definicje</h2>
-    <ul>
-      <li><strong style="color:var(--white);">Platforma</strong> – system teleinformatyczny prowadzony przez Operatora, umożliwiający przekazywanie Wykonawcom zapytań ofertowych (Zleceń) pochodzących od Klientów.</li>
-      <li><strong style="color:var(--white);">Operator</strong> – właściciel i administrator Platformy, o którym mowa w §1 ust. 2.</li>
-      <li><strong style="color:var(--white);">Wykonawca</strong> – przedsiębiorca w rozumieniu art. 43&sup1; Kodeksu cywilnego, wpisany do CEIDG albo rejestru przedsiębiorców KRS, korzystający z Platformy w ramach Subskrypcji.</li>
-      <li><strong style="color:var(--white);">Wykonawca uprzywilejowany</strong> – osoba fizyczna prowadząca jednoosobową działalność gospodarczą, zawierająca umowę bezpośrednio związaną z jej działalnością gospodarczą, gdy z treści tej umowy wynika, że nie ma ona dla niej charakteru zawodowego (art. 385&#8309; i art. 556&#8308; Kodeksu cywilnego oraz art. 7aa ustawy o prawach konsumenta).</li>
-      <li><strong style="color:var(--white);">Klient</strong> – osoba zainteresowana usługą remontową, składająca zapytanie za pośrednictwem Platformy.</li>
-      <li><strong style="color:var(--white);">Zlecenie (Lead)</strong> – przekazanie Wykonawcy danych kontaktowych Klienta wraz z opisem zapytania.</li>
-      <li><strong style="color:var(--white);">Subskrypcja (Abonament)</strong> – odpłatna, cykliczna, automatycznie odnawialna usługa dostępu do Platformy, uprawniająca do odbioru Zleceń zgodnie z wybranym planem.</li>
-      <li><strong style="color:var(--white);">Okres rozliczeniowy (abonamentowy)</strong> – 30 dni od daty Aktywacji, o ile nie wskazano inaczej.</li>
-      <li><strong style="color:var(--white);">Aktywacja</strong> – chwila zaksięgowania płatności i uruchomienia dostępu do Zleceń.</li>
-      <li><strong style="color:var(--white);">Plan PRÓBNY</strong> – jednorazowy, 30-dniowy dostęp testowy z limitem 1 Zlecenia, bez możliwości odnowienia.</li>
-      <li><strong style="color:var(--white);">Wniosek o zwrot</strong> – oświadczenie Wykonawcy zawierające żądanie zwrotu całości lub części opłaty abonamentowej, złożone w trybie §10.</li>
-      <li><strong style="color:var(--white);">Dni robocze</strong> – dni od poniedziałku do piątku, z wyłączeniem dni ustawowo wolnych od pracy.</li>
-    </ul>
-  </div>
+<section class="par" id="par4">
+  <h2><span class="no">§4</span> Wymagania techniczne i zakaz dostarczania treści bezprawnych</h2>
+  <p>1. Do korzystania z Platformy niezbędne są:</p>
+  <ul>
+    <li>urządzenie z dostępem do sieci Internet,</li>
+    <li>aktualna wersja przeglądarki internetowej (Chrome, Firefox, Safari lub Edge) z włączoną obsługą JavaScript oraz plików cookies niezbędnych do świadczenia usługi,</li>
+    <li>aktywne konto poczty elektronicznej (e-mail),</li>
+    <li>w przypadku Wykonawcy — aktywny numer telefonu do kontaktu z Klientami.</li>
+  </ul>
+  <p>2. Zakazane jest dostarczanie przez usługobiorców treści o charakterze bezprawnym, w szczególności treści naruszających prawa osób trzecich, nieprawdziwych danych identyfikacyjnych oraz treści wprowadzających w błąd (art. 8 ust. 3 pkt 2 lit. b u.ś.u.d.e.).</p>
+  <p>3. Operator informuje, że korzystanie z usług świadczonych drogą elektroniczną wiąże się z typowymi zagrożeniami sieci Internet (np. złośliwe oprogramowanie, phishing). Operator stosuje środki bezpieczeństwa opisane w Polityce prywatności, zaleca jednak korzystanie z aktualnego oprogramowania antywirusowego.</p>
+</section>
 
-  <div class="reg-section" id="par3">
-    <h2><span class="para-num">§3</span>Podstawy prawne i charakter B2B</h2>
-    <p>Usługi Platformy świadczone są wyłącznie na rzecz przedsiębiorców (relacja B2B). Do umów zawieranych na podstawie Regulaminu zastosowanie znajdują w szczególności:</p>
-    <table class="limits-table">
-      <thead><tr><th>Akt prawny</th><th>Zakres zastosowania</th></tr></thead>
-      <tbody>
-        <tr><td>Kodeks cywilny (t.j. Dz.U. z 2024 r. poz. 1061 ze zm.)</td><td>Podstawa główna — umowa o świadczenie usług (art. 750 w zw. z art. 734–751 KC), odpowiedzialność kontraktowa (art. 471 i n.), swoboda umów (art. 353&sup1;)</td></tr>
-        <tr><td>Ustawa o świadczeniu usług drogą elektroniczną (t.j. Dz.U. z 2024 r. poz. 1513)</td><td>Świadczenie usług Platformy drogą elektroniczną, wymogi regulaminu</td></tr>
-        <tr><td>Prawo komunikacji elektronicznej (Dz.U. z 2024 r. poz. 1221, obow. od 10.11.2024 r.)</td><td>Komunikacja marketingowa — wymagana uprzednia zgoda również w relacjach B2B; przechowywanie informacji na urządzeniach końcowych (cookies)</td></tr>
-        <tr><td>Rozporządzenie (UE) 2019/1150 (P2B)</td><td>Przejrzystość warunków dla użytkowników biznesowych platform pośrednictwa internetowego: minimalny 15-dniowy termin powiadomienia o zmianach warunków, przejrzystość plasowania, tryb rozpatrywania skarg</td></tr>
-        <tr><td>Rozporządzenie (UE) 2022/2065 (Akt o usługach cyfrowych, DSA)</td><td>Obowiązki dostawcy usługi pośredniej w zakresie punktu kontaktowego i przejrzystości warunków korzystania z usług</td></tr>
-        <tr><td>RODO — rozporządzenie (UE) 2016/679 oraz ustawa o ochronie danych osobowych (Dz.U. z 2019 r. poz. 1781)</td><td>Przetwarzanie danych osobowych — szczegóły w Polityce Prywatności</td></tr>
-        <tr><td>Ustawa o prawach konsumenta (t.j. Dz.U. z 2024 r. poz. 1796 ze zm.)</td><td>Nie stosuje się do relacji B2B, z wyjątkiem uprawnień Wykonawcy uprzywilejowanego (§7 i §14)</td></tr>
-        <tr><td>Dyrektywa (UE) 2023/2673 („przycisk odstąpienia”, stosowana od 19.06.2026 r.)</td><td>Nie stosuje się — zakres obejmuje wyłącznie umowy z konsumentami (B2C); na dzień publikacji Regulaminu krajowa transpozycja pozostaje w toku prac legislacyjnych</td></tr>
-      </tbody>
-    </table>
-    <div class="info-box">
-      <p class="box-title">Zasada swobody umów w B2B</p>
-      <p>W relacjach między przedsiębiorcami zasada swobody umów (art. 353&sup1; KC) pozwala stronom swobodnie kształtować warunki zwrotów, bez rygorów ustawowych właściwych dla obrotu konsumenckiego. Operator mógłby prawo zwrotu wyłączyć w całości; przyjęta w §8–§10 dobrowolna polityka zwrotów stanowi wyraz rzetelności kupieckiej i standardu rynkowego, a nie wykonanie obowiązku ustawowego.</p>
-    </div>
-  </div>
+<section class="par" id="par5">
+  <h2><span class="no">§5</span> Zasady korzystania z Platformy przez Klientów</h2>
+  <p>1. Skorzystanie z formularza zapytania jest dobrowolne i nieodpłatne. Wysłanie formularza oznacza żądanie Klienta niezwłocznego przekazania jego zapytania Wykonawcom działającym na wskazanym obszarze.</p>
+  <p>2. Operator świadczy wyłącznie usługę pośrednictwa informacyjnego. Operator <strong>nie jest stroną</strong> umowy o roboty remontowe zawieranej między Klientem a Wykonawcą i nie odpowiada za jej wykonanie.</p>
+  <p>3. Z chwilą przekazania Zlecenia Wykonawca staje się odrębnym administratorem danych osobowych Klienta — szczegóły określa <a href="polityka-prywatnosci.html">Polityka prywatności</a>.</p>
+  <p>4. Konsument może odstąpić od umowy o Usługę elektroniczną w terminie 14 dni bez podania przyczyny, składając oświadczenie na adres <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>. Jeżeli na wyraźne żądanie Konsumenta usługa przekazania zapytania została w pełni wykonana przed upływem tego terminu — po uprzednim poinformowaniu Konsumenta i przyjęciu przez niego do wiadomości, że po pełnym wykonaniu usługi utraci prawo odstąpienia — prawo odstąpienia wygasa (art. 38 ust. 1 pkt 1 ustawy o prawach konsumenta). Odstąpienie nie pozbawia Konsumenta prawa żądania usunięcia jego danych.</p>
+  <p>5. Reklamacje Klientów rozpatrywane są w trybie §12.</p>
+</section>
 
-  <div class="reg-section" id="par4">
-    <h2><span class="para-num">§4</span>Charakter usługi</h2>
-    <ol>
-      <li>Umowa abonamentowa jest umową o świadczenie usług, do której na podstawie art. 750 Kodeksu cywilnego stosuje się odpowiednio przepisy o zleceniu (umowa starannego działania, nie rezultatu).</li>
-      <li>Platforma świadczy wyłącznie usługę pośrednictwa polegającą na udostępnianiu Wykonawcy danych kontaktowych potencjalnych Klientów. Operator nie jest stroną umowy zawieranej między Wykonawcą a Klientem, nie działa jako pełnomocnik, agent ani gwarant którejkolwiek ze stron.</li>
-      <li>Operator nie gwarantuje: określonej liczby Zleceń (jeżeli popyt rynkowy jest niższy od limitu planu), minimalnej wartości Zlecenia, skuteczności sprzedaży, zawarcia umowy z Klientem, jakości zapytania ani dostępności Klienta.</li>
-      <li>Świadczenie Operatora uważa się za prawidłowo wykonane z chwilą przekazania Zlecenia zgodnie z parametrami planu. Subskrypcja obejmuje dostęp do systemu oraz gotowość przekazywania Zleceń, nie zaś gwarancję ich uzyskania.</li>
-      <li>Zlecenie raz przekazane Wykonawcy nie podlega „zwrotowi” w rozumieniu właściwym dla towarów — dane Klienta zostały już ujawnione. Wartość usługi jest konsumowana sukcesywnie przez cały Okres rozliczeniowy; z tego względu liczba przekazanych Zleceń stanowi kluczowe kryterium rozliczeń w ramach polityki zwrotów (§8).</li>
-    </ol>
-  </div>
+<section class="par" id="par6">
+  <h2><span class="no">§6</span> Charakter usługi świadczonej Wykonawcom</h2>
+  <p>1. Platforma świadczy na rzecz Wykonawców usługę pośrednictwa polegającą na przekazywaniu danych kontaktowych Klientów. Operator nie jest stroną umowy między Wykonawcą a Klientem.</p>
+  <p>2. Operator nie gwarantuje:</p>
+  <ul>
+    <li>określonej liczby zleceń,</li>
+    <li>minimalnej wartości zlecenia,</li>
+    <li>skuteczności sprzedaży,</li>
+    <li>zawarcia umowy z Klientem,</li>
+    <li>jakości zapytania,</li>
+    <li>dostępności Klienta.</li>
+  </ul>
+  <p>3. Przekazanie Zlecenia zgodnego z parametrami planu oznacza prawidłowe wykonanie świadczenia przez Operatora w tym zakresie. Subskrypcja obejmuje dostęp do systemu oraz gotowość przekazywania Zleceń, a nie gwarancję ich uzyskania.</p>
+</section>
 
-  <div class="reg-section" id="par5">
-    <h2><span class="para-num">§5</span>Zasady przydzielania Zleceń</h2>
-    <ol>
-      <li>Zlecenia przydzielane są automatycznie. Głównymi parametrami determinującymi przydział — wskazanymi stosownie do wymogów przejrzystości wynikających z rozporządzenia (UE) 2019/1150 — są: (a) lokalizacja Wykonawcy względem miejsca realizacji Zlecenia, (b) posiadanie aktywnej Subskrypcji, (c) limit dzienny i miesięczny planu, (d) kolejność i parametry systemowe.</li>
-      <li>Szczegółowy algorytm przydziału stanowi tajemnicę przedsiębiorstwa Operatora w rozumieniu ustawy o zwalczaniu nieuczciwej konkurencji i nie podlega ujawnieniu w zakresie wykraczającym poza ust. 1.</li>
-      <li>Limity Zleceń w planach abonamentowych:</li>
-    </ol>
-    <table class="limits-table">
-      <thead><tr><th>Plan</th><th>Cena netto</th><th>Zleceń / miesiąc</th><th>Max dziennie</th></tr></thead>
-      <tbody>
-        <tr><td>PRÓBNY</td><td>249 zł netto (jednorazowo)</td><td>1 zlecenie</td><td>1</td></tr>
-        <tr><td>START</td><td>499 zł netto/mies.</td><td>5 zleceń</td><td>1</td></tr>
-        <tr><td>STANDARD</td><td>999 zł netto/mies.</td><td>10 zleceń</td><td>2</td></tr>
-        <tr><td>PREMIUM</td><td>1&nbsp;799 zł netto/mies.</td><td>20 zleceń</td><td>4</td></tr>
-      </tbody>
-    </table>
-    <ol start="4">
-      <li>Niewykorzystane limity nie przechodzą na kolejny Okres rozliczeniowy.</li>
-      <li>Operator może wstrzymać przekazywanie Zleceń w przypadku: zaległości w płatnościach, naruszenia Regulaminu lub uzasadnionego podejrzenia nadużycia systemu (§12).</li>
-    </ol>
-  </div>
+<section class="par" id="par7">
+  <h2><span class="no">§7</span> Zasady przydzielania Zleceń i plasowanie</h2>
+  <p>1. Zlecenia przydzielane są automatycznie. Zgodnie z art. 5 rozporządzenia Parlamentu Europejskiego i Rady (UE) 2019/1150 („rozporządzenie P2B") Operator wskazuje <strong>główne parametry</strong> decydujące o przydziale Zleceń oraz ich względne znaczenie (w kolejności od najistotniejszego):</p>
+  <ol>
+    <li>zgodność lokalizacji Zlecenia z obszarem działania Wykonawcy,</li>
+    <li>posiadanie aktywnej Subskrypcji,</li>
+    <li>niewykorzystany limit Zleceń w ramach planu (miesięczny i dzienny),</li>
+    <li>kolejność zgłoszeń i równomierność dystrybucji między Wykonawcami spełniającymi powyższe kryteria.</li>
+  </ol>
+  <p>2. Szczegółowa budowa algorytmu przydziału stanowi tajemnicę przedsiębiorstwa Operatora — jej ochrona nie wyłącza jednak obowiązku informacyjnego opisanego w ust. 1.</p>
+  <p>3. Limity Zleceń w planach:</p>
+  <table>
+    <tr><th>Plan</th><th>Zleceń / miesiąc</th><th>Maks. dziennie</th></tr>
+    <tr><td>PRÓBNY</td><td>1 zlecenie</td><td>1</td></tr>
+    <tr><td>START</td><td>5 zleceń</td><td>1</td></tr>
+    <tr><td>STANDARD</td><td>10 zleceń</td><td>2</td></tr>
+    <tr><td>PREMIUM</td><td>20 zleceń</td><td>4</td></tr>
+  </table>
+  <p>4. Niewykorzystane limity nie przechodzą na kolejny Okres rozliczeniowy.</p>
+  <p>5. Operator może wstrzymać przekazywanie Zleceń w przypadku zaległości w płatnościach, naruszenia Regulaminu lub uzasadnionego podejrzenia nadużycia systemu — z zachowaniem trybu opisanego w §11 ust. 3.</p>
+</section>
 
-  <div class="reg-section" id="par6">
-    <h2><span class="para-num">§6</span>Subskrypcja i płatności cykliczne</h2>
-    <ol>
-      <li>Subskrypcja odnawia się automatycznie na kolejny Okres rozliczeniowy. Wykonawca, zawierając umowę, wyraża zgodę na cykliczne obciążanie wybranej metody płatności za pośrednictwem operatora płatności (PayU).</li>
-      <li>Informacja o cenie, długości Okresu rozliczeniowego oraz automatycznym odnawianiu prezentowana jest w sposób jednoznaczny przed zawarciem umowy oraz w podsumowaniu zamówienia.</li>
-      <li>Operator powiadamia Wykonawcę pocztą elektroniczną o zbliżającym się odnowieniu Subskrypcji nie później niż na 7 dni przed obciążeniem. Automatyczne przedłużenie bez uprzedniego powiadomienia jest wyłączone.</li>
-      <li>Rezygnacja z Subskrypcji (anulowanie przyszłych odnowień) możliwa jest w panelu użytkownika lub na stronie „Anulowanie subskrypcji” najpóźniej na 24 godziny przed końcem bieżącego Okresu rozliczeniowego. Brak rezygnacji oznacza przedłużenie Subskrypcji na kolejny okres.</li>
-      <li>Rezygnacja nie wiąże się ze zwrotem opłaty za bieżący okres — Wykonawca zachowuje dostęp do usługi do końca opłaconego Okresu rozliczeniowego.</li>
-      <li>Opłaty za rozpoczęty Okres rozliczeniowy są bezzwrotne, z zastrzeżeniem dobrowolnej polityki zwrotów (§8–§10) oraz uprawnień Wykonawcy uprzywilejowanego (§7).</li>
-      <li>W przypadku nieskutecznego obciążenia metody płatności Operator może ponowić próbę obciążenia oraz zawiesić dostęp do Platformy do czasu uregulowania należności.</li>
-    </ol>
-  </div>
+<section class="par" id="par8">
+  <h2><span class="no">§8</span> Subskrypcja i płatności cykliczne</h2>
+  <p>1. Subskrypcja odnawia się automatycznie na kolejny Okres rozliczeniowy. Wykonawca, aktywując Subskrypcję, wyraża zgodę na cykliczne obciążanie wybranej metody płatności.</p>
+  <p>2. Informacja o cenie, długości Okresu rozliczeniowego oraz automatycznym odnawianiu prezentowana jest w sposób jednoznaczny przed zawarciem umowy oraz w potwierdzeniu przesyłanym na Trwałym nośniku.</p>
+  <p>3. Rezygnacja z Subskrypcji możliwa jest w każdym czasie, ze skutkiem na koniec bieżącego Okresu rozliczeniowego, najpóźniej na 24 godziny przed jego końcem — przez panel konta lub stronę <a href="anulowanie.html">anulowania subskrypcji</a>. Brak rezygnacji oznacza przedłużenie Subskrypcji na kolejny Okres.</p>
+  <p>4. Opłaty za rozpoczęty Okres rozliczeniowy nie podlegają zwrotowi <strong>z zastrzeżeniem</strong>: prawa odstąpienia Wykonawcy uprzywilejowanego (§9), uwzględnionych reklamacji (§12) oraz bezwzględnie obowiązujących przepisów prawa. Postanowienie to nie wyłącza ani nie ogranicza uprawnień przysługujących z mocy ustawy.</p>
+</section>
 
-  <div class="reg-section" id="par7">
-    <h2><span class="para-num">§7</span>Prawo odstąpienia — Wykonawca uprzywilejowany</h2>
-    <ol>
-      <li>Wykonawcy uprzywilejowanemu przysługuje prawo odstąpienia od umowy w terminie 14 dni od jej zawarcia, bez podawania przyczyny (art. 27 w zw. z art. 7aa ustawy o prawach konsumenta).</li>
-      <li>Prawo odstąpienia wygasa, jeżeli Wykonawca uprzywilejowany: (a) zażądał rozpoczęcia świadczenia usługi przed upływem terminu odstąpienia i wyraził na to wyraźną zgodę, (b) został poinformowany o utracie prawa odstąpienia z chwilą pełnego wykonania usługi i przyjął to do wiadomości, oraz (c) usługa została w pełni wykonana, w szczególności poprzez przekazanie pierwszego Zlecenia w ramach limitu planu.</li>
-      <li>W przypadku odstąpienia przed pełnym wykonaniem usługi Wykonawca uprzywilejowany ponosi koszt świadczeń spełnionych do chwili odstąpienia, obliczony proporcjonalnie (art. 35 ustawy o prawach konsumenta); pozostała część opłaty podlega zwrotowi w terminie 14 dni.</li>
-      <li>Zakup Subskrypcji przez przedsiębiorcę remontowego w celu pozyskiwania zleceń remontowych pozostaje co do zasady w bezpośrednim związku zawodowym z jego działalnością, co może wyłączać status Wykonawcy uprzywilejowanego. W razie wątpliwości Operator przyjmuje wykładnię korzystną dla Wykonawcy.</li>
-    </ol>
-  </div>
+<section class="par" id="par9">
+  <h2><span class="no">§9</span> Prawo odstąpienia (Wykonawca uprzywilejowany)</h2>
+  <p>1. Wykonawcy uprzywilejowanemu przysługuje prawo odstąpienia od umowy w terminie 14 dni od jej zawarcia, bez podania przyczyny. Oświadczenie można złożyć e-mailem na adres <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>.</p>
+  <p>2. Rozpoczęcie świadczenia usługi przed upływem terminu odstąpienia następuje wyłącznie na wyraźne żądanie Wykonawcy uprzywilejowanego, po poinformowaniu go o skutkach opisanych w ust. 3–4.</p>
+  <p>3. W razie odstąpienia od umowy w trakcie Okresu rozliczeniowego Wykonawca uprzywilejowany ponosi jedynie koszt świadczeń spełnionych do chwili odstąpienia, obliczony <strong>proporcjonalnie</strong> do zakresu spełnionego świadczenia z uwzględnieniem ceny planu (art. 35 ustawy o prawach konsumenta). Pozostała część opłaty podlega zwrotowi w terminie 14 dni.</p>
+  <p>4. Prawo odstąpienia wygasa dopiero z chwilą <strong>pełnego wykonania usługi</strong> za dany Okres rozliczeniowy (tj. z jego upływem albo z wyczerpaniem pełnego limitu Zleceń planu), jeżeli spełnianie świadczenia rozpoczęto za wyraźną zgodą Wykonawcy uprzywilejowanego, który został uprzednio poinformowany, że po pełnym wykonaniu usługi utraci prawo odstąpienia, i przyjął to do wiadomości (art. 38 ust. 1 pkt 1 ustawy o prawach konsumenta). Otrzymanie pojedynczego Zlecenia nie stanowi pełnego wykonania usługi.</p>
+</section>
 
-  <div class="reg-section" id="par8">
-    <h2><span class="para-num">§8</span>Dobrowolna polityka zwrotów</h2>
-    <h3>8.1 Zasada ogólna</h3>
-    <p>Operator dobrowolnie przyznaje Wykonawcom prawo do złożenia Wniosku o zwrot opłaty abonamentowej na warunkach opisanych w niniejszym paragrafie. Uprawnienie to wykracza poza obowiązki ustawowe Operatora w obrocie B2B.</p>
-    <h3>8.2 Okno „chłodzenia” — 3 dni, zwrot 100%</h3>
-    <p>Jeżeli Wykonawca złoży Wniosek o zwrot w ciągu 3 dni kalendarzowych od Aktywacji i nie otrzymał żadnego Zlecenia, Operator zwraca 100% wniesionej opłaty.</p>
-    <h3>8.3 Zwrot proporcjonalny — od 4. do 14. dnia</h3>
-    <p>Jeżeli Wniosek zostanie złożony po upływie 3 dni, lecz nie później niż 14. dnia od Aktywacji, a Wykonawcy nie przekazano żadnego Zlecenia, zwrot obliczany jest proporcjonalnie do liczby dni pozostałych do końca Okresu rozliczeniowego, z pomniejszeniem o równowartość przekazanych Zleceń:</p>
-    <div class="formula-box">
-      <p><strong>Zwrot = Opłata × (Dni pozostałe / Dni w okresie) − Wartość przekazanych Zleceń</strong></p>
-      <p class="sub">Wartość Zlecenia = Opłata ÷ limit Zleceń w planie&nbsp;&nbsp;|&nbsp;&nbsp;Minimalny zwrot: 0 zł (Operator nie pobiera dopłat)</p>
-    </div>
-    <h3>8.4 Plan PRÓBNY — zasady szczególne</h3>
-    <p>Z uwagi na promocyjną cenę i jednorazowy charakter planu PRÓBNY zwrot przysługuje wyłącznie, jeżeli żadne Zlecenie nie zostało przekazane. Przekazanie Zlecenia — niezależnie od jego rezultatu — wyłącza prawo do zwrotu.</p>
-    <h3>8.5 Wyłączenia prawa do zwrotu</h3>
-    <ul>
-      <li>Zlecenie zostało przekazane Wykonawcy (niezależnie od rezultatu kontaktu z Klientem);</li>
-      <li>Wniosek złożono po upływie 14 dni od Aktywacji;</li>
-      <li>konto dezaktywowano z powodu naruszenia Regulaminu przez Wykonawcę;</li>
-      <li>opłata abonamentowa nie została zaksięgowana w pełnej wysokości;</li>
-      <li>Wykonawca korzystał już z planu PRÓBNY i ponownie nabył ten sam plan.</li>
-    </ul>
-  </div>
+<section class="par" id="par10">
+  <h2><span class="no">§10</span> Obowiązki Wykonawcy</h2>
+  <ul>
+    <li>kontakt z Klientem w ciągu 24 godzin od otrzymania informacji o nowym Zleceniu,</li>
+    <li>zakaz wykorzystywania danych Klienta w celu innym niż realizacja danego Zlecenia,</li>
+    <li>zakaz omijania Platformy w celu uniknięcia rozliczeń z Operatorem,</li>
+    <li>zakaz działań naruszających dobre imię Platformy lub wprowadzających Klientów w błąd,</li>
+    <li>podawanie prawdziwych i aktualnych danych identyfikacyjnych oraz kontaktowych.</li>
+  </ul>
+</section>
 
-  <div class="reg-section" id="par9">
-    <h2><span class="para-num">§9</span>Tabela zwrotów — scenariusze</h2>
-    <table class="limits-table">
-      <thead><tr><th>Sytuacja</th><th>Termin zgłoszenia</th><th>Zwrot</th><th>Warunek</th></tr></thead>
-      <tbody>
-        <tr><td>Aktywacja, 0 zleceń</td><td>&le; 3 dni od aktywacji</td><td class="badge-ok">100% zwrotu</td><td>Brak przekazanych zleceń</td></tr>
-        <tr><td>Aktywacja, 0 zleceń</td><td>4–14 dni od aktywacji</td><td class="badge-part">Proporcjonalny</td><td>Wzór z §8.3</td></tr>
-        <tr><td>Aktywacja, 0 zleceń</td><td>&gt; 14 dni od aktywacji</td><td class="badge-no">Brak zwrotu</td><td>Termin upłynął</td></tr>
-        <tr><td>Aktywacja, 1+ zlecenie</td><td>&le; 3 dni od aktywacji</td><td class="badge-no">Brak zwrotu</td><td>Zlecenie przekazane</td></tr>
-        <tr><td>Aktywacja, 1+ zlecenie</td><td>4–14 dni od aktywacji</td><td class="badge-no">Brak zwrotu</td><td>Zlecenie przekazane</td></tr>
-        <tr><td>Plan PRÓBNY, 0 zleceń</td><td>&le; 3 dni od aktywacji</td><td class="badge-ok">100% zwrotu</td><td>Wyjątkowo — brak zleceń</td></tr>
-        <tr><td>Plan PRÓBNY, 1 zlecenie</td><td>dowolny</td><td class="badge-no">Brak zwrotu</td><td>Zlecenie przekazane</td></tr>
-        <tr><td>Anulowanie odnowienia</td><td>dowolny moment</td><td class="badge-no">Brak zwrotu</td><td>Dostęp do końca okresu</td></tr>
-        <tr><td>Awaria systemu (§13.4)</td><td>w trakcie awarii</td><td class="badge-part">Proporcjonalny</td><td>Udokumentowana awaria</td></tr>
-        <tr><td>Naruszenie Regulaminu</td><td>—</td><td class="badge-no">Brak zwrotu</td><td>Dezaktywacja z winy Wykonawcy</td></tr>
-      </tbody>
-    </table>
-    <div class="info-box">
-      <p class="box-title">Przykład obliczenia zwrotu proporcjonalnego</p>
-      <p>Plan STANDARD (999 zł netto, limit 10 Zleceń, okres 30 dni). Wniosek złożono 18. dnia, żadne Zlecenie nie zostało przekazane. Dni pozostałe: 30 − 18 = 12. Zwrot = 999 zł × (12/30) − 0 zł = <strong style="color:var(--gold2);">399,60 zł netto</strong> (przelew w terminie 7 dni roboczych od decyzji).</p>
-    </div>
-  </div>
+<section class="par" id="par11">
+  <h2><span class="no">§11</span> Nadużycia i ochrona systemu</h2>
+  <p>1. Za nadużycie uznaje się w szczególności: składanie fikcyjnych zgłoszeń reklamacyjnych, celowe generowanie sporów, próby obejścia systemu przydziału Zleceń, podawanie nieprawdziwych danych oraz inicjowanie nieuzasadnionych obciążeń zwrotnych (chargeback) mimo prawidłowego wykonania usługi.</p>
+  <p>2. W przypadku stwierdzenia nadużycia Operator może: ograniczyć lub zawiesić świadczenie usług, rozwiązać umowę w trybie §14 ust. 3, dochodzić naprawienia szkody na zasadach ogólnych lub przekazać sprawę operatorowi płatności.</p>
+  <p>3. Zgodnie z art. 4 rozporządzenia P2B, o ograniczeniu lub zawieszeniu świadczenia usług Operator informuje Wykonawcę <strong>najpóźniej z chwilą, gdy decyzja staje się skuteczna</strong>, przekazując na Trwałym nośniku uzasadnienie z przywołaniem faktów, okoliczności i podstawy z Regulaminu. Wykonawca może wyjaśnić okoliczności w trybie reklamacyjnym (§12); w razie cofnięcia decyzji usługi zostają przywrócone bez zbędnej zwłoki.</p>
+</section>
 
-  <div class="reg-section" id="par10">
-    <h2><span class="para-num">§10</span>Procedura Wniosku o zwrot</h2>
-    <h3>10.1 Forma i kanał złożenia</h3>
-    <p>Wniosek o zwrot składa się w formie dokumentowej — pocztą elektroniczną na adres <a href="mailto:platforma@remontylazienek.com" style="color:var(--gold);">platforma@remontylazienek.com</a>, z tytułem wiadomości: <em>[WNIOSEK O ZWROT] — nazwa firmy — plan abonamentowy</em>.</p>
-    <h3>10.2 Wymagana treść Wniosku</h3>
-    <ul>
-      <li>pełna nazwa firmy i NIP;</li>
-      <li>adres e-mail zarejestrowany na koncie;</li>
-      <li>nazwa planu abonamentowego i data Aktywacji;</li>
-      <li>numer transakcji operatora płatności (z e-maila potwierdzającego płatność);</li>
-      <li>powód wniosku (fakultatywnie);</li>
-      <li>numer rachunku bankowego właściwego do zwrotu.</li>
-    </ul>
-    <h3>10.3 Terminy rozpatrzenia</h3>
-    <table class="limits-table">
-      <thead><tr><th>Etap</th><th>Termin</th></tr></thead>
-      <tbody>
-        <tr><td>Potwierdzenie otrzymania Wniosku</td><td>1 dzień roboczy od wpłynięcia</td></tr>
-        <tr><td>Weryfikacja uprawnień do zwrotu</td><td>3 dni robocze</td></tr>
-        <tr><td>Decyzja i zawiadomienie Wykonawcy</td><td>5 dni roboczych od wpłynięcia</td></tr>
-        <tr><td>Przelew zwrotu (po pozytywnej decyzji)</td><td>7 dni roboczych od decyzji</td></tr>
-        <tr><td>Łączny czas — od wniosku do przelewu</td><td>maksymalnie 12 dni roboczych</td></tr>
-      </tbody>
-    </table>
-    <h3>10.4 Odwołanie od decyzji odmownej</h3>
-    <p>Od decyzji odmownej Wykonawca może wnieść odwołanie w terminie 14 dni od jej doręczenia. Odwołanie rozpatruje właściciel Platformy (szczebel wyższy niż obsługa klienta). Decyzja odwoławcza jest ostateczna w ramach wewnętrznego trybu rozpatrywania skarg, prowadzonego z uwzględnieniem zasad art. 11 rozporządzenia (UE) 2019/1150; nie zamyka to drogi do dochodzenia roszczeń na zasadach ogólnych.</p>
-  </div>
+<section class="par" id="par12">
+  <h2><span class="no">§12</span> Reklamacje i wewnętrzny system rozpatrywania skarg</h2>
+  <p>1. Reklamacje dotyczące usług Operatora można składać e-mailem na adres <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>. Dla sprawności postępowania zaleca się złożenie reklamacji w terminie 14 dni od zdarzenia; <strong>złożenie reklamacji po tym terminie nie powoduje utraty uprawnień</strong>.</p>
+  <p>2. Reklamacja powinna zawierać: dane identyfikujące zgłaszającego, opis zdarzenia oraz żądanie. Operator może wezwać do uzupełnienia braków.</p>
+  <p>3. Operator rozpatruje reklamację w terminie <strong>14 dni</strong> od jej otrzymania i udziela odpowiedzi na Trwałym nośniku. Jeżeli Operator nie udzielił odpowiedzi Konsumentowi lub Wykonawcy uprzywilejowanemu w tym terminie, uważa się, że uznał reklamację (art. 7a ustawy o prawach konsumenta).</p>
+  <p>4. Z uwagi na charakter usługi (§6) podstawy reklamacji nie może stanowić wyłącznie: brak zawarcia umowy z Klientem, brak odpowiedzi Klienta na próby kontaktu podjęte po upływie 24 godzin, wartość zlecenia ani subiektywna ocena atrakcyjności zapytania — chyba że zapytanie nie spełniało parametrów planu (np. błędna lokalizacja, dane nieistniejącej osoby).</p>
+  <p>5. Postanowienia ust. 1–4 stanowią jednocześnie wewnętrzny system rozpatrywania skarg Wykonawców, o którym mowa w art. 11 rozporządzenia P2B. Jest on nieodpłatny, a skargi rozpatrywane są w rozsądnym terminie, indywidualnie i z należytą starannością.</p>
+</section>
 
-  <div class="reg-section" id="par11">
-    <h2><span class="para-num">§11</span>Obowiązki Wykonawcy</h2>
-    <ul>
-      <li>podjęcie kontaktu z Klientem w ciągu 24 godzin od otrzymania powiadomienia o nowym Zleceniu;</li>
-      <li>zakaz wykorzystywania danych Klienta w celu innym niż realizacja danego Zlecenia (Wykonawca staje się odrębnym administratorem danych — zob. Polityka Prywatności);</li>
-      <li>zakaz omijania Platformy, w tym nakłaniania Klientów do zawierania umów z pominięciem systemu;</li>
-      <li>zakaz działań szkodzących renomie Platformy lub Operatora;</li>
-      <li>zakaz składania nieuzasadnionych roszczeń w złej wierze;</li>
-      <li>podawanie prawdziwych, kompletnych i aktualnych danych rejestrowych.</li>
-    </ul>
-  </div>
+<section class="par" id="par13">
+  <h2><span class="no">§13</span> Odpowiedzialność</h2>
+  <p>1. Wobec Wykonawców niebędących Wykonawcami uprzywilejowanymi odpowiedzialność Operatora ograniczona jest do wysokości jednej miesięcznej opłaty subskrypcyjnej i nie obejmuje utraconych korzyści, utraty reputacji, utraconych kontraktów ani szkód pośrednich.</p>
+  <p>2. Wobec Wykonawców uprzywilejowanych oraz Konsumentów Operator odpowiada na zasadach ogólnych Kodeksu cywilnego.</p>
+  <p>3. Ograniczenia odpowiedzialności nie obejmują szkód wyrządzonych umyślnie (art. 473 §2 Kodeksu cywilnego) ani przypadków, w których bezwzględnie obowiązujące przepisy wyłączają możliwość ograniczenia odpowiedzialności.</p>
+  <p>4. Operator nie odpowiada za niewykonanie zobowiązań spowodowane siłą wyższą.</p>
+</section>
 
-  <div class="reg-section" id="par12">
-    <h2><span class="para-num">§12</span>Nadużycia i ochrona systemu</h2>
-    <ol>
-      <li>Za nadużycie uznaje się w szczególności: fikcyjne zgłoszenia reklamacyjne, celowe generowanie sporów, testowanie systemu w celu jego obejścia, podawanie nieprawdziwych danych, próby odzyskania środków (w tym chargeback) pomimo prawidłowego wykonania usługi.</li>
-      <li>W przypadku nadużycia Operator może: (a) zablokować konto, (b) rozwiązać umowę ze skutkiem natychmiastowym, (c) dochodzić naprawienia szkody na zasadach ogólnych (art. 471 i n. KC), (d) zgłosić sprawę operatorowi płatności.</li>
-    </ol>
-  </div>
+<section class="par" id="par14">
+  <h2><span class="no">§14</span> Rozwiązanie umowy</h2>
+  <p>1. Umowa z Wykonawcą zawierana jest na czas nieokreślony. Rezygnacja z Subskrypcji (§8 ust. 3) skutkuje rozwiązaniem umowy z końcem bieżącego Okresu rozliczeniowego.</p>
+  <p>2. Zakończenie przez Operatora świadczenia wszystkich usług na rzecz Wykonawcy następuje z zachowaniem <strong>30-dniowego</strong> okresu uprzedzenia, z przekazaniem na Trwałym nośniku uzasadnienia obejmującego fakty i okoliczności decyzji (art. 4 ust. 2 rozporządzenia P2B).</p>
+  <p>3. Okres uprzedzenia z ust. 2 nie obowiązuje, gdy: (a) Operator podlega obowiązkowi prawnemu nakazującemu zakończenie świadczenia usług, (b) Wykonawca <strong>wielokrotnie</strong> naruszył Regulamin, (c) zachodzi nadrzędny wzgląd wynikający z prawa krajowego lub unijnego. W takich przypadkach Operator może rozwiązać umowę ze skutkiem natychmiastowym, przekazując niezwłocznie uzasadnienie na Trwałym nośniku (chyba że przepis prawa zakazuje jego przekazania).</p>
+</section>
 
-  <div class="reg-section" id="par13">
-    <h2><span class="para-num">§13</span>Reklamacje jakości usługi</h2>
-    <h3>13.1 Podstawa i standard rozpatrywania</h3>
-    <p>W relacjach B2B odpowiedzialność za jakość świadczenia może być umownie kształtowana (art. 558 §1 KC stosowany odpowiednio). Operator zobowiązuje się jednak rozpatrywać uzasadnione reklamacje dotyczące jakości usługi jako standard biznesowy.</p>
-    <h3>13.2 Przesłanki uzasadnionej reklamacji</h3>
-    <ul>
-      <li>Zlecenie zawierało dane kontaktowe nieistniejące lub błędne (np. błędny numer telefonu, fikcyjny adres);</li>
-      <li>Zlecenie dotyczyło usługi niezgodnej z profilem działalności Wykonawcy (np. remont inny niż łazienka);</li>
-      <li>to samo Zlecenie przekazano Wykonawcy dwukrotnie w tym samym Okresie rozliczeniowym;</li>
-      <li>Platforma była niedostępna łącznie dłużej niż 48 godzin w miesiącu z przyczyn leżących po stronie Operatora.</li>
-    </ul>
-    <h3>13.3 Termin i tryb</h3>
-    <p>Reklamację zgłasza się pocztą elektroniczną w terminie 7 dni od zdarzenia stanowiącego jej podstawę. Operator rozpatruje reklamację w terminie 14 dni od otrzymania. Brak zgłoszenia w terminie poczytuje się — w stosunkach z przedsiębiorcami — za akceptację wykonania usługi; nie dotyczy to Wykonawcy uprzywilejowanego.</p>
-    <h3>13.4 Rekompensata za awarię systemu</h3>
-    <p>W przypadku udokumentowanej awarii trwającej łącznie ponad 48 godzin w miesiącu Operator z własnej inicjatywy przyznaje Wykonawcy kredyt na kolejny miesiąc albo przedłuża Okres rozliczeniowy o czas przestoju.</p>
-    <h3>13.5 Zakres wyłączony spod reklamacji</h3>
-    <ul>
-      <li>brak zainteresowania Klienta po kontakcie Wykonawcy albo wybór innego wykonawcy przez Klienta;</li>
-      <li>niska liczba Zleceń wynikająca z popytu rynkowego, a nie z awarii systemu;</li>
-      <li>cena i wartość Zlecenia oraz subiektywna ocena jakości zapytania;</li>
-      <li>utracone korzyści.</li>
-    </ul>
-  </div>
+<section class="par" id="par15">
+  <h2><span class="no">§15</span> Zmiany Regulaminu i cen</h2>
+  <p>1. Operator może zmienić Regulamin lub cenniki wyłącznie z ważnych przyczyn, którymi są:</p>
+  <ul>
+    <li>zmiana powszechnie obowiązujących przepisów prawa lub ich wykładni (orzeczenia, decyzje organów),</li>
+    <li>zmiana zakresu lub sposobu świadczenia usług (nowe funkcjonalności, wycofanie usług),</li>
+    <li>konieczność przeciwdziałania nadużyciom lub podniesienia bezpieczeństwa,</li>
+    <li>udokumentowana zmiana kosztów świadczenia usług — w odniesieniu do zmian cen.</li>
+  </ul>
+  <p>2. O proponowanych zmianach Operator informuje na Trwałym nośniku z wyprzedzeniem co najmniej <strong>15 dni</strong> (art. 3 ust. 2 rozporządzenia P2B); jeżeli zmiany wymagają od Wykonawcy dostosowań technicznych — z wyprzedzeniem odpowiednio dłuższym.</p>
+  <p>3. Przed upływem okresu powiadomienia każdy usługobiorca może rozwiązać umowę ze skutkiem na koniec bieżącego Okresu rozliczeniowego. Brak rozwiązania i dalsze korzystanie z Platformy po wejściu zmian w życie oznacza ich akceptację. Zmiany cen nie działają wstecz i nie dotyczą opłaconego już Okresu rozliczeniowego.</p>
+  <p>4. Zmiany o charakterze wyłącznie redakcyjnym lub korzystne dla usługobiorców mogą wejść w życie bez zachowania trybu z ust. 2, z zastrzeżeniem ograniczeń wynikających z rozporządzenia P2B.</p>
+</section>
 
-  <div class="reg-section" id="par14">
-    <h2><span class="para-num">§14</span>Ochrona Wykonawcy uprzywilejowanego (JDG)</h2>
-    <ol>
-      <li>Od 1 stycznia 2021 r. (ustawa z 31.07.2019 r., Dz.U. 2020 poz. 1086) osoba fizyczna prowadząca JDG korzysta z ochrony właściwej konsumentom w zakresie klauzul abuzywnych (art. 385&sup1;–385&sup3; KC) oraz rękojmi, o ile umowa nie ma dla niej charakteru zawodowego.</li>
-      <li>Niezależnie od oceny statusu Wykonawcy Operator oświadcza, że Regulamin nie zawiera postanowień rażąco naruszających interesy Wykonawcy ani kształtujących jego prawa i obowiązki w sposób sprzeczny z dobrymi obyczajami, w szczególności: całkowitego wyłączenia odpowiedzialności Operatora, jednostronnego prawa zmiany cen w trakcie opłaconego okresu, automatycznego przedłużania Subskrypcji bez uprzedniego powiadomienia ani postanowień pozbawiających Wykonawcę prawa do reklamacji.</li>
-      <li>W razie wątpliwości co do statusu Wykonawcy Operator przyjmuje podejście korzystne dla Wykonawcy.</li>
-    </ol>
-  </div>
+<section class="par" id="par16">
+  <h2><span class="no">§16</span> Pozasądowe rozwiązywanie sporów</h2>
+  <p>1. Operator deklaruje gotowość polubownego rozwiązywania sporów z Wykonawcami, w tym w drodze mediacji (art. 12 rozporządzenia P2B).</p>
+  <p>2. Konsument może skorzystać z pozasądowych sposobów rozpatrywania reklamacji i dochodzenia roszczeń, m.in. ze wsparcia miejskiego (powiatowego) rzecznika konsumentów, wojewódzkich inspektoratów Inspekcji Handlowej lub organizacji konsumenckich. Szczegółowe informacje dostępne są na stronie <a href="https://uokik.gov.pl" rel="noopener">uokik.gov.pl</a>.</p>
+</section>
 
-  <div class="reg-section" id="par15">
-    <h2><span class="para-num">§15</span>Odpowiedzialność</h2>
-    <ol>
-      <li>Odpowiedzialność Operatora wobec Wykonawcy będącego przedsiębiorcą ograniczona jest do wysokości opłaty abonamentowej uiszczonej za Okres rozliczeniowy, w którym wystąpiło zdarzenie szkodzące.</li>
-      <li>Operator nie odpowiada wobec przedsiębiorców za utracone korzyści (lucrum cessans), utratę renomy, utracone kontrakty ani szkody pośrednie.</li>
-      <li>Ograniczenia z ust. 1–2 nie mają zastosowania do szkody wyrządzonej umyślnie (art. 473 §2 KC) ani do Wykonawcy uprzywilejowanego, wobec którego Operator odpowiada do wysokości rzeczywiście poniesionej szkody na zasadach ogólnych.</li>
-      <li>Operator nie ponosi odpowiedzialności za niewykonanie lub nienależyte wykonanie usługi wskutek siły wyższej, w tym: awarii infrastruktury zewnętrznej (m.in. usług Google), przerw w dostępie do internetu po stronie Wykonawcy, działań organów państwowych, klęsk żywiołowych oraz cyberataków na infrastrukturę zewnętrzną.</li>
-      <li>Operator gwarantuje dostępność Platformy i przekazywanie Zleceń zgodnie z planem; nie gwarantuje liczby Zleceń odpowiadającej limitowi przy niższym popycie rynkowym, finalizacji zleceń przez Klientów ani przychodu Wykonawcy.</li>
-    </ol>
-  </div>
+<section class="par" id="par17">
+  <h2><span class="no">§17</span> Dane osobowe i pliki cookies</h2>
+  <p>Zasady przetwarzania danych osobowych określa <a href="polityka-prywatnosci.html">Polityka prywatności</a>, a zasady wykorzystywania plików cookies — <a href="polityka-cookies.html">Polityka cookies</a>. Podanie danych oznaczonych jako obowiązkowe jest dobrowolne, lecz niezbędne do zawarcia i wykonania umowy.</p>
+</section>
 
-  <div class="reg-section" id="par16">
-    <h2><span class="para-num">§16</span>Rozwiązanie umowy</h2>
-    <ol>
-      <li>Umowa zawierana jest na czas nieokreślony. Rezygnacja z Subskrypcji skutkuje rozwiązaniem umowy z upływem bieżącego Okresu rozliczeniowego.</li>
-      <li>Operator może rozwiązać umowę ze skutkiem natychmiastowym w przypadku: istotnego naruszenia Regulaminu, nadużyć (§12) lub działań na szkodę Platformy; oświadczenie wraz z uzasadnieniem przekazywane jest na trwałym nośniku.</li>
-      <li>Ograniczenie lub zawieszenie świadczenia usług na rzecz Wykonawcy następuje z podaniem uzasadnienia, stosownie do art. 4 rozporządzenia (UE) 2019/1150.</li>
-    </ol>
-  </div>
+<section class="par" id="par18">
+  <h2><span class="no">§18</span> Postanowienia końcowe</h2>
+  <p>1. Prawem właściwym jest prawo polskie.</p>
+  <p>2. Spory z Wykonawcami niebędącymi Wykonawcami uprzywilejowanymi rozstrzyga sąd właściwy dla siedziby Operatora. Wobec Konsumentów i Wykonawców uprzywilejowanych właściwość sądu ustalana jest na zasadach ogólnych.</p>
+  <p>3. Jeżeli którekolwiek postanowienie Regulaminu okaże się nieważne lub bezskuteczne, pozostałe postanowienia pozostają w mocy, a w miejsce postanowienia nieważnego stosuje się właściwe przepisy prawa.</p>
+  <p>4. Regulamin w niniejszej wersji obowiązuje od dnia 01.09.2026 r. i jest dostępny do pobrania na stronie Platformy.</p>
+</section>
 
-  <div class="reg-section" id="par17">
-    <h2><span class="para-num">§17</span>Zmiany Regulaminu i cen</h2>
-    <ol>
-      <li>Operator może zmienić Regulamin lub cennik z ważnych przyczyn, w szczególności: zmiany przepisów prawa, zmiany modelu biznesowego, względów bezpieczeństwa lub rozwoju funkcjonalności Platformy.</li>
-      <li>O proponowanych zmianach Operator powiadamia Wykonawców na trwałym nośniku (e-mail) z wyprzedzeniem co najmniej <strong style="color:var(--gold2);">15 dni</strong> (art. 3 ust. 2 rozporządzenia (UE) 2019/1150), chyba że dłuższy termin jest konieczny dla dostosowania się do zmian.</li>
-      <li>Przed upływem terminu, o którym mowa w ust. 2, Wykonawca może wypowiedzieć umowę ze skutkiem na koniec bieżącego Okresu rozliczeniowego. Brak wypowiedzenia oznacza akceptację zmian.</li>
-      <li>Zmiana cen nie dotyczy Okresu rozliczeniowego już opłaconego.</li>
-      <li>Zmiany Polityki Zwrotów nie mają zastosowania do Subskrypcji aktywowanych przed datą ich wejścia w życie.</li>
-    </ol>
-  </div>
-
-  <div class="reg-section" id="par18">
-    <h2><span class="para-num">§18</span>Dane osobowe</h2>
-    <p>Zasady przetwarzania danych osobowych Wykonawców i Klientów, w tym danych przetwarzanych przy obsłudze zwrotów i reklamacji, określa <a href="polityka-prywatnosci.html" style="color:var(--gold);">Polityka Prywatności</a>, stanowiąca integralną część Regulaminu.</p>
-  </div>
-
-  <div class="reg-section" id="par19">
-    <h2><span class="para-num">§19</span>Postanowienia końcowe</h2>
-    <ol>
-      <li>Prawem właściwym dla umów zawieranych na podstawie Regulaminu jest prawo polskie.</li>
-      <li>Przed skierowaniem sprawy na drogę sądową strony podejmą próbę polubownego rozwiązania sporu w terminie 30 dni od zgłoszenia roszczenia.</li>
-      <li>Spory z przedsiębiorcami rozstrzyga sąd powszechny właściwy miejscowo dla siedziby Operatora. Wobec Wykonawcy uprzywilejowanego właściwość sądu ustala się na zasadach ogólnych.</li>
-      <li>Jeżeli którekolwiek postanowienie Regulaminu okaże się nieważne lub bezskuteczne, pozostałe postanowienia pozostają w mocy, a w miejsce postanowienia nieważnego stosuje się przepis prawa najbliższy celowi tego postanowienia (klauzula salwatoryjna).</li>
-      <li>Regulamin w niniejszym brzmieniu (wersja 2.0, obejmująca dotychczasowy Aneks — Politykę Zwrotów i Reklamacji) wchodzi w życie z dniem 01.09.2026 r.</li>
-    </ol>
-  </div>
-
-  <div class="cta-box">
-    <p>Masz pytania dotyczące regulaminu lub polityki zwrotów? Napisz do nas lub wybierz plan subskrypcji.</p>
-    <div style="display:flex;gap:12px;flex-wrap:wrap;">
-      <a href="mailto:platforma@remontylazienek.com" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);color:var(--light);">Napisz do nas</a>
-      <a href="wybor-planow.html">Wybierz plan</a>
-    </div>
-  </div>
-
+<div class="contactbox">
+  <h2>Masz pytania dotyczące regulaminu?</h2>
+  <p>Napisz do nas lub wybierz plan subskrypcji.</p>
+  <a class="btn gold" href="mailto:platforma@remontylazienek.com">Napisz do nas</a>
+  <a class="btn ghost" href="wybor-planow.html">Wybierz plan</a>
 </div>
+
+</main>
 
 <footer>
-  <div class="footer-links">
+  <div class="links">
     <a href="regulamin.html">Regulamin</a>
     <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="polityka-cookies.html">Polityka cookies</a>
     <a href="anulowanie.html">Anuluj subskrypcję</a>
     <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
   </div>
-  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone. Dokument nie stanowi porady prawnej; przed publikacją zalecana weryfikacja przez radcę prawnego (www.oirp.pl).</p>
+  © 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.
 </footer>
 
-<script>
-const burger = document.getElementById('burger');
-const navMobile = document.getElementById('nav-mobile');
-burger.addEventListener('click', function() {
-  const open = navMobile.classList.toggle('open');
-  burger.setAttribute('aria-expanded', open);
-});
-</script>
 </body>
 </html>
