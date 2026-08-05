@@ -1,304 +1,243 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Polityka prywatności – Remonty Łazienek</title>
+<meta name="description" content="Polityka prywatności Platformy Remonty Łazienek – zasady przetwarzania danych osobowych zgodnie z RODO. Stan prawny: sierpień 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&amp;family=DM+Sans:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --navy:#0D1B2A; --blue:#1A3A5C; --gold:#C9A84C; --gold2:#E8C97A; --light:#F4F1EB; --white:#FFFFFF; --gray:#8A9BAD; }
-html { scroll-behavior: smooth; }
-body { background:var(--navy); color:var(--light); font-family:'DM Sans',sans-serif; font-weight:300; line-height:1.8; min-height:100vh; overflow-x:hidden; }
-body::before { content:''; position:fixed; inset:0; background:radial-gradient(ellipse at 80% 0%,rgba(26,58,92,0.4) 0%,transparent 60%); pointer-events:none; z-index:0; }
-
-nav { position:sticky; top:0; z-index:100; background:rgba(13,27,42,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.18); padding:0 32px; display:flex; align-items:center; justify-content:space-between; height:64px; }
-.nav-logo { font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--white); text-decoration:none; }
-.nav-logo span { color:var(--gold); }
-.nav-links { display:flex; align-items:center; gap:28px; }
-.nav-links a { font-size:13px; color:rgba(244,241,235,0.75); text-decoration:none; transition:color 0.2s; }
-.nav-links a:hover { color:var(--white); }
-.nav-cta { padding:9px 22px; background:linear-gradient(135deg,var(--gold),#A8782A); color:var(--navy)!important; font-weight:500!important; border-radius:7px; }
-.nav-burger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:6px; background:none; border:none; }
-.nav-burger span { display:block; width:22px; height:2px; background:var(--light); border-radius:2px; }
-.nav-mobile { display:none; position:fixed; top:64px; left:0; right:0; background:rgba(13,27,42,0.98); border-bottom:1px solid rgba(201,168,76,0.18); padding:24px 32px; flex-direction:column; gap:20px; z-index:99; }
-.nav-mobile.open { display:flex; }
-.nav-mobile a { font-size:15px; color:rgba(244,241,235,0.85); text-decoration:none; padding:4px 0; }
-
-.wrapper { position:relative; z-index:1; max-width:760px; margin:0 auto; padding:60px 32px 100px; }
-
-.page-eyebrow { display:inline-block; font-size:11px; font-weight:500; letter-spacing:3px; text-transform:uppercase; color:var(--gold); border-bottom:1px solid rgba(201,168,76,0.4); padding-bottom:6px; margin-bottom:28px; }
-.page-h1 { font-family:'Playfair Display',serif; font-size:clamp(32px,5vw,52px); font-weight:900; color:var(--white); line-height:1.1; margin-bottom:12px; }
-.page-h1 em { font-style:normal; color:var(--gold2); }
-.page-date { font-size:13px; color:var(--gray); margin-bottom:48px; }
-
-.divider { height:1px; background:linear-gradient(90deg,transparent,rgba(201,168,76,0.3),transparent); margin:36px 0; }
-
-.pp-section { margin-bottom:32px; }
-.pp-section h2 { font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--white); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(201,168,76,0.15); display:flex; align-items:center; gap:10px; }
-.pp-section h2 .num { display:inline-flex; align-items:center; justify-content:center; min-width:26px; height:26px; padding:0 4px; background:rgba(201,168,76,0.12); border:1px solid rgba(201,168,76,0.3); border-radius:50%; font-family:'DM Sans',sans-serif; font-size:11px; font-weight:500; color:var(--gold); flex-shrink:0; }
-.pp-section h3 { font-size:14px; font-weight:500; color:var(--gold2); margin:16px 0 8px; letter-spacing:0.5px; }
-.pp-section p { font-size:15px; color:rgba(244,241,235,0.8); margin-bottom:10px; }
-.pp-section ul { list-style:none; padding:0; margin:8px 0 10px 0; }
-.pp-section ul li { font-size:15px; color:rgba(244,241,235,0.75); padding:4px 0 4px 20px; position:relative; }
-.pp-section ul li::before { content:'–'; position:absolute; left:0; color:var(--gold); opacity:0.6; }
-.pp-section a { color:var(--gold); text-decoration:underline; text-underline-offset:2px; }
-.pp-section a:hover { color:var(--gold2); }
-
-.pp-table { width:100%; border-collapse:collapse; margin:12px 0; font-size:13px; }
-.pp-table th { padding:10px 14px; text-align:left; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--gray); font-weight:500; border-bottom:1px solid rgba(255,255,255,0.1); }
-.pp-table td { padding:11px 14px; color:rgba(244,241,235,0.8); border-bottom:1px solid rgba(255,255,255,0.06); vertical-align:top; }
-.pp-table tr:hover td { background:rgba(201,168,76,0.04); }
-.pp-table td:first-child { color:var(--gold2); font-weight:500; }
-
-.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:12px 0; }
-.col-box { background:rgba(26,58,92,0.3); border:1px solid rgba(201,168,76,0.15); border-radius:8px; padding:16px 20px; }
-.col-box-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:10px; }
-.col-box ul { margin:0; }
-.col-box ul li { font-size:13px; }
-.col-box p { font-size:13px; color:rgba(244,241,235,0.7); line-height:1.6; }
-
-.rights-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin:12px 0; }
-.right-card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:14px 16px; font-size:13px; color:rgba(244,241,235,0.8); }
-.right-card strong { display:block; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:var(--gold2); font-weight:500; margin-bottom:6px; }
-
-.info-box { background:rgba(26,58,92,0.35); border:1px solid rgba(201,168,76,0.25); border-left:3px solid var(--gold); border-radius:8px; padding:16px 20px; margin:14px 0; }
-.info-box p { font-size:13px; color:rgba(244,241,235,0.8); margin-bottom:6px; }
-.info-box p:last-child { margin-bottom:0; }
-.info-box .box-title { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:8px; }
-
-.contact-box { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-radius:10px; padding:20px 24px; margin-top:40px; }
-.contact-box p { font-size:15px; color:rgba(244,241,235,0.85); margin-bottom:8px; }
-.contact-box p:last-child { margin-bottom:0; }
-.contact-box a { color:var(--gold); }
-
-footer { position:relative; z-index:1; border-top:1px solid rgba(201,168,76,0.15); background:rgba(10,22,36,0.7); padding:28px 32px; text-align:center; }
-.footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:8px 24px; margin-bottom:12px; }
-.footer-links a { font-size:12px; color:rgba(201,168,76,0.7); text-decoration:none; }
-.footer-links a:hover { color:var(--gold2); }
-footer p { font-size:11px; color:var(--gray); opacity:0.7; }
-
-@media (max-width:680px) {
-  nav { padding:0 20px; }
-  .nav-links { display:none; }
-  .nav-burger { display:flex; }
-  .wrapper { padding:40px 20px 80px; }
-  .two-col { grid-template-columns:1fr; }
-  footer { padding:20px 16px; }
-  .pp-table td, .pp-table th { padding:8px 10px; }
-}
+:root{--navy:#0D1B2A;--blue:#1A3A5C;--gold:#C9A84C;--gold2:#E8C97A;--light:#F4F1EB;--white:#FFFFFF;--gray:#8A9BAD}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--navy);color:var(--light);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.75}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(26,58,92,.55) 0%,transparent 60%),radial-gradient(ellipse at 80% 100%,rgba(201,168,76,.07) 0%,transparent 50%);pointer-events:none;z-index:0}
+a{color:var(--gold2);text-decoration:none;transition:color .2s}
+a:hover{color:var(--gold)}
+.topbar{position:sticky;top:0;z-index:100;background:rgba(13,27,42,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.18)}
+.topbar .wrap{max-width:1040px;margin:0 auto;padding:12px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.brand{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:var(--white);letter-spacing:.5px}
+.brand:hover{color:var(--white)}
+.brand span{color:var(--gold)}
+nav{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px}
+nav a{font-size:13px;font-weight:400;color:rgba(244,241,235,.75);letter-spacing:.3px}
+nav a:hover{color:var(--white)}
+nav a.cta{padding:9px 22px;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);font-weight:500;border-radius:7px;box-shadow:0 2px 14px rgba(201,168,76,.3)}
+nav a.cta:hover{color:var(--navy)}
+.hero{position:relative;z-index:1;text-align:center;padding:72px 32px 48px}
+.badge{display:inline-block;font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(201,168,76,.4);padding-bottom:6px;margin-bottom:28px}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,54px);font-weight:900;line-height:1.1;color:var(--white)}
+.hero h1 em{font-style:normal;color:var(--gold2)}
+.hero p{color:rgba(244,241,235,.8);margin-top:16px;font-size:15px}
+main{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:24px 32px 100px}
+section.par{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:28px 32px;margin-bottom:22px;transition:background .3s,border-color .3s}
+section.par:hover{background:rgba(201,168,76,.06);border-color:rgba(201,168,76,.22)}
+section.par h2{display:flex;align-items:baseline;gap:14px;font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--white);margin-bottom:16px}
+section.par h2 .no{flex:0 0 auto;font-family:'DM Sans',sans-serif;background:linear-gradient(135deg,var(--gold),#A8782A);color:var(--navy);font-size:12px;font-weight:500;padding:4px 11px;border-radius:7px}
+section.par h3{font-size:16px;font-weight:500;color:var(--gold2);margin:20px 0 8px}
+section.par p{font-size:15px;color:rgba(244,241,235,.8);margin-bottom:12px}
+section.par ul,section.par ol{margin:10px 0 14px 22px}
+section.par li{font-size:15px;color:rgba(244,241,235,.8);margin-bottom:7px}
+section.par strong{color:var(--white);font-weight:500}
+.note{background:rgba(201,168,76,.07);border-left:3px solid var(--gold);padding:16px 20px;border-radius:0 12px 12px 0;font-size:14.5px;color:rgba(244,241,235,.85);margin:14px 0}
+table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13.5px}
+th{background:var(--blue);color:var(--white);text-align:left;padding:11px 13px;font-weight:500}
+td{border:1px solid rgba(255,255,255,.09);padding:10px 13px;background:rgba(255,255,255,.02);color:rgba(244,241,235,.8);vertical-align:top}
+tr:nth-child(even) td{background:rgba(255,255,255,.045)}
+dfn{font-style:normal;font-weight:500;color:var(--gold2)}
+.rights{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0}
+.rights div{border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:14px 16px;background:rgba(255,255,255,.03);font-size:14px;color:rgba(244,241,235,.75);transition:background .3s,border-color .3s}
+.rights div:hover{background:rgba(201,168,76,.06);border-color:rgba(201,168,76,.22)}
+.rights strong{color:var(--gold2);display:block;margin-bottom:4px;font-weight:500}
+footer{position:relative;z-index:1;border-top:1px solid rgba(201,168,76,.15);background:rgba(10,22,36,.7);color:var(--gray);text-align:center;padding:32px;font-size:11px}
+footer a{font-size:12px;color:rgba(201,168,76,.7);margin:0 12px}
+footer a:hover{color:var(--gold2)}
+footer .links{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 12px;margin-bottom:16px}
+@media(max-width:680px){.topbar .wrap{padding:12px 20px}.hero{padding:48px 20px 36px}main{padding:16px 20px 80px}section.par{padding:22px 20px}}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-logo">Remonty <span>Łazienek</span></a>
-  <div class="nav-links">
-    <a href="index.html">Dla Wykonawców</a>
-    <a href="dla-klientow.html">Dla Klientów</a>
-    <a href="regulamin.html">Regulamin</a>
-    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-    <a href="anulowanie.html">Anulowanie</a>
-    <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">Remonty <span>Łazienek</span></a>
+    <nav>
+      <a href="index.html">Dla Wykonawców</a>
+      <a href="dla-klientow.html">Dla Klientów</a>
+      <a href="regulamin.html">Regulamin</a>
+      <a href="polityka-cookies.html">Polityka cookies</a>
+      <a href="anulowanie.html">Anulowanie</a>
+      <a class="cta" href="wybor-planow.html">Wybierz plan</a>
+    </nav>
   </div>
-  <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-<div class="nav-mobile" id="nav-mobile">
-  <a href="index.html">Dla Wykonawców</a>
-  <a href="dla-klientow.html">Dla Klientów</a>
-  <a href="regulamin.html">Regulamin</a>
-  <a href="polityka-prywatnosci.html">Polityka prywatności</a>
-  <a href="anulowanie.html">Anulowanie subskrypcji</a>
-  <a href="wybor-planow.html" class="nav-cta">Wybierz plan</a>
+</header>
+
+<div class="hero">
+  <span class="badge">RODO / Ochrona danych · wersja 2.1</span>
+  <h1>Polityka <em>prywatności</em></h1>
+  <p>Obowiązuje od dnia 01.09.2026 r. | Stan prawny: sierpień 2026 r.</p>
 </div>
 
-<div class="wrapper">
+<main>
 
-  <span class="page-eyebrow">RODO / Ochrona danych · wersja 2.0</span>
-  <h1 class="page-h1">Polityka <em>prywatności</em></h1>
-  <p class="page-date">Obowiązuje od dnia 01.09.2026 r. &nbsp;|&nbsp; Stan prawny: sierpień 2026 r.</p>
+<section class="par" id="p1">
+  <h2><span class="no">1</span> Administrator danych</h2>
+  <p>Administratorem danych osobowych jest:</p>
+  <ul>
+    <li><strong>[Nazwa spółki / działalności]</strong></li>
+    <li><strong>[Forma prawna]</strong></li>
+    <li><strong>[Adres siedziby]</strong></li>
+    <li><strong>[NIP / REGON / KRS]</strong></li>
+    <li>E-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a></li>
+  </ul>
+  <p>Administrator przetwarza dane osobowe w związku z prowadzeniem Platformy internetowej „Remonty Łazienek", umożliwiającej przekazywanie zapytań ofertowych (Zleceń) Wykonawcom w modelu subskrypcyjnym B2B. Polityka stanowi realizację obowiązków informacyjnych z art. 13 i 14 RODO.</p>
+</section>
 
-  <div class="divider"></div>
+<section class="par" id="p2">
+  <h2><span class="no">2</span> Definicje</h2>
+  <ul>
+    <li><dfn>Platforma</dfn> – system online umożliwiający przekazywanie Zleceń (Leadów) Wykonawcom</li>
+    <li><dfn>Wykonawca</dfn> – przedsiębiorca korzystający z Platformy w ramach Subskrypcji</li>
+    <li><dfn>Klient</dfn> – osoba składająca zapytanie ofertowe</li>
+    <li><dfn>Subskrypcja</dfn> – cykliczna, automatycznie odnawialna usługa dostępu do Platformy</li>
+    <li><dfn>RODO</dfn> – rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z 27.04.2016 r.</li>
+    <li><dfn>PKE</dfn> – ustawa z 12.07.2024 r. – Prawo komunikacji elektronicznej (Dz.U. z 2024 r. poz. 1221)</li>
+    <li><dfn>Regulamin</dfn> – <a href="regulamin.html">Regulamin Platformy</a> (wersja 2.1, obowiązująca od 01.09.2026 r.)</li>
+    <li><dfn>Polityka cookies</dfn> – <a href="polityka-cookies.html">odrębny dokument</a> określający zasady wykorzystywania plików cookies</li>
+  </ul>
+</section>
 
-  <div class="pp-section">
-    <h2><span class="num">1</span>Administrator danych</h2>
-    <p>Administratorem danych osobowych jest:</p>
-    <ul>
-      <li>[Nazwa spółki / działalności]</li>
-      <li>[Forma prawna]</li>
-      <li>[Adres siedziby]</li>
-      <li>[NIP / REGON / KRS]</li>
-      <li>E-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a></li>
-    </ul>
-    <p>Administrator przetwarza dane osobowe w związku z prowadzeniem Platformy internetowej „Remonty Łazienek”, umożliwiającej przekazywanie zapytań ofertowych (Zleceń) Wykonawcom w modelu subskrypcyjnym B2B. Polityka stanowi realizację obowiązków informacyjnych z art. 13 i 14 RODO.</p>
+<section class="par" id="p3">
+  <h2><span class="no">3</span> Modele przetwarzania danych</h2>
+  <h3>A) Operator jako administrator</h3>
+  <ul>
+    <li>rejestracja i obsługa kont</li>
+    <li>obsługa Subskrypcji i rozliczeń</li>
+    <li>obsługa zwrotów i reklamacji</li>
+    <li>marketing własny</li>
+    <li>analityka i bezpieczeństwo</li>
+  </ul>
+  <h3>B) Niezależni administratorzy</h3>
+  <p>Z chwilą przekazania Zlecenia Wykonawca staje się odrębnym, samodzielnym administratorem danych Klienta i odpowiada za dalsze przetwarzanie, w tym za realizację własnego obowiązku informacyjnego (art. 14 RODO). Regulamin (§10) zakazuje Wykonawcy wykorzystania danych w celu innym niż realizacja danego Zlecenia.</p>
+  <h3>Operatorzy płatności</h3>
+  <p>Operator płatności (PayU S.A. lub inny wskazany w procesie płatności) jest odrębnym administratorem danych w zakresie realizacji transakcji płatniczych, zgodnie z własnym regulaminem i polityką prywatności.</p>
+</section>
+
+<section class="par" id="p4">
+  <h2><span class="no">4</span> Cele, podstawy prawne i zakres przetwarzania</h2>
+  <table>
+    <tr><th>Cel</th><th>Podstawa prawna</th><th>Zakres danych</th></tr>
+    <tr><td>Zawarcie i wykonanie umowy (konto, Subskrypcja)</td><td>art. 6 ust. 1 lit. b RODO</td><td>dane identyfikacyjne, kontaktowe, firmowe (NIP, adres), dane płatnicze</td></tr>
+    <tr><td>Realizacja płatności cyklicznych i rozliczenia</td><td>art. 6 ust. 1 lit. b i c RODO (przepisy podatkowe i rachunkowe)</td><td>dane transakcyjne, numer transakcji, dane do faktur</td></tr>
+    <tr><td>Przekazywanie Zleceń Wykonawcom</td><td>art. 6 ust. 1 lit. b RODO (wobec Klienta — działania na żądanie przed zawarciem umowy) oraz lit. f (uzasadniony interes)</td><td>imię, dane kontaktowe Klienta, lokalizacja, opis zapytania</td></tr>
+    <tr><td>Obsługa zwrotów i reklamacji (§8, §9 i §12 Regulaminu)</td><td>art. 6 ust. 1 lit. b i c RODO</td><td>nazwa firmy, NIP, e-mail konta, numer rachunku bankowego, historia transakcji i liczba przekazanych Zleceń</td></tr>
+    <tr><td>Marketing własny</td><td>art. 6 ust. 1 lit. a lub f RODO; kanał elektroniczny — uprzednia zgoda wymagana przez PKE również w B2B</td><td>e-mail, telefon, historia aktywności</td></tr>
+    <tr><td>Ochrona przed nadużyciami (fraud, chargeback — §11 Regulaminu)</td><td>art. 6 ust. 1 lit. f RODO</td><td>logi systemowe, dane transakcyjne, historia zgłoszeń</td></tr>
+    <tr><td>Ustalenie, dochodzenie i obrona roszczeń</td><td>art. 6 ust. 1 lit. f RODO</td><td>dane umowne, korespondencja, dokumentacja reklamacyjna</td></tr>
+  </table>
+  <div class="note"><strong>Dobrowolność podania danych (art. 13 ust. 2 lit. e RODO):</strong> podanie danych jest dobrowolne, jednak w zakresie oznaczonym jako obowiązkowy stanowi warunek zawarcia i wykonania umowy (konto, Subskrypcja) albo obsługi zapytania (formularz Klienta). Konsekwencją niepodania danych obowiązkowych jest brak możliwości zawarcia umowy, przekazania zapytania lub obsługi zgłoszenia. Podanie danych do celów marketingowych jest zawsze w pełni dobrowolne.</div>
+</section>
+
+<section class="par" id="p5">
+  <h2><span class="no">5</span> Profilowanie i systemy automatyczne</h2>
+  <p>Platforma wykorzystuje system algorytmicznego dopasowania zapytań. Główne parametry dopasowania oraz ich względne znaczenie opisano w <strong>§7 Regulaminu</strong> (przejrzystość plasowania — art. 5 rozporządzenia (UE) 2019/1150).</p>
+  <p>System nie podejmuje wobec osób fizycznych decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu, które wywoływałyby skutki prawne lub w podobny sposób istotnie wpływały na te osoby, w rozumieniu art. 22 RODO. Każda decyzja o odmowie zwrotu, blokadzie konta lub rozwiązaniu umowy podejmowana jest z udziałem człowieka.</p>
+</section>
+
+<section class="par" id="p6">
+  <h2><span class="no">6</span> Odbiorcy danych</h2>
+  <p>Dane mogą być przekazywane następującym kategoriom odbiorców:</p>
+  <ul>
+    <li>operatorom płatności (jako odrębnym administratorom)</li>
+    <li>dostawcom hostingu i usług chmurowych (np. Google Cloud / Google Workspace, AWS)</li>
+    <li>dostawcom systemów mailingowych i komunikacyjnych</li>
+    <li>kancelariom prawnym i firmom księgowym</li>
+    <li>dostawcom narzędzi analitycznych</li>
+    <li>podmiotom wspierającym rozwój technologiczny Platformy</li>
+    <li>Wykonawcom — wyłącznie w zakresie danych Klienta niezbędnych do realizacji Zlecenia</li>
+  </ul>
+  <p>Podmioty przetwarzające dane na zlecenie Administratora działają na podstawie umów powierzenia przetwarzania danych (art. 28 RODO).</p>
+</section>
+
+<section class="par" id="p7">
+  <h2><span class="no">7</span> Przekazywanie danych poza EOG</h2>
+  <p>Jeżeli dane przekazywane są poza Europejski Obszar Gospodarczy, transfer następuje wyłącznie do podmiotów zapewniających odpowiedni stopień ochrony, na podstawie: decyzji Komisji Europejskiej stwierdzającej odpowiedni stopień ochrony (w tym — dla certyfikowanych podmiotów z USA — Data Privacy Framework), Standardowych Klauzul Umownych (SCC) uzupełnionych o dodatkowe zabezpieczenia techniczne i organizacyjne, albo innych mechanizmów z rozdziału V RODO. Kopię stosowanych zabezpieczeń można uzyskać kontaktując się z Administratorem.</p>
+</section>
+
+<section class="par" id="p8">
+  <h2><span class="no">8</span> Okresy przechowywania danych</h2>
+  <table>
+    <tr><th>Kategoria</th><th>Okres</th></tr>
+    <tr><td>Dane konta i umowy</td><td>przez czas trwania umowy</td></tr>
+    <tr><td>Dokumentacja rozliczeniowa, zwroty, faktury</td><td>5 lat od końca roku podatkowego (art. 86 §1 Ordynacji podatkowej, art. 74 ustawy o rachunkowości)</td></tr>
+    <tr><td>Dane dla celów roszczeń</td><td>do upływu terminów przedawnienia — co do zasady 3 lata dla roszczeń związanych z działalnością gospodarczą (art. 118 KC)</td></tr>
+    <tr><td>Dane marketingowe</td><td>do cofnięcia zgody albo skutecznego sprzeciwu</td></tr>
+    <tr><td>Logi systemowe i dane bezpieczeństwa</td><td>do 24 miesięcy, chyba że dłuższy okres jest niezbędny do obsługi incydentu</td></tr>
+  </table>
+</section>
+
+<section class="par" id="p9">
+  <h2><span class="no">9</span> Prawa osób, których dane dotyczą</h2>
+  <div class="rights">
+    <div><strong>Dostęp (art. 15)</strong>Prawo do informacji o przetwarzanych danych i uzyskania ich kopii</div>
+    <div><strong>Sprostowanie (art. 16)</strong>Prawo do poprawienia błędnych lub niekompletnych danych</div>
+    <div><strong>Usunięcie (art. 17)</strong>Prawo do bycia zapomnianym — w przypadkach wskazanych w RODO</div>
+    <div><strong>Ograniczenie (art. 18)</strong>Prawo do ograniczenia przetwarzania danych</div>
+    <div><strong>Sprzeciw (art. 21)</strong>Wobec przetwarzania opartego na uzasadnionym interesie, w tym marketingu bezpośredniego</div>
+    <div><strong>Przenoszenie (art. 20)</strong>Prawo do otrzymania danych w ustrukturyzowanym formacie nadającym się do odczytu maszynowego</div>
+    <div><strong>Cofnięcie zgody</strong>W dowolnym momencie, bez wpływu na zgodność z prawem wcześniejszego przetwarzania</div>
+    <div><strong>Skarga do Prezesa UODO</strong>ul. Stawki 2, 00-193 Warszawa, <a href="https://uodo.gov.pl" rel="noopener">uodo.gov.pl</a></div>
   </div>
+  <p>Administrator udziela odpowiedzi na żądania bez zbędnej zwłoki, nie później niż w terminie miesiąca od otrzymania żądania; termin ten może zostać przedłużony o kolejne dwa miesiące z uwagi na skomplikowany charakter żądania lub liczbę żądań (art. 12 ust. 3 RODO).</p>
+</section>
 
-  <div class="pp-section">
-    <h2><span class="num">2</span>Definicje</h2>
-    <ul>
-      <li><strong style="color:var(--white);">Platforma</strong> – system online umożliwiający przekazywanie Zleceń (Leadów) Wykonawcom</li>
-      <li><strong style="color:var(--white);">Wykonawca</strong> – przedsiębiorca korzystający z Platformy w ramach Subskrypcji</li>
-      <li><strong style="color:var(--white);">Klient</strong> – osoba składająca zapytanie ofertowe</li>
-      <li><strong style="color:var(--white);">Subskrypcja</strong> – cykliczna, automatycznie odnawialna usługa dostępu do Platformy</li>
-      <li><strong style="color:var(--white);">RODO</strong> – rozporządzenie Parlamentu Europejskiego i Rady (UE) 2016/679 z 27.04.2016 r.</li>
-      <li><strong style="color:var(--white);">PKE</strong> – ustawa z 12.07.2024 r. – Prawo komunikacji elektronicznej (Dz.U. z 2024 r. poz. 1221)</li>
-      <li><strong style="color:var(--white);">Regulamin</strong> – Regulamin Platformy wraz z Polityką Zwrotów i Reklamacji</li>
-    </ul>
-  </div>
+<section class="par" id="p10">
+  <h2><span class="no">10</span> Środki bezpieczeństwa</h2>
+  <p>Administrator stosuje środki techniczne i organizacyjne odpowiednie do ryzyka (art. 32 RODO), w szczególności:</p>
+  <ul>
+    <li>szyfrowanie transmisji SSL/TLS</li>
+    <li>ograniczenie dostępu do danych (zasada minimalnych uprawnień)</li>
+    <li>uwierzytelnianie wieloskładnikowe kont administracyjnych</li>
+    <li>monitoring nadużyć i rejestrowanie zdarzeń</li>
+    <li>regularne aktualizacje systemów i kopie zapasowe</li>
+    <li>pseudonimizację danych, gdy jest to możliwe</li>
+  </ul>
+  <p>W przypadku naruszenia ochrony danych osobowych Administrator realizuje obowiązki notyfikacyjne z art. 33–34 RODO (zgłoszenie do Prezesa UODO w terminie 72 godzin, zawiadomienie osób przy wysokim ryzyku).</p>
+</section>
 
-  <div class="pp-section">
-    <h2><span class="num">3</span>Modele przetwarzania danych</h2>
-    <div class="two-col">
-      <div class="col-box">
-        <p class="col-box-title">A) Operator jako administrator</p>
-        <ul>
-          <li>rejestracja i obsługa kont</li>
-          <li>obsługa Subskrypcji i rozliczeń</li>
-          <li>obsługa zwrotów i reklamacji</li>
-          <li>marketing własny</li>
-          <li>analityka i bezpieczeństwo</li>
-        </ul>
-      </div>
-      <div class="col-box">
-        <p class="col-box-title">B) Niezależni administratorzy</p>
-        <p>Z chwilą przekazania Zlecenia Wykonawca staje się odrębnym, samodzielnym administratorem danych Klienta i odpowiada za dalsze przetwarzanie, w tym za realizację własnego obowiązku informacyjnego (art. 14 RODO). Regulamin zakazuje Wykonawcy wykorzystania danych w celu innym niż realizacja danego Zlecenia.</p>
-      </div>
-    </div>
-    <div class="info-box">
-      <p class="box-title">Operatorzy płatności</p>
-      <p>Operator płatności (PayU S.A. lub inny wskazany w procesie płatności) jest odrębnym administratorem danych w zakresie realizacji transakcji płatniczych, zgodnie z własnym regulaminem i polityką prywatności.</p>
-    </div>
-  </div>
+<section class="par" id="p11">
+  <h2><span class="no">11</span> Dane techniczne i cookies</h2>
+  <p>Platforma wykorzystuje: pliki cookies niezbędne do świadczenia usługi (bez zgody — art. 399 ust. 3 PKE), cookies analityczne oraz cookies marketingowe — te dwie ostatnie kategorie wyłącznie po uzyskaniu dobrowolnej zgody spełniającej wymogi RODO (art. 399 i 402 PKE). Zgodę można wycofać w każdym czasie w ustawieniach panelu zgód.</p>
+  <p>Szczegółowe zasady, kategorie plików i okresy ich przechowywania określa <a href="polityka-cookies.html"><strong>Polityka cookies</strong></a>.</p>
+</section>
 
-  <div class="pp-section">
-    <h2><span class="num">4</span>Cele, podstawy prawne i zakres przetwarzania</h2>
-    <table class="pp-table">
-      <thead><tr><th>Cel</th><th>Podstawa prawna</th><th>Zakres danych</th></tr></thead>
-      <tbody>
-        <tr><td>Zawarcie i wykonanie umowy (konto, Subskrypcja)</td><td>art. 6 ust. 1 lit. b RODO</td><td>dane identyfikacyjne, kontaktowe, firmowe (NIP, adres), dane płatnicze</td></tr>
-        <tr><td>Realizacja płatności cyklicznych i rozliczenia</td><td>art. 6 ust. 1 lit. b i c RODO (przepisy podatkowe i rachunkowe)</td><td>dane transakcyjne, numer transakcji, dane do faktur</td></tr>
-        <tr><td>Przekazywanie Zleceń Wykonawcom</td><td>art. 6 ust. 1 lit. b RODO (wobec Klienta — działania na żądanie przed zawarciem umowy) oraz lit. f (uzasadniony interes)</td><td>imię, dane kontaktowe Klienta, lokalizacja, opis zapytania</td></tr>
-        <tr><td>Obsługa zwrotów i reklamacji (§8–§10, §13 Regulaminu)</td><td>art. 6 ust. 1 lit. b i c RODO</td><td>nazwa firmy, NIP, e-mail konta, numer rachunku bankowego, historia transakcji i liczba przekazanych Zleceń</td></tr>
-        <tr><td>Marketing własny</td><td>art. 6 ust. 1 lit. a lub f RODO; kanał elektroniczny — uprzednia zgoda wymagana przez PKE również w B2B</td><td>e-mail, telefon, historia aktywności</td></tr>
-        <tr><td>Ochrona przed nadużyciami (fraud, chargeback)</td><td>art. 6 ust. 1 lit. f RODO</td><td>logi systemowe, dane transakcyjne, historia zgłoszeń</td></tr>
-        <tr><td>Ustalenie, dochodzenie i obrona roszczeń</td><td>art. 6 ust. 1 lit. f RODO</td><td>dane umowne, korespondencja, dokumentacja reklamacyjna</td></tr>
-      </tbody>
-    </table>
-  </div>
+<section class="par" id="p12">
+  <h2><span class="no">12</span> Przetwarzanie danych przy zwrotach i reklamacjach</h2>
+  <p>W celu rozpatrzenia żądania zwrotu związanego z odstąpieniem od umowy (§9 Regulaminu) lub reklamacji (§12 Regulaminu) Administrator przetwarza: imię i nazwisko / nazwę firmy, NIP i adres siedziby, adres e-mail, numer rachunku bankowego wskazany do zwrotu, numer transakcji oraz historię aktywności na Platformie (w tym liczbę przekazanych Zleceń).</p>
+  <p>Podstawą przetwarzania jest art. 6 ust. 1 lit. b RODO (wykonanie umowy) oraz art. 6 ust. 1 lit. c RODO (obowiązki podatkowe i rachunkowe). Dokumentacja zwrotów przechowywana jest przez 5 lat od zakończenia roku podatkowego, w którym dokonano rozliczenia.</p>
+</section>
 
-  <div class="pp-section">
-    <h2><span class="num">5</span>Profilowanie i systemy automatyczne</h2>
-    <p>Platforma wykorzystuje system algorytmicznego dopasowania zapytań. Głównymi parametrami dopasowania są: lokalizacja, rodzaj Subskrypcji oraz dostępne limity planu (przejrzystość plasowania — art. 5 rozporządzenia (UE) 2019/1150).</p>
-    <p>System nie podejmuje wobec osób fizycznych decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu, które wywoływałyby skutki prawne lub w podobny sposób istotnie wpływały na te osoby, w rozumieniu art. 22 RODO. Każda decyzja o odmowie zwrotu, blokadzie konta lub rozwiązaniu umowy podejmowana jest z udziałem człowieka.</p>
-  </div>
+<section class="par" id="p13">
+  <h2><span class="no">13</span> Zmiany Polityki</h2>
+  <p>Administrator może aktualizować Politykę w przypadku zmiany przepisów prawa, zmiany modelu biznesowego, wdrożenia nowych technologii lub ekspansji międzynarodowej. O istotnych zmianach użytkownicy informowani są pocztą elektroniczną z wyprzedzeniem co najmniej <strong>15 dni</strong>; aktualna wersja publikowana jest na stronie Platformy wraz z datą wejścia w życie.</p>
+  <p><strong>Kontakt w sprawach ochrony danych:</strong></p>
+  <p>E-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a></p>
+  <p>Odpowiadamy bez zbędnej zwłoki, najpóźniej w terminie miesiąca (art. 12 ust. 3 RODO). Przysługuje Państwu również prawo wniesienia skargi do Prezesa UODO.</p>
+</section>
 
-  <div class="pp-section">
-    <h2><span class="num">6</span>Odbiorcy danych</h2>
-    <p>Dane mogą być przekazywane następującym kategoriom odbiorców:</p>
-    <ul>
-      <li>operatorom płatności (jako odrębnym administratorom)</li>
-      <li>dostawcom hostingu i usług chmurowych (np. Google Cloud / Google Workspace, AWS)</li>
-      <li>dostawcom systemów mailingowych i komunikacyjnych</li>
-      <li>kancelariom prawnym i firmom księgowym</li>
-      <li>dostawcom narzędzi analitycznych</li>
-      <li>podmiotom wspierającym rozwój technologiczny Platformy</li>
-      <li>Wykonawcom — wyłącznie w zakresie danych Klienta niezbędnych do realizacji Zlecenia</li>
-    </ul>
-    <p>Podmioty przetwarzające dane na zlecenie Administratora działają na podstawie umów powierzenia przetwarzania danych (art. 28 RODO).</p>
-  </div>
-
-  <div class="pp-section">
-    <h2><span class="num">7</span>Przekazywanie danych poza EOG</h2>
-    <p>Jeżeli dane przekazywane są poza Europejski Obszar Gospodarczy, transfer następuje wyłącznie do podmiotów zapewniających odpowiedni stopień ochrony, na podstawie: decyzji Komisji Europejskiej stwierdzającej odpowiedni stopień ochrony (w tym — dla certyfikowanych podmiotów z USA — Data Privacy Framework), Standardowych Klauzul Umownych (SCC) uzupełnionych o dodatkowe zabezpieczenia techniczne i organizacyjne, albo innych mechanizmów z rozdziału V RODO. Kopię stosowanych zabezpieczeń można uzyskać kontaktując się z Administratorem.</p>
-  </div>
-
-  <div class="pp-section">
-    <h2><span class="num">8</span>Okresy przechowywania danych</h2>
-    <table class="pp-table">
-      <thead><tr><th>Kategoria</th><th>Okres</th></tr></thead>
-      <tbody>
-        <tr><td>Dane konta i umowy</td><td>przez czas trwania umowy</td></tr>
-        <tr><td>Dokumentacja rozliczeniowa, zwroty, faktury</td><td>5 lat od końca roku podatkowego (art. 86 §1 Ordynacji podatkowej, art. 74 ustawy o rachunkowości)</td></tr>
-        <tr><td>Dane dla celów roszczeń</td><td>do upływu terminów przedawnienia — co do zasady 3 lata dla roszczeń związanych z działalnością gospodarczą (art. 118 KC)</td></tr>
-        <tr><td>Dane marketingowe</td><td>do cofnięcia zgody albo skutecznego sprzeciwu</td></tr>
-        <tr><td>Logi systemowe i dane bezpieczeństwa</td><td>do 24 miesięcy, chyba że dłuższy okres jest niezbędny do obsługi incydentu</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="pp-section">
-    <h2><span class="num">9</span>Prawa osób, których dane dotyczą</h2>
-    <div class="rights-grid">
-      <div class="right-card"><strong>Dostęp (art. 15)</strong>Prawo do informacji o przetwarzanych danych i uzyskania ich kopii</div>
-      <div class="right-card"><strong>Sprostowanie (art. 16)</strong>Prawo do poprawienia błędnych lub niekompletnych danych</div>
-      <div class="right-card"><strong>Usunięcie (art. 17)</strong>Prawo do bycia zapomnianym — w przypadkach wskazanych w RODO</div>
-      <div class="right-card"><strong>Ograniczenie (art. 18)</strong>Prawo do ograniczenia przetwarzania danych</div>
-      <div class="right-card"><strong>Sprzeciw (art. 21)</strong>Wobec przetwarzania opartego na uzasadnionym interesie, w tym marketingu bezpośredniego</div>
-      <div class="right-card"><strong>Przenoszenie (art. 20)</strong>Prawo do otrzymania danych w ustrukturyzowanym formacie nadającym się do odczytu maszynowego</div>
-      <div class="right-card"><strong>Cofnięcie zgody</strong>W dowolnym momencie, bez wpływu na zgodność z prawem wcześniejszego przetwarzania</div>
-      <div class="right-card"><strong>Skarga do Prezesa UODO</strong>ul. Stawki 2, 00-193 Warszawa, <a href="https://uodo.gov.pl" target="_blank" rel="noopener">uodo.gov.pl</a></div>
-    </div>
-    <p>Administrator udziela odpowiedzi na żądania bez zbędnej zwłoki, nie później niż w terminie miesiąca od otrzymania żądania; termin ten może zostać przedłużony o kolejne dwa miesiące z uwagi na skomplikowany charakter żądania lub liczbę żądań (art. 12 ust. 3 RODO).</p>
-  </div>
-
-  <div class="pp-section">
-    <h2><span class="num">10</span>Środki bezpieczeństwa</h2>
-    <p>Administrator stosuje środki techniczne i organizacyjne odpowiednie do ryzyka (art. 32 RODO), w szczególności:</p>
-    <ul>
-      <li>szyfrowanie transmisji SSL/TLS</li>
-      <li>ograniczenie dostępu do danych (zasada minimalnych uprawnień)</li>
-      <li>uwierzytelnianie wieloskładnikowe kont administracyjnych</li>
-      <li>monitoring nadużyć i rejestrowanie zdarzeń</li>
-      <li>regularne aktualizacje systemów i kopie zapasowe</li>
-      <li>pseudonimizację danych, gdy jest to możliwe</li>
-    </ul>
-    <p>W przypadku naruszenia ochrony danych osobowych Administrator realizuje obowiązki notyfikacyjne z art. 33–34 RODO (zgłoszenie do Prezesa UODO w terminie 72 godzin, zawiadomienie osób przy wysokim ryzyku).</p>
-  </div>
-
-  <div class="pp-section">
-    <h2><span class="num">11</span>Dane techniczne i cookies</h2>
-    <p>Platforma wykorzystuje: pliki cookies niezbędne do świadczenia usługi (bez zgody), cookies analityczne oraz cookies marketingowe — te dwie ostatnie kategorie wyłącznie po uzyskaniu dobrowolnej zgody, zgodnie z przepisami ustawy – Prawo komunikacji elektronicznej o przechowywaniu informacji na telekomunikacyjnych urządzeniach końcowych. Zgodę można wycofać w każdym czasie w ustawieniach panelu zgód. Szczegóły określa Polityka Cookies.</p>
-  </div>
-
-  <div class="pp-section">
-    <h2><span class="num">12</span>Przetwarzanie danych przy zwrotach i reklamacjach</h2>
-    <p>W celu rozpatrzenia Wniosku o zwrot lub reklamacji (§8–§10 i §13 Regulaminu) Administrator przetwarza: imię i nazwisko / nazwę firmy, NIP i adres siedziby, adres e-mail, numer rachunku bankowego wskazany do zwrotu, numer transakcji oraz historię aktywności na Platformie (w tym liczbę przekazanych Zleceń).</p>
-    <p>Podstawą przetwarzania jest art. 6 ust. 1 lit. b RODO (wykonanie umowy) oraz art. 6 ust. 1 lit. c RODO (obowiązki podatkowe i rachunkowe). Dokumentacja zwrotów przechowywana jest przez 5 lat od zakończenia roku podatkowego, w którym dokonano rozliczenia.</p>
-  </div>
-
-  <div class="pp-section">
-    <h2><span class="num">13</span>Zmiany Polityki</h2>
-    <p>Administrator może aktualizować Politykę w przypadku zmiany przepisów prawa, zmiany modelu biznesowego, wdrożenia nowych technologii lub ekspansji międzynarodowej. O istotnych zmianach użytkownicy informowani są pocztą elektroniczną z wyprzedzeniem co najmniej 15 dni; aktualna wersja publikowana jest na stronie Platformy wraz z datą wejścia w życie.</p>
-  </div>
-
-  <div class="contact-box">
-    <p><strong style="color:var(--white);">Kontakt w sprawach ochrony danych:</strong></p>
-    <p>E-mail: <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a></p>
-    <p style="margin-top:12px;font-size:13px;color:var(--gray);">Odpowiadamy bez zbędnej zwłoki, najpóźniej w terminie miesiąca (art. 12 ust. 3 RODO). Przysługuje Państwu również prawo wniesienia skargi do Prezesa UODO.</p>
-  </div>
-
-</div>
+</main>
 
 <footer>
-  <div class="footer-links">
+  <div class="links">
     <a href="regulamin.html">Regulamin</a>
     <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="polityka-cookies.html">Polityka cookies</a>
     <a href="anulowanie.html">Anuluj subskrypcję</a>
     <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
   </div>
-  <p>© 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.</p>
+  © 2026 Remonty Łazienek Marketplace. Wszelkie prawa zastrzeżone.
 </footer>
 
-<script>
-const burger = document.getElementById('burger');
-const navMobile = document.getElementById('nav-mobile');
-burger.addEventListener('click', function() {
-  const open = navMobile.classList.toggle('open');
-  burger.setAttribute('aria-expanded', open);
-});
-</script>
 </body>
 </html>
