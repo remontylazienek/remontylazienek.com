@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0D1B2A">
+<title>Kalkulator kosztów remontu łazienki 2026 — wycena w 60 sekund</title>
+<meta name="description" content="Bezpłatny kalkulator wstępnych kosztów remontu łazienki. Ceny 2026 z podziałem na 16 województw, robociznę, materiały i wyposażenie. Wynik od razu, bez podawania e-maila.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300..800&family=Playfair+Display:wght@700..900&display=swap" rel="stylesheet">
+<style>
+/* ============ DESIGN TOKENS ============ */
+/* Paleta przeniesiona 1:1 z index.html (navy / blue / gold / light / gray) */
+:root{
+  --navy:#0D1B2A; --navy-d:#08131F; --blue:#1A3A5C;
+  --gold:#C9A84C; --gold-d:#A8782A; --gold-l:#E8C97A;
+  --cream:#F4F1EB; --steel:#8A9BAD;
+
+  --ink:#0D1B2A; --ink-2:#1A3A5C; --muted:#5C6D82; --line:#E3DDD0;
+  --bg:#F4F1EB; --card:#fff;
+  --brand:#C9A84C; --brand-d:#0D1B2A; --brand-l:#FAF4E4;
+  --accent:#C9A84C; --accent-d:#A8782A;
+  --ok:#1A3A5C;
+  --r:16px; --r-s:12px;
+  --sh:0 1px 2px rgba(13,27,42,.06),0 8px 24px -12px rgba(13,27,42,.20);
+  --tap:52px;
+  --fs:clamp(15px,3.6vw,16px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;-moz-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:'DM Sans',system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size:16px;          /* fallback dla silnikow bez clamp() */
+  font-size:var(--fs);
+  line-height:1.55;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  font-feature-settings:"tnum" 0;
+  overflow-x:hidden;
+}
+img,svg{max-width:100%;display:block}
+.wrap{max-width:780px;margin:0 auto;padding:0 16px}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;color:var(--cream);padding:44px 0 34px;
+  background:
+    radial-gradient(120% 90% at 85% 0%,rgba(26,58,92,.85) 0%,rgba(26,58,92,0) 60%),
+    radial-gradient(100% 80% at 0% 100%,rgba(201,168,76,.13) 0%,rgba(201,168,76,0) 65%),
+    linear-gradient(160deg,#0D1B2A 0%,#08131F 100%);
+}
+.hero:after{
+  content:"";position:absolute;inset:auto 0 -1px 0;height:28px;
+  background:var(--bg);border-radius:28px 28px 0 0;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(201,168,76,.12);border:1px solid rgba(201,168,76,.32);
+  padding:6px 12px;border-radius:999px;font-size:13px;font-weight:600;
+  letter-spacing:.02em;margin-bottom:16px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);color:rgba(244,241,235,.9);
+}
+.badge b{color:var(--gold-l)}
+h1{
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif;
+  font-size:34px;
+  font-size:clamp(27px,7.2vw,42px);line-height:1.12;margin:0 0 14px;
+  font-weight:900;letter-spacing:-.012em;text-wrap:balance;color:#fff;
+}
+h1 em{font-style:normal;color:var(--gold-l)}
+.lead{font-size:17px;font-size:clamp(15.5px,4.1vw,18px);color:rgba(244,241,235,.86);margin:0 0 24px;max-width:60ch;text-wrap:pretty}
+.hero-cta{display:flex;flex-direction:column;gap:10px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:13.5px;color:var(--steel)}
+.trust span{display:flex;align-items:center;gap:6px}
+.trust svg{flex:0 0 auto}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  min-height:var(--tap);padding:14px 22px;border-radius:14px;border:0;
+  font:inherit;font-weight:700;font-size:16.5px;cursor:pointer;
+  text-decoration:none;transition:transform .12s ease,box-shadow .18s ease,background .18s ease;
+  text-align:center;line-height:1.25;touch-action:manipulation;
+}
+.btn:active{transform:translateY(1px) scale(.995)}
+.btn-primary{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--navy);box-shadow:0 6px 20px -6px rgba(201,168,76,.65)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--cream);border:1px solid rgba(255,255,255,.22)}
+@media (hover:hover) and (pointer:fine){
+  .btn-primary:hover{background:linear-gradient(135deg,#D6B65C,#B98530);box-shadow:0 8px 26px -6px rgba(201,168,76,.75)}
+  .btn-ghost:hover{border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.06)}
+}
+.btn-block{width:100%}
+
+/* ============ CARDS / SECTIONS ============ */
+main{padding-bottom:120px}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:18px 16px;margin:14px 0;box-shadow:var(--sh);
+}
+.sec-h{display:flex;align-items:center;gap:11px;margin:0 0 4px}
+.num{
+  flex:0 0 auto;width:28px;height:28px;border-radius:9px;background:var(--navy);color:var(--gold-l);
+  display:grid;align-items:center;justify-items:center;place-items:center;font-size:14px;font-weight:800;
+}
+.sec-h h2{font-size:17.5px;margin:0;font-weight:700;letter-spacing:-.01em;color:var(--navy)}
+.sec-d{color:var(--muted);font-size:13.5px;margin:0 0 14px;padding-left:39px}
+.f{margin:16px 0 0}
+.f:first-of-type{margin-top:6px}
+label.lbl{display:block;font-weight:600;font-size:14.5px;margin-bottom:8px;color:var(--ink-2)}
+.hint{color:var(--muted);font-weight:400;font-size:12.8px;display:block;margin-top:2px}
+
+/* ============ CHIP RADIO/CHECK GRID ============ */
+.opts{display:grid;gap:8px}
+.opts.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.opts.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.opt{position:relative;display:block;touch-action:manipulation}
+.opt[hidden]{display:none}   /* opcje wykluczone przez wariant remontu */
+.opt input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.opt span{
+  display:flex;flex-direction:column;justify-content:center;gap:2px;
+  min-height:var(--tap);padding:11px 13px;border:1.5px solid var(--line);
+  border-radius:var(--r-s);background:#FCFBF8;cursor:pointer;
+  font-size:14.6px;font-weight:600;transition:.15s;line-height:1.32;
+  min-width:0;word-wrap:break-word;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto;
+  -webkit-user-select:none;user-select:none;touch-action:manipulation;
+}
+.opt small{display:block;font-weight:400;font-size:12.4px;color:var(--muted);line-height:1.3;min-width:0;word-wrap:break-word;overflow-wrap:break-word}
+.opt input:checked+span{
+  border-color:var(--gold);background:var(--brand-l);color:var(--brand-d);
+  box-shadow:inset 0 0 0 1px var(--gold);
+}
+.opt input:checked+span small{color:#7A6634}
+.opt input:focus-visible+span{outline:3px solid rgba(201,168,76,.6);outline-offset:2px}
+/* w trybie .chk kierunek zmienia sie na wiersz, wiec dziedziczone
+   justify-content:center centrowaloby tresc POZIOMO - stad wyrownanie do lewej */
+.opt.chk span{flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;text-align:left}
+.opt.chk span:before{
+  content:"";flex:0 0 auto;width:21px;height:21px;border-radius:6px;
+  border:1.8px solid #CBC3B2;background:#fff;transition:.15s;
+}
+.opt.chk input:checked+span:before{
+  background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230D1B2A' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/15px no-repeat;
+  border-color:var(--gold);
+}
+
+/* ============ INPUTS ============ */
+select,input[type=number]{
+  width:100%;min-height:var(--tap);padding:12px 14px;font-family:inherit;font-weight:600;
+  font-size:16px;              /* >=16px -> iOS Safari nie przybliza strony przy focusie */
+  border:1.5px solid var(--line);border-radius:var(--r-s);background:#FCFBF8;color:var(--ink);
+  -webkit-appearance:none;-moz-appearance:none;appearance:none;
+}
+/* strzalki pola liczbowego psuly wysrodkowanie w steperze */
+input[type=number]{-moz-appearance:textfield}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236E8098' stroke-width='2.6' stroke-linecap='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 13px center;background-size:19px;padding-right:42px;
+}
+select:focus,input:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,76,.30)}
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.stepper{display:flex;align-items:center;gap:8px}
+.stepper button{
+  flex:0 0 auto;width:var(--tap);height:var(--tap);border-radius:var(--r-s);
+  border:1.5px solid var(--line);background:#FCFBF8;font-size:23px;font-weight:700;color:var(--navy);
+  cursor:pointer;line-height:1;touch-action:manipulation;-webkit-user-select:none;user-select:none;
+}
+.stepper button:active{background:var(--brand-l);border-color:var(--gold)}
+.stepper input{text-align:center}
+input[type=range]{
+  width:100%;height:var(--tap);background:transparent;margin:0;
+  -webkit-appearance:none;appearance:none;
+}
+input[type=range]::-webkit-slider-runnable-track{height:7px;border-radius:99px;background:linear-gradient(90deg,var(--gold) var(--p,30%),#DED8CA var(--p,30%))}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:30px;height:30px;border-radius:50%;background:#fff;border:3px solid var(--gold);margin-top:-11.5px;box-shadow:0 2px 8px rgba(13,27,42,.22);cursor:grab}
+input[type=range]::-moz-range-track{height:7px;border-radius:99px;background:#DED8CA}
+input[type=range]::-moz-range-progress{height:7px;border-radius:99px;background:var(--gold)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--gold);box-shadow:0 2px 8px rgba(13,27,42,.22)}
+
+/* ============ RESULT ============ */
+#result{scroll-margin-top:12px}
+.res-card{
+  background:linear-gradient(165deg,#14293E,#0A1420);color:var(--cream);
+  border:1px solid rgba(201,168,76,.16);
+  padding:22px 18px;border-radius:20px;box-shadow:0 20px 45px -22px rgba(13,27,42,.9);
+}
+.res-lab{font-size:13.2px;text-transform:uppercase;letter-spacing:.09em;color:var(--gold);font-weight:700;margin:0 0 6px}
+.res-big{
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif;
+  font-size:34px;
+  font-size:clamp(29px,8.2vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.08;margin:0;color:#fff;
+}
+.res-big .dash{color:var(--gold-l);font-weight:500;padding:0 4px}
+.res-sub{color:var(--steel);font-size:14px;margin:8px 0 0}
+.res-pm{display:inline-flex;align-items:baseline;gap:6px;margin-top:14px;background:rgba(201,168,76,.10);border:1px solid rgba(201,168,76,.26);padding:8px 14px;border-radius:12px;font-size:14px;font-weight:600;color:rgba(244,241,235,.92)}
+.res-pm b{font-size:18px;font-weight:800;color:var(--gold-l)}
+.bars{margin:20px 0 0;display:grid;gap:11px}
+.bar-r{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 10px;font-size:13.8px}
+.bar-r .nm{font-weight:600;color:rgba(244,241,235,.88)}
+.bar-r .vl{font-weight:700;font-variant-numeric:tabular-nums;color:#fff}
+.bar-t{grid-column:1/-1;height:8px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar-f{height:100%;border-radius:99px;transition:width .45s cubic-bezier(.4,0,.2,1)}
+.b1{background:linear-gradient(90deg,var(--gold-l),var(--gold))}
+.b2{background:linear-gradient(90deg,#7FA6D0,#3D6795)}
+.b3{background:linear-gradient(90deg,#C7CFD9,#8A9BAD)}
+
+/* ---- przelacznik BRUTTO / NETTO (przepisany: <button>, nie ukryte radio) ---- */
+.vat-tog{
+  display:flex;gap:6px;margin-top:18px;
+  background:rgba(255,255,255,.07);border:1px solid rgba(201,168,76,.20);
+  padding:4px;border-radius:12px;position:relative;z-index:2;
+}
+.vat-btn{
+  flex:1 1 0;min-width:0;min-height:46px;padding:10px 8px;
+  border:0;border-radius:9px;background:transparent;
+  font:inherit;font-size:13.8px;font-weight:700;line-height:1.2;color:var(--steel);
+  display:grid;align-items:center;justify-items:center;place-items:center;cursor:pointer;
+  transition:background .15s ease,color .15s ease;
+  touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  -webkit-user-select:none;user-select:none;-webkit-appearance:none;appearance:none;
+}
+.vat-btn[aria-checked="true"]{background:var(--cream);color:var(--navy)}
+.vat-btn:focus-visible{outline:3px solid rgba(201,168,76,.7);outline-offset:2px}
+
+details.detail{margin:14px 0 0;border-top:1px solid rgba(201,168,76,.20);padding-top:12px}
+details.detail summary{cursor:pointer;font-weight:700;font-size:14.4px;color:var(--gold-l);list-style:none;display:flex;align-items:center;gap:8px;min-height:44px;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+details.detail summary::-webkit-details-marker{display:none}
+details.detail summary:before{content:"";width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);transition:.2s;margin-bottom:3px}
+details.detail[open] summary:before{transform:rotate(-135deg);margin-bottom:-3px}
+.kosz{margin:12px 0 0;font-size:13.4px}
+.kosz .grp{margin:12px 0 4px;font-weight:800;color:var(--gold-l);font-size:12.4px;text-transform:uppercase;letter-spacing:.07em}
+.kosz .li{display:flex;justify-content:space-between;gap:12px;word-wrap:break-word;overflow-wrap:break-word;padding:5px 0;border-bottom:1px dashed rgba(201,168,76,.18);color:rgba(244,241,235,.84)}
+.kosz .li b{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap;color:#fff}
+
+/* domykajace CTA w tej samej oprawie co hero: granat + zlote akcenty */
+.cta-box{
+  color:var(--cream);border:1px solid rgba(201,168,76,.18);
+  border-radius:20px;padding:26px 20px;margin:14px 0;text-align:center;
+  background:
+    radial-gradient(120% 90% at 85% 0%,rgba(26,58,92,.85) 0%,rgba(26,58,92,0) 60%),
+    radial-gradient(100% 80% at 0% 100%,rgba(201,168,76,.13) 0%,rgba(201,168,76,0) 65%),
+    linear-gradient(160deg,#0D1B2A 0%,#08131F 100%);
+  box-shadow:0 20px 45px -22px rgba(13,27,42,.9);
+}
+.cta-box h3{
+  font-family:'Playfair Display',Georgia,'Times New Roman',serif;
+  margin:0 0 8px;font-size:22px;font-size:clamp(20px,5.4vw,26px);font-weight:900;
+  line-height:1.15;letter-spacing:-.012em;color:#fff;text-wrap:balance;
+}
+.cta-box p{margin:0 auto 18px;color:rgba(244,241,235,.86);font-size:15px;font-size:clamp(14.2px,3.8vw,15.5px);max-width:48ch;text-wrap:pretty}
+.disc{
+  background:#FBF6EA;border:1px solid #E9DDC0;border-radius:var(--r-s);
+  padding:13px 14px;margin:14px 0;font-size:12.9px;color:#5B4C31;line-height:1.55;
+}
+.disc b{color:#3E3320}
+footer{color:var(--muted);font-size:12.4px;padding:22px 0 34px;text-align:center;line-height:1.6}
+footer a{color:var(--blue)}
+
+/* ============ STICKY BAR (mobile) ============ */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;
+  background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  padding:9px 14px;                                              /* baza */
+  padding-bottom:calc(9px + constant(safe-area-inset-bottom));   /* iOS 11 */
+  padding-bottom:calc(9px + env(safe-area-inset-bottom));        /* iOS 11.2+ */
+  display:flex;align-items:center;gap:12px;
+  transform:translateY(115%);transition:transform .3s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 -6px 24px -14px rgba(13,27,42,.45);
+}
+.sticky:not(.on){pointer-events:none;visibility:hidden}
+.sticky.on{transform:none;visibility:visible;pointer-events:auto}
+.sticky .sv{flex:1;min-width:0}
+.sticky .sv i{display:block;font-style:normal;font-size:11.4px;color:var(--muted);font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+.sticky .sv b{display:block;font-size:17px;font-weight:800;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--navy)}
+.sticky .btn{flex:0 0 auto;padding:12px 18px;font-size:15px;min-height:48px}
+
+@media (min-width:640px){
+  .card{padding:22px 22px}
+  .res-card{padding:26px 24px}
+  .hero{padding:60px 0 46px}
+  .hero-cta{flex-direction:row}
+  .hero-cta .btn{flex:0 1 auto;padding:15px 28px}
+  .opts.c2s3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .vat-btn{font-size:14.6px}
+}
+@media (max-width:340px){
+  .opts.c2{grid-template-columns:minmax(0,1fr)}   /* iPhone SE 1. gen / iPhone 5 */
+  .row2{grid-template-columns:minmax(0,1fr)}
+  .wrap{padding:0 12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+/* ══════════════ ZGODNOSC ZE STARSZYMI SILNIKAMI ══════════════
+   1) gap we FLEXBOKSIE pojawil sie dopiero w Safari 14.1 / iOS 14.5
+      (w gridzie dziala od dawna). Nie ma na to zapytania @supports,
+      ale `inset` trafil do Safari w tej samej wersji - uzywamy go jako
+      wskaznika. Wewnatrz bloku zerujemy gap i odtwarzamy odstepy
+      marginesami, wiec nawet przy nadmiarowym trafieniu (Chrome 84-86)
+      layout jest poprawny, a nie podwojony. */
+@supports not (inset:0px){
+  .btn{gap:0}
+  .btn svg{margin-left:9px}
+  .hero-cta{gap:0}
+  .hero-cta .btn+.btn{margin-top:10px}
+  .trust{gap:0}
+  .trust span{gap:0;margin:0 18px 8px 0}
+  .trust span svg{margin-right:6px}
+  .opt span{gap:0}
+  .opt small{margin-top:2px}
+  .badge{gap:0}
+  .badge b{margin:0 7px}
+  .sec-h{gap:0}
+  .sec-h h2{margin-left:11px}
+  .opt.chk span{gap:0}
+  .opt.chk span:before{margin-right:10px}
+  .opt.chk small{margin-left:10px}
+  .stepper{gap:0}
+  .stepper>*+*{margin-left:8px}
+  .res-pm{gap:0}
+  .res-pm b{margin-left:6px}
+  .vat-tog{gap:0}
+  .vat-btn+.vat-btn{margin-left:6px}
+  details.detail summary{gap:0}
+  details.detail summary:before{margin-right:8px}
+  .kosz .li{gap:0}
+  .kosz .li b{margin-left:12px}
+  .sticky{gap:0}
+  .sticky .btn{margin-left:12px}
+  @media (min-width:640px){
+    .hero-cta .btn+.btn{margin-top:0;margin-left:10px}
+  }
+}
+
+/* 2) :focus-visible weszlo do Safari dopiero w 15.4. Zamiast @supports
+      selector() (ktore samo bywa nieznane starszym silnikom) uzywamy wzorca
+      progresywnego: stary silnik zatrzymuje sam :focus, nowy nadpisuje go
+      wersja :focus-visible. Zero zapytan warunkowych. */
+.vat-btn:focus{outline:3px solid rgba(201,168,76,.7);outline-offset:2px}
+.opt input:focus+span{outline:3px solid rgba(201,168,76,.6);outline-offset:2px}
+.vat-btn:focus:not(:focus-visible){outline:none}
+.opt input:focus:not(:focus-visible)+span{outline:none}
+
+/* 3) brak wsparcia dla backdrop-filter -> pasek musi byc w pelni kryjacy */
+@supports not (-webkit-backdrop-filter:blur(1px)){
+  @supports not (backdrop-filter:blur(1px)){
+    .sticky{background:#fff}
+    .badge{background:rgba(201,168,76,.18)}
+  }
+}
+
+/* ── NAWIGACJA SERWISU ── */
+.site-nav{position:sticky;top:0;z-index:500;background:rgba(13,27,42,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(201,168,76,.18)}
+.site-nav .nav-in{max-width:1100px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.site-logo{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap}
+.site-logo span{color:var(--gold)}
+.site-links{display:flex;align-items:center;gap:24px}
+.site-links a{font-size:13px;color:rgba(244,241,235,.75);text-decoration:none;transition:color .2s;white-space:nowrap}
+.site-links a:hover{color:#fff}
+.site-links a.here{color:var(--gold-l)}
+.site-links a.nav-cta{padding:9px 20px;background:linear-gradient(135deg,var(--gold),var(--gold-d));color:var(--navy)!important;font-weight:600;border-radius:7px}
+.site-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+.site-burger span{display:block;width:22px;height:2px;background:var(--cream);border-radius:2px}
+.site-mob{display:none;position:fixed;top:60px;left:0;right:0;z-index:499;background:rgba(13,27,42,.98);border-bottom:1px solid rgba(201,168,76,.18);padding:22px 24px;flex-direction:column;gap:18px}
+.site-mob.open{display:flex}
+.site-mob a{font-size:15px;color:rgba(244,241,235,.85);text-decoration:none}
+.site-mob a.here{color:var(--gold-l)}
+@media(max-width:860px){.site-links{display:none}.site-burger{display:flex}}
+
+/* ── STOPKA SERWISU ── */
+.site-foot{background:var(--navy);border-top:1px solid rgba(201,168,76,.15);padding:30px 24px;text-align:center;margin-top:48px}
+.site-foot .fl{display:flex;justify-content:center;flex-wrap:wrap;gap:10px 22px;margin-bottom:14px}
+.site-foot .fl a{font-size:12px;color:rgba(201,168,76,.75);text-decoration:none}
+.site-foot .fl a:hover{color:var(--gold-l)}
+.site-foot p{font-size:11px;color:var(--steel);opacity:.8;margin:0}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-in">
+    <a href="index.html" class="site-logo">Remonty <span>Łazienek</span></a>
+    <div class="site-links">
+      <a href="index.html">Dla Wykonawców</a>
+      <a href="dla-klientow.html">Dla Klientów</a>
+      <a href="kalkulator-remontu-lazienki-2026.html" class="here">Kalkulator</a>
+      <a href="regulamin.html">Regulamin</a>
+      <a href="dla-klientow.html#zgloszenie" class="nav-cta">Zgłoś Remont</a>
+    </div>
+    <button class="site-burger" id="siteBurger" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="site-mob" id="siteMob">
+  <a href="index.html">Dla Wykonawców</a>
+  <a href="dla-klientow.html">Dla Klientów</a>
+  <a href="kalkulator-remontu-lazienki-2026.html" class="here">Kalkulator remontu</a>
+  <a href="regulamin.html">Regulamin</a>
+  <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+  <a href="polityka-cookies.html">Polityka cookies</a>
+  <a href="dla-klientow.html#zgloszenie" class="nav-cta">Zgłoś Remont</a>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="badge">● Cennik <b>2026</b> · 16 województw · aktualizacja VIII 2026</div>
+    <h1>Ile <em>naprawdę</em> kosztuje remont Twojej łazienki?</h1>
+    <p class="lead">Przestań zgadywać i porównywać przypadkowe kwoty z internetu. Odpowiedz na kilka pytań, a w niecałą minutę zobaczysz realne widełki kosztów <b>dla swojego województwa</b> — z rozbiciem na robociznę, materiały i wyposażenie.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#kalk" id="startBtn">Policz koszt mojej łazienki →</a>
+      <a class="btn btn-ghost" href="#result">Zobacz przykładowy wynik</a>
+    </div>
+    <div class="trust">
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Wynik od razu, bez e-maila</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Ceny robocizny wg regionu</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Pełny kosztorys pozycja po pozycji</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="kalk">
+<form id="f" autocomplete="off">
+
+<!-- 1. LOKALIZACJA I WARIANT -->
+<section class="card">
+  <div class="sec-h"><div class="num">1</div><h2>Lokalizacja i rodzaj remontu</h2></div>
+  <p class="sec-d">Stawki fachowców różnią się w Polsce nawet o 40%. Wybierz województwo, żeby wynik był realny.</p>
+
+  <div class="f">
+    <label class="lbl" for="region">Województwo</label>
+    <select id="region" name="region"></select>
+  </div>
+
+  <div class="f">
+    <div class="opts">
+      <label class="opt chk"><input type="checkbox" id="bigCity" name="bigCity"><span>Duże miasto / aglomeracja <small>Warszawa, Kraków, Wrocław, Trójmiasto, Poznań — stawki wyższe o ok. 8%</small></span></label>
+    </div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Wariant remontu</label>
+    <div class="opts" id="variantOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Typ budynku <span class="hint" id="buildingHint" hidden></span></label>
+    <div class="opts c2" id="buildingOpts"></div>
+  </div>
+</section>
+
+<!-- 2. WYMIARY -->
+<section class="card">
+  <div class="sec-h"><div class="num">2</div><h2>Wymiary pomieszczenia</h2></div>
+  <p class="sec-d">Powierzchnia ścian liczona jest automatycznie z metrażu podłogi i wysokości.</p>
+
+  <div class="f">
+    <label class="lbl" for="area">Metraż łazienki: <b id="areaOut">5,0 m²</b></label>
+    <input type="range" id="area" name="area" min="2" max="25" step="0.5" value="5">
+    <div class="row2" style="margin-top:2px">
+      <div class="stepper">
+        <button type="button" data-step="area" data-d="-0.5" aria-label="Mniej">−</button>
+        <input type="number" id="areaN" min="2" max="25" step="0.5" value="5" inputmode="decimal" aria-label="Metraż w m²">
+        <button type="button" data-step="area" data-d="0.5" aria-label="Więcej">+</button>
+      </div>
+      <div>
+        <select id="height" name="height" aria-label="Wysokość pomieszczenia">
+          <option value="2.4">Wysokość 2,40 m</option>
+          <option value="2.5">Wysokość 2,50 m</option>
+          <option value="2.6" selected>Wysokość 2,60 m</option>
+          <option value="2.8">Wysokość 2,80 m</option>
+          <option value="3.0">Wysokość 3,00 m</option>
+          <option value="3.3">Wysokość 3,30 m (kamienica)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Do jakiej wysokości płytki na ścianach?</label>
+    <div class="opts" id="scopeOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Liczba okien <span class="hint">Okno = dodatkowe obróbki, ościeża i parapet</span></label>
+    <div class="opts c3" id="winOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Liczba drzwi</label>
+    <div class="opts c2" id="doorOpts"></div>
+  </div>
+</section>
+
+<!-- 3. STREFA KĄPIELOWA -->
+<section class="card">
+  <div class="sec-h"><div class="num">3</div><h2>Prysznic i wanna</h2></div>
+  <p class="sec-d">To najdroższy element łazienki — sposób odwodnienia potrafi zmienić wycenę o kilka tysięcy złotych.</p>
+
+  <div class="f">
+    <label class="lbl">Prysznic</label>
+    <div class="opts" id="showerOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Wanna</label>
+    <div class="opts" id="bathOpts"></div>
+  </div>
+</section>
+
+<!-- 4. CERAMIKA -->
+<section class="card">
+  <div class="sec-h"><div class="num">4</div><h2>Ceramika i armatura</h2></div>
+  <p class="sec-d">Każdy przybór to osobny punkt wodno-kanalizacyjny, a myjka dodatkowo punkt elektryczny.</p>
+
+  <div class="f">
+    <label class="lbl">Umywalka</label>
+    <div class="opts c2" id="basinOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Ubikacja (WC)</label>
+    <div class="opts" id="wcOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Baterie</label>
+    <div class="opts c2" id="faucetOpts"></div>
+  </div>
+
+  <div class="f">
+    <div class="opts">
+      <label class="opt chk"><input type="checkbox" name="bidet"><span>Dodatkowy bidet <small>osobny punkt wod-kan + montaż</small></span></label>
+    </div>
+  </div>
+</section>
+
+<!-- 5. PŁYTKI -->
+<section class="card">
+  <div class="sec-h"><div class="num">5</div><h2>Płytki — rodzaj i format</h2></div>
+  <p class="sec-d">Format i materiał wpływają zarówno na cenę zakupu, jak i na trudność (a więc koszt) układania.</p>
+
+  <div class="f">
+    <label class="lbl">Rodzaj płytek</label>
+    <div class="opts c2" id="tileTypeOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Format płytek</label>
+    <div class="opts c2" id="tileFormatOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Akcent z mozaiki <span class="hint">Mozaika to najdroższa robocizna: ok. 215–325 zł/m²</span></label>
+    <div class="opts c3" id="mosaicOpts"></div>
+  </div>
+</section>
+
+<!-- 6. STANDARD I DODATKI -->
+<section class="card">
+  <div class="sec-h"><div class="num">6</div><h2>Standard wykończenia i dodatki</h2></div>
+  <p class="sec-d">Standard dotyczy ceramiki, armatury i płytek. Dodatki doliczane są osobno.</p>
+
+  <div class="f">
+    <label class="lbl">Klasa wyposażenia</label>
+    <div class="opts" id="stdOpts"></div>
+  </div>
+
+  <div class="f">
+    <label class="lbl">Rozwiązania dodatkowe i niestandardowe</label>
+    <div class="opts" id="extraOpts"></div>
+  </div>
+</section>
+
+</form>
+
+<!-- WYNIK -->
+<section id="result" aria-live="polite">
+  <div class="card res-card">
+    <p class="res-lab">Szacunkowy koszt remontu</p>
+    <p class="res-big"><span id="rLo">—</span><span class="dash">–</span><span id="rHi">—</span></p>
+    <p class="res-sub" id="rSub">Uzupełnij formularz powyżej</p>
+    <div class="res-pm">za m²: <b id="rPm">—</b></div>
+
+    <div class="bars">
+      <div class="bar-r"><span class="nm">Robocizna</span><span class="vl" id="vRob">—</span><div class="bar-t"><div class="bar-f b1" id="bRob" style="width:0"></div></div></div>
+      <div class="bar-r"><span class="nm">Materiały budowlane (płytki, chemia, instalacje)</span><span class="vl" id="vMat">—</span><div class="bar-t"><div class="bar-f b2" id="bMat" style="width:0"></div></div></div>
+      <div class="bar-r"><span class="nm">Wyposażenie (ceramika, armatura, meble)</span><span class="vl" id="vWyp">—</span><div class="bar-t"><div class="bar-f b3" id="bWyp" style="width:0"></div></div></div>
+    </div>
+
+    <div class="vat-tog" id="vatTog" role="radiogroup" aria-label="Prezentacja cen">
+      <button type="button" class="vat-btn" data-vat="brutto" role="radio" aria-checked="true" tabindex="0">Brutto (VAT 8%)</button>
+      <button type="button" class="vat-btn" data-vat="netto" role="radio" aria-checked="false" tabindex="-1">Netto</button>
+    </div>
+
+    <details class="detail">
+      <summary>Pokaż szczegółowy kosztorys pozycja po pozycji</summary>
+      <div class="kosz" id="kosz"></div>
+    </details>
+  </div>
+
+  <div class="disc">
+    <b>Ważna informacja prawna.</b> Kwota wyliczona przez kalkulator jest wyłącznie <b>przybliżonym, orientacyjnym szacunkiem</b> kosztów remontu, opartym na uśrednionych stawkach rynkowych obowiązujących w danym regionie Polski w 2026 roku. Prezentowana kwota <b>nie stanowi oferty w rozumieniu art. 66 § 1 Kodeksu cywilnego</b>, ani oferty handlowej, i ma charakter wyłącznie informacyjny (zaproszenie do zawarcia umowy — art. 71 k.c.). Rzeczywisty koszt remontu może się różnić i zostaje ustalony dopiero po oględzinach pomieszczenia, pomiarach i sporządzeniu indywidualnego kosztorysu.
+  </div>
+
+  <div class="cta-box">
+    <h3>Chcesz wiążącą wycenę zamiast szacunku?</h3>
+    <p>Wypełnij krótki formularz zgłoszeniowy — przygotujemy indywidualny kosztorys dopasowany do Twojej łazienki.</p>
+    <a class="btn btn-primary btn-block" id="ctaMain" href="https://docs.google.com/forms/d/e/1FAIpQLSfiImZvmK-97wntYvlX0hPM0z2-XxSHZM0qe-bLuMFF4F9U_A/viewform" target="_blank" rel="noopener">
+      Wypełnij formularz zgłoszeniowy
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </a>
+  </div>
+</section>
+
+<footer>
+  Stawki bazowe: uśrednione ceny rynkowe robocizny i materiałów w Polsce, stan na 2026 r., skorygowane o regionalne współczynniki kosztów pracy.<br>
+  Kalkulator nie zbiera ani nie przesyła żadnych danych — wszystkie obliczenia wykonywane są lokalnie w Twojej przeglądarce.
+</footer>
+</main>
+
+<div class="sticky" id="sticky">
+  <div class="sv"><i>Szacunkowy koszt</i><b id="sVal">—</b></div>
+  <a class="btn btn-primary" href="https://docs.google.com/forms/d/e/1FAIpQLSfiImZvmK-97wntYvlX0hPM0z2-XxSHZM0qe-bLuMFF4F9U_A/viewform" target="_blank" rel="noopener">Wyceń dokładnie</a>
+</div>
+
+<script>
+/*ENGINE-START*/
+var P = {
+  vat: 0.08,
+  spread: { lo: 0.88, hi: 1.14 },
+
+  regions: [
+    ['mazowieckie','Mazowieckie',1.20],
+    ['pomorskie','Pomorskie',1.14],
+    ['malopolskie','Małopolskie',1.12],
+    ['dolnoslaskie','Dolnośląskie',1.10],
+    ['wielkopolskie','Wielkopolskie',1.06],
+    ['slaskie','Śląskie',1.03],
+    ['zachodniopomorskie','Zachodniopomorskie',1.02],
+    ['lodzkie','Łódzkie',1.00],
+    ['kujawsko-pomorskie','Kujawsko-pomorskie',0.97],
+    ['lubuskie','Lubuskie',0.95],
+    ['opolskie','Opolskie',0.94],
+    ['warminsko-mazurskie','Warmińsko-mazurskie',0.90],
+    ['podlaskie','Podlaskie',0.89],
+    ['swietokrzyskie','Świętokrzyskie',0.88],
+    ['lubelskie','Lubelskie',0.87],
+    ['podkarpackie','Podkarpackie',0.86]
+  ],
+  bigCityMult: 1.08,
+
+  variants: {
+    stara_pelny:  { demo:1.00, instal:'nowe',      podloze:1.00, trud:1.00,
+      t:'Stara łazienka — remont kompleksowy', d:'Rynek wtórny, mieszkanie lub dom. Pełne skucie, nowe instalacje wod-kan i elektryka.' },
+    odswiezenie:  { demo:0.80, instal:'adaptacja', podloze:0.75, trud:0.96,
+      t:'Odświeżenie bez zmiany instalacji', d:'Wymiana płytek, ceramiki i armatury. Piony i rozprowadzenie zostają bez zmian.' },
+    deweloper:    { demo:0.00, instal:'adaptacja', podloze:0.55, trud:0.94,
+      t:'Nowa łazienka — stan deweloperski', d:'Rynek pierwotny. Instalacje wyprowadzone, tynki i wylewki gotowe.' },
+    dom_surowy:   { demo:0.00, instal:'nowe',      podloze:1.10, trud:1.00,
+      t:'Nowy dom — stan surowy zamknięty', d:'Instalacje, tynki i wylewki wykonywane od zera.' }
+  },
+
+  buildings: {
+    blok_nowy:      { m:1.00, t:'Blok / apartament po 2000 r.' },
+    blok_wp:        { m:1.06, t:'Blok z wielkiej płyty (PRL)' },
+    dom:            { m:1.00, t:'Dom jednorodzinny' },
+    kamienica:      { m:1.20, t:'Kamienica przedwojenna' },
+    blok_pierwotny: { m:1.00, t:'Blok / apartament nowy (rynek pierwotny)' }
+  },
+
+  /* Typy budynku dopuszczalne dla danego wariantu remontu.
+     Wariant deweloperski i stan surowy zamknięty to wyłącznie rynek
+     pierwotny — kamienica czy wielka płyta są tam logicznie niemożliwe. */
+  buildingsFor: {
+    stara_pelny: ['blok_nowy','blok_wp','dom','kamienica'],
+    odswiezenie: ['blok_nowy','blok_wp','dom','kamienica'],
+    deweloper:   ['blok_pierwotny'],
+    dom_surowy:  ['dom']
+  },
+
+  scope: {
+    full:  { h:null, t:'Płytki do sufitu', d:'Pełna wysokość ścian — najczęstszy wybór' },
+    h210:  { h:2.10, t:'Płytki do 2,10 m', d:'Wyżej gładź i farba lateksowa' },
+    pas120:{ h:1.20, t:'Pas 1,20 m + strefa mokra', d:'Tańszy wariant, reszta malowana' }
+  },
+
+  labor: {
+    skucie: 40, gruzM2: 26, gruzRyczalt: 400, demontazCeramiki: 480,
+    tynkiSciany: 42, wylewka: 58, gruntowanie: 15, hydroizolacja: 55,
+    gkM2: 210, sufitM2: 230, malowanieM2: 48,
+    plytkiSciana: 145, plytkiPodloga: 135, mozaika: 280,
+    oscieza: 190,
+    pktWodNowy: 390, pktWodAdapt: 210, pktElNowy: 185, pktElAdapt: 120,
+    przeniesieniePionu: 950, nisza: 650, ogrzewanie: 90,
+    m: {
+      wc_kompakt:320, wc_stelaz:450, wc_miska:250, myjka:550, bidet:380,
+      umyw_wiszaca:300, umyw_szafka:350, umyw_wolno:700, umyw_podwojna:550,
+      wanna_std:650, wanna_wolno:1200,
+      kabina:800, walkin:1500, podposadzkowy:1900,
+      bateria_nat:140, bateria_pod:350,
+      grzejnik:350, wentylator:300, lustro:200, drzwi:450, pralka:220
+    }
+  },
+
+  mat: {
+    chemiaM2: 72, gkM2: 90, tynkM2: 22, wylewkaM2: 35,
+    rura: 70, przewod: 45, zapas: 1.12, mataOgrzew: 190,
+    odplyw: { eko:400, standard:800, premium:1600 }
+  },
+
+  tiles: {
+    ceramiczne: { p:{eko:45,standard:80,premium:150},  rob:0.95, t:'Ceramiczne (glazura)', d:'Klasyka, najtańsze w zakupie i montażu' },
+    gres_szkl:  { p:{eko:60,standard:95,premium:180},  rob:1.00, t:'Gres szkliwiony',      d:'Najpopularniejszy wybór — dobra cena i trwałość' },
+    gres_rekt:  { p:{eko:95,standard:160,premium:260}, rob:1.10, t:'Gres porcelanowy rektyfikowany', d:'Cienkie fugi, wyższa precyzja układania' },
+    spiek:      { p:{eko:190,standard:300,premium:430},rob:1.30, t:'Spiek kwarcowy',       d:'Najwyższa półka, wymaga specjalistycznego montażu' }
+  },
+  formats: {
+    maly:     { mat:0.95, rob:1.12, t:'Mały / klasyczny',       d:'do 30×30 cm, „cegiełka”, heksagony' },
+    standard: { mat:1.00, rob:1.00, t:'Standardowy',            d:'30×60, 60×60 cm' },
+    duzy:     { mat:1.20, rob:1.30, t:'Wielkoformatowy',        d:'od 60×120 do 120×120 cm' },
+    xxl:      { mat:1.40, rob:1.70, t:'XXL / płyty wielkogabarytowe', d:'120×260 cm i większe — 2 monterów, sprzęt' }
+  },
+  mosaicMat: { eko:180, standard:300, premium:450 },
+
+  showers: {
+    none:          { t:'Bez prysznica', d:'Tylko wanna' },
+    kabina:        { t:'Kabina z brodzikiem', d:'Rozwiązanie standardowe, najtańsze' },
+    walkin:        { t:'Walk-in z odpływem liniowym', d:'Brodzik płaski + odpływ liniowy' },
+    podposadzkowy: { t:'Prysznic bez brodzika (podposadzkowy)', d:'Posadzka spadkowa, pełna hydroizolacja — rozwiązanie niestandardowe' }
+  },
+  baths: {
+    none:        { t:'Bez wanny', d:'Tylko prysznic' },
+    standard:    { t:'Wanna standardowa z obudową', d:'Akrylowa, w zabudowie z płytek lub panelu' },
+    wolnostojaca:{ t:'Wanna wolnostojąca', d:'Wymaga wyprowadzenia instalacji w podłodze/ścianie' }
+  },
+  basins: {
+    wiszaca:      { t:'Wisząca (na ścianie)', d:'Montaż na kotwach lub stelażu' },
+    z_szafka:     { t:'Z szafką podumywalkową', d:'Najpopularniejsze rozwiązanie' },
+    wolnostojaca: { t:'Wolnostojąca / totem', d:'Umywalka na postumencie lub blacie' },
+    podwojna:     { t:'Podwójna (dwa punkty)', d:'Dwie umywalki + dwie baterie' }
+  },
+  wcs: {
+    kompakt:            { t:'WC kompakt stojący', d:'Najtańsze i najprostsze w montażu' },
+    podwieszane:        { t:'WC podwieszane ze stelażem', d:'Stelaż podtynkowy + zabudowa GK' },
+    podwieszane_myjka:  { t:'WC podwieszane z myjką (deska myjąca)', d:'Dodatkowy punkt wody + gniazdo elektryczne 230 V' }
+  },
+  faucets: {
+    natynkowa: { t:'Baterie natynkowe', d:'Standard — montaż na ścianie' },
+    podtynkowa:{ t:'Baterie podtynkowe', d:'Korpus w ścianie — więcej kucia i wyższy koszt' }
+  },
+  stds: {
+    eko:      { t:'Ekonomiczny', d:'Sprawdzone marki budżetowe, proste wzornictwo' },
+    standard: { t:'Standard', d:'Popularne marki średniej półki — najczęstszy wybór' },
+    premium:  { t:'Premium', d:'Wyższa półka, designerska armatura i ceramika' }
+  },
+
+  extras: {
+    zmiana_ukladu:{ t:'Zmiana układu / przeniesienie pionu', d:'Przekładanie kanalizacji i wody w nowe miejsce' },
+    ogrzewanie:   { t:'Ogrzewanie podłogowe elektryczne', d:'Mata grzewcza + regulator z termostatem' },
+    sufit:        { t:'Sufit podwieszany z oświetleniem LED', d:'Płyta GK wodoodporna + punkty świetlne' },
+    zabudowa:     { t:'Zabudowa pionów / rur płytą GK', d:'Obudowa kanalizacji, rewizja' },
+    pralka:       { t:'Miejsce na pralkę', d:'Punkt wod-kan + gniazdo elektryczne' },
+    wentylator:   { t:'Wentylator mechaniczny', d:'Wentylator z czujnikiem wilgotności' },
+    grzejnik:     { t:'Grzejnik drabinkowy', d:'Montaż i podłączenie do CO' },
+    lustro:       { t:'Lustro LED z podświetleniem', d:'Punkt elektryczny + montaż' },
+    drzwi:        { t:'Nowe drzwi z ościeżnicą', d:'Demontaż starych, montaż nowych' },
+    nisza:        { t:'Nisze wnękowe w strefie prysznica', d:'Rozwiązanie niestandardowe — konstrukcja + izolacja + płytki' }
+  }
+};
+
+function regionMult(key){
+  for (var i=0;i<P.regions.length;i++) if (P.regions[i][0]===key) return P.regions[i][2];
+  return 1;
+}
+
+function computeEstimate(i){
+  var L = P.labor, M = P.mat;
+  var V = P.variants[i.variant] || P.variants.stara_pelny;
+  var B = P.buildings[i.building] || P.buildings.blok_nowy;
+  var std = i.standard || 'standard';
+  var ex = i.extras || {};
+
+  // ---------- współczynniki ----------
+  var rM = regionMult(i.region) * (i.bigCity ? P.bigCityMult : 1);
+  var robM = rM * V.trud * B.m;                 // robocizna: pełny wpływ regionu
+  var matM = 1 + (rM - 1) * 0.25;               // materiały: znacznie mniejszy wpływ regionu
+
+  // ---------- geometria ----------
+  var S = Math.max(2, Math.min(25, +i.area || 5));
+  var H = Math.max(2.2, Math.min(3.5, +i.height || 2.6));
+  var perim = 4.06 * Math.sqrt(S);              // obwód dla proporcji ok. 1:1,4
+  var sc = P.scope[i.tileScope] || P.scope.full;
+  var hTile = sc.h === null ? H : Math.min(sc.h, H);
+  var windows = +i.windows || 0, doors = Math.max(1, +i.doors || 1);
+  var wallGross = perim * hTile;
+  var wallArea = Math.max(2, wallGross - (windows * 1.3 + doors * 1.8));
+  var mosaic = Math.min(+i.mosaic || 0, wallArea * 0.5);
+  var wallMain = Math.max(0, wallArea - mosaic);
+  var tiled = wallArea + S;
+  var paintArea = (ex.sufit ? 0 : S) + Math.max(0, perim * H - wallGross);
+
+  // ---------- punkty instalacyjne ----------
+  var pWod = 1;                                              // WC
+  pWod += (i.basin === 'podwojna' ? 2 : 1);                  // umywalka(i)
+  if (i.wc === 'podwieszane_myjka') pWod += 1;
+  if (i.bidet) pWod += 1;
+  if (i.shower !== 'none') pWod += 1;
+  if (i.bath !== 'none') pWod += 1;
+  if (ex.pralka) pWod += 1;
+
+  var pEl = 1;                                               // oświetlenie sufitowe
+  pEl += 2;                                                  // gniazda podstawowe
+  if (i.wc === 'podwieszane_myjka') pEl += 1;
+  if (ex.pralka) pEl += 1;
+  if (ex.wentylator) pEl += 1;
+  if (ex.lustro) pEl += 1;
+  if (ex.ogrzewanie) pEl += 1;
+  if (ex.sufit) pEl += 2;
+
+  var rW = V.instal === 'nowe' ? L.pktWodNowy : L.pktWodAdapt;
+  var rE = V.instal === 'nowe' ? L.pktElNowy : L.pktElAdapt;
+  if (ex.zmiana_ukladu) { rW *= 1.35; rE *= 1.15; }
+
+  // ---------- zabudowa GK ----------
+  var gk = 0;
+  if (i.wc !== 'kompakt') gk += 1.6;
+  if (ex.pralka) gk += 1.2;
+  if (ex.zabudowa) gk += 1.8;
+  if (i.faucet === 'podtynkowa') gk += 0.4;
+
+  // ---------- ROBOCIZNA ----------
+  var rob = [];
+  function R(n, v){ if (v > 0.5) rob.push([n, v * robM]); }
+
+  var demoArea = (perim * Math.min(2.0, H) + S) * V.demo;
+  if (V.demo > 0) {
+    R('Skucie starych płytek i posadzki', demoArea * L.skucie);
+    R('Demontaż ceramiki, armatury i mebli', L.demontazCeramiki * V.demo);
+    R('Wynoszenie, wywóz i utylizacja gruzu', demoArea * L.gruzM2 + L.gruzRyczalt * V.demo);
+  }
+  R('Instalacja wod-kan (' + pWod + ' pkt)', pWod * rW);
+  R('Instalacja elektryczna (' + pEl + ' pkt)', pEl * rE);
+  if (ex.zmiana_ukladu) R('Przeniesienie pionu / zmiana układu', L.przeniesieniePionu);
+  R('Wyrównanie i tynkowanie ścian', wallArea * L.tynkiSciany * V.podloze);
+  R('Wylewka wyrównawcza podłogi', S * L.wylewka * V.podloze);
+  R('Gruntowanie podłoży', tiled * L.gruntowanie);
+  R('Hydroizolacja podpłytkowa (folia w płynie + taśmy)',
+    (S + perim * 1.0 + (i.shower === 'podposadzkowy' ? 6 : i.shower === 'walkin' ? 3 : 0)) * L.hydroizolacja);
+  if (gk > 0) R('Zabudowa z płyty GK wodoodpornej (' + gk.toFixed(1) + ' m²)', gk * L.gkM2);
+  if (ex.sufit) R('Sufit podwieszany z płyty GK', S * L.sufitM2);
+
+  var tMul = 1 + (P.formats[i.tileFormat].rob - 1) + (P.tiles[i.tileType].rob - 1) * 0.6;
+  R('Układanie płytek — ściany (' + wallMain.toFixed(1) + ' m²)', wallMain * L.plytkiSciana * tMul);
+  R('Układanie płytek — podłoga (' + S.toFixed(1) + ' m²)', S * L.plytkiPodloga * tMul);
+  if (mosaic > 0) R('Układanie mozaiki (' + mosaic.toFixed(1) + ' m²)', mosaic * L.mozaika);
+  if (windows > 0) R('Obróbka ościeży okiennych i parapetu', windows * L.oscieza);
+  if (paintArea > 0.5) R('Gładzie i malowanie farbą lateksową', paintArea * L.malowanieM2);
+  if (ex.ogrzewanie) R('Montaż maty grzewczej i regulatora', S * L.ogrzewanie);
+  if (ex.nisza) R('Wykonanie nisz wnękowych', L.nisza);
+
+  var m = L.m;
+  if (i.wc === 'kompakt') R('Montaż WC kompakt', m.wc_kompakt);
+  else { R('Montaż stelaża podtynkowego', m.wc_stelaz); R('Montaż miski podwieszanej', m.wc_miska); }
+  if (i.wc === 'podwieszane_myjka') R('Podłączenie deski myjącej (woda + 230 V)', m.myjka);
+  if (i.bidet) R('Montaż bidetu', m.bidet);
+  R('Montaż umywalki', m['umyw_' + (i.basin === 'wiszaca' ? 'wiszaca' : i.basin === 'z_szafka' ? 'szafka' : i.basin === 'wolnostojaca' ? 'wolno' : 'podwojna')]);
+  if (i.bath === 'standard') R('Montaż wanny z obudową', m.wanna_std);
+  if (i.bath === 'wolnostojaca') R('Montaż wanny wolnostojącej', m.wanna_wolno);
+  if (i.shower === 'kabina') R('Montaż kabiny z brodzikiem', m.kabina);
+  if (i.shower === 'walkin') R('Montaż kabiny walk-in z odpływem liniowym', m.walkin);
+  if (i.shower === 'podposadzkowy') R('Prysznic bez brodzika — spadki i odwodnienie', m.podposadzkowy);
+
+  var nBat = (i.basin === 'podwojna' ? 2 : 1) + (i.shower !== 'none' ? 1 : 0) + (i.bath !== 'none' ? 1 : 0);
+  R('Montaż baterii (' + nBat + ' szt.)', nBat * (i.faucet === 'podtynkowa' ? m.bateria_pod : m.bateria_nat));
+  if (i.bidet) R('Montaż baterii bidetowej', m.bateria_nat);
+  if (ex.grzejnik) R('Montaż grzejnika drabinkowego', m.grzejnik);
+  if (ex.wentylator) R('Montaż wentylatora mechanicznego', m.wentylator);
+  if (ex.lustro) R('Montaż lustra LED', m.lustro);
+  if (ex.drzwi) R('Wymiana drzwi z ościeżnicą', m.drzwi);
+  if (ex.pralka) R('Podłączenie pralki', m.pralka);
+
+  // ---------- MATERIAŁY BUDOWLANE ----------
+  var mat = [];
+  function MT(n, v){ if (v > 0.5) mat.push([n, v * matM]); }
+
+  // ceny spieków są już podane dla dużych formatów — dopłata za format jest tu wytłumiona
+  var fMat = 1 + (P.formats[i.tileFormat].mat - 1) * (i.tileType === 'spiek' ? 0.35 : 1);
+  var tilePrice = P.tiles[i.tileType].p[std] * fMat;
+  MT('Płytki ' + P.tiles[i.tileType].t.toLowerCase() + ' (' + Math.ceil((wallMain + S) * M.zapas) + ' m² z zapasem)',
+     (wallMain + S) * M.zapas * tilePrice);
+  if (mosaic > 0) MT('Mozaika dekoracyjna (' + mosaic.toFixed(1) + ' m²)', mosaic * M.zapas * P.mosaicMat[std]);
+  MT('Klej, fuga, silikon, grunt, izolacja, taśmy, listwy',
+     tiled * M.chemiaM2 * (i.tileType === 'spiek' || i.tileFormat === 'xxl' ? 1.4 : 1));
+  if (V.podloze > 0.6) {
+    MT('Tynki / zaprawy wyrównujące ściany', wallArea * M.tynkM2 * V.podloze);
+    MT('Wylewka samopoziomująca', S * M.wylewkaM2 * V.podloze);
+  }
+  if (gk > 0) MT('Płyty GK wodoodporne, profile, wkręty', gk * M.gkM2);
+  if (ex.sufit) MT('Materiały sufitu podwieszanego + oprawy LED', S * (M.gkM2 + 60));
+  MT('Rury, kształtki, syfony, zawory (' + pWod + ' pkt)', pWod * M.rura);
+  MT('Przewody, puszki, osprzęt elektryczny (' + pEl + ' pkt)', pEl * M.przewod);
+  if (paintArea > 0.5) MT('Gładź i farba lateksowa', paintArea * 26);
+  if (ex.ogrzewanie) MT('Mata grzewcza + regulator z termostatem', S * M.mataOgrzew);
+  if (i.shower === 'walkin' || i.shower === 'podposadzkowy') MT('Odpływ liniowy / punktowy', M.odplyw[std]);
+
+  // ---------- WYPOSAŻENIE ----------
+  var W = {
+    wc_kompakt:[550,950,1900], wc_stelaz:[550,850,1500], wc_miska:[420,750,1900],
+    myjka:[1100,2200,4500], bidet:[400,750,1600],
+    umyw_wiszaca:[280,550,1300], umyw_szafka:[650,1200,3000], umyw_wolno:[1300,2400,5200], umyw_podwojna:[1300,2500,5800],
+    wanna_std:[750,1500,3400], wanna_wolno:[2400,4400,9000],
+    kabina:[900,1600,3600], walkin:[1100,2200,4800],
+    bat_umyw_nat:[250,500,1200], bat_umyw_pod:[550,1000,2400],
+    bat_prysz_nat:[350,700,1600], bat_prysz_pod:[900,1500,3800],
+    grzejnik:[350,600,1500], lustro:[300,600,1500], wentylator:[150,280,700], drzwi:[600,1100,2500]
+  };
+  var si = std === 'eko' ? 0 : std === 'premium' ? 2 : 1;
+  var wyp = [];
+  function WP(n, k, q){ q = q || 1; if (W[k]) wyp.push([n, W[k][si] * q * matM]); }
+
+  if (i.wc === 'kompakt') WP('Miska WC kompakt', 'wc_kompakt');
+  else { WP('Stelaż podtynkowy + przycisk', 'wc_stelaz'); WP('Miska WC podwieszana z deską', 'wc_miska'); }
+  if (i.wc === 'podwieszane_myjka') WP('Deska myjąca (funkcja bidetu)', 'myjka');
+  if (i.bidet) WP('Bidet ceramiczny', 'bidet');
+  WP(P.basins[i.basin].t + ' — umywalka', 'umyw_' + (i.basin === 'wiszaca' ? 'wiszaca' : i.basin === 'z_szafka' ? 'szafka' : i.basin === 'wolnostojaca' ? 'wolno' : 'podwojna'));
+  if (i.bath === 'standard') WP('Wanna akrylowa + obudowa', 'wanna_std');
+  if (i.bath === 'wolnostojaca') WP('Wanna wolnostojąca + syfon', 'wanna_wolno');
+  if (i.shower === 'kabina') WP('Kabina prysznicowa + brodzik', 'kabina');
+  if (i.shower === 'walkin' || i.shower === 'podposadzkowy') WP('Ścianka walk-in (szkło hartowane)', 'walkin');
+
+  var pod = i.faucet === 'podtynkowa';
+  WP('Bateria umywalkowa' + (i.basin === 'podwojna' ? ' ×2' : ''), pod ? 'bat_umyw_pod' : 'bat_umyw_nat', i.basin === 'podwojna' ? 2 : 1);
+  if (i.shower !== 'none') WP('Zestaw prysznicowy / bateria', pod ? 'bat_prysz_pod' : 'bat_prysz_nat');
+  if (i.bath !== 'none') WP('Bateria wannowa', pod ? 'bat_prysz_pod' : 'bat_prysz_nat');
+  if (i.bidet) WP('Bateria bidetowa', 'bat_umyw_nat');
+  if (ex.grzejnik) WP('Grzejnik drabinkowy', 'grzejnik');
+  if (ex.lustro) WP('Lustro LED', 'lustro');
+  if (ex.wentylator) WP('Wentylator z higrostatem', 'wentylator');
+  if (ex.drzwi) WP('Drzwi z ościeżnicą i klamką', 'drzwi');
+
+  function sum(a){ var s = 0; for (var k = 0; k < a.length; k++) s += a[k][1]; return s; }
+  var sRob = sum(rob), sMat = sum(mat), sWyp = sum(wyp);
+  var net = sRob + sMat + sWyp;
+
+  return {
+    area: S, perim: perim, wallArea: wallArea, tiled: tiled,
+    pWod: pWod, pEl: pEl,
+    items: { robocizna: rob, materialy: mat, wyposazenie: wyp },
+    net: { robocizna: sRob, materialy: sMat, wyposazenie: sWyp, total: net },
+    gross: { robocizna: sRob*(1+P.vat), materialy: sMat*(1+P.vat), wyposazenie: sWyp*(1+P.vat), total: net*(1+P.vat) },
+    range: { netLo: net*P.spread.lo, netHi: net*P.spread.hi,
+             grossLo: net*(1+P.vat)*P.spread.lo, grossHi: net*(1+P.vat)*P.spread.hi },
+    perM2: { net: net/S, gross: net*(1+P.vat)/S }
+  };
+}
+/*ENGINE-END*/
+
+/* ======================= UI ======================= */
+(function(){
+  'use strict';
+  var $ = function(s){ return document.querySelector(s); };
+  /* Intl bywa okrojony w starszych WebView (Android Go, stare Samsung Internet).
+     Bez zabezpieczenia konstruktor rzuca wyjatkiem i cały kalkulator przestaje
+     dzialac, wiec trzymamy wlasny formater z tym samym separatorem (U+00A0). */
+  var nIntl = null;
+  try { nIntl = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 0 }); } catch (e) { nIntl = null; }
+  function groupPl(v){
+    var s = String(Math.abs(Math.round(v))), o = '', c = 0;
+    /* pl-PL nie oddziela tysiecy w liczbach czterocyfrowych: 5540, ale 15 540 */
+    if (s.length < 5) return (v < 0 ? '-' : '') + s;
+    for (var i = s.length - 1; i >= 0; i--){
+      o = s.charAt(i) + o;
+      if (++c % 3 === 0 && i > 0) o = '\u00A0' + o;
+    }
+    return (v < 0 ? '-' : '') + o;
+  }
+  var fmt = { format: function(v){ return nIntl ? nIntl.format(v) : groupPl(v); } };
+  function dec1(v){ return (Math.round(v * 10) / 10).toFixed(1).replace('.', ','); }
+  function decPl(v){ return String(v).replace('.', ','); }
+  var zl = function(v){ return fmt.format(Math.round(v/50)*50) + ' zł'; };
+  var zlp = function(v){ return fmt.format(Math.round(v)) + ' zł'; };
+
+  function chips(host, name, obj, def, cls){
+    var h = '';
+    var keys = Object.keys(obj);
+    for (var n = 0; n < keys.length; n++){
+      var k = keys[n], o = obj[k];
+      h += '<label class="opt"><input type="radio" name="' + name + '" value="' + k + '"' + (k === def ? ' checked' : '') + '>' +
+           '<span>' + o.t + (o.d ? '<small>' + o.d + '</small>' : '') + '</span></label>';
+    }
+    var el = $(host); el.innerHTML = h; if (cls) el.className = 'opts ' + cls;
+  }
+  function simpleChips(host, name, arr, def){
+    var h = '';
+    for (var n = 0; n < arr.length; n++)
+      h += '<label class="opt"><input type="radio" name="' + name + '" value="' + arr[n][0] + '"' +
+           (String(arr[n][0]) === String(def) ? ' checked' : '') + '><span>' + arr[n][1] + '</span></label>';
+    $(host).innerHTML = h;
+  }
+
+  // --- budowa formularza ---
+  var rs = '';
+  for (var n = 0; n < P.regions.length; n++)
+    rs += '<option value="' + P.regions[n][0] + '"' + (P.regions[n][0] === 'mazowieckie' ? ' selected' : '') + '>' + P.regions[n][1] + '</option>';
+  $('#region').innerHTML = rs;
+
+  chips('#variantOpts',    'variant',    P.variants, 'stara_pelny');
+  chips('#buildingOpts',   'building',   P.buildings, 'blok_nowy', 'c2');
+  chips('#scopeOpts',      'tileScope',  P.scope, 'full');
+  chips('#showerOpts',     'shower',     P.showers, 'kabina');
+  chips('#bathOpts',       'bath',       P.baths, 'none');
+  chips('#basinOpts',      'basin',      P.basins, 'z_szafka', 'c2');
+  chips('#wcOpts',         'wc',         P.wcs, 'podwieszane');
+  chips('#faucetOpts',     'faucet',     P.faucets, 'natynkowa', 'c2');
+  chips('#tileTypeOpts',   'tileType',   P.tiles, 'gres_szkl', 'c2');
+  chips('#tileFormatOpts', 'tileFormat', P.formats, 'standard', 'c2');
+  chips('#stdOpts',        'standard',   P.stds, 'standard');
+  simpleChips('#winOpts',  'windows', [[0,'Brak'],[1,'1 okno'],[2,'2 okna']], 0);
+  simpleChips('#doorOpts', 'doors',   [[1,'1 szt.'],[2,'2 szt.']], 1);
+  simpleChips('#mosaicOpts','mosaic', [[0,'Brak'],[2,'ok. 2 m²'],[4,'ok. 4 m²']], 0);
+
+  var eh = '', ek = Object.keys(P.extras), pre = { pralka:1, wentylator:1 };
+  for (var q = 0; q < ek.length; q++){
+    var e = P.extras[ek[q]];
+    eh += '<label class="opt chk"><input type="checkbox" name="ex_' + ek[q] + '"' + (pre[ek[q]] ? ' checked' : '') + '>' +
+          '<span>' + e.t + '<small>' + e.d + '</small></span></label>';
+  }
+  $('#extraOpts').innerHTML = eh;
+
+  // --- metraż: suwak + stepper ---
+  var area = $('#area'), areaN = $('#areaN'), areaOut = $('#areaOut');
+  function paintRange(){
+    var p = (area.value - area.min) / (area.max - area.min) * 100;
+    area.style.setProperty('--p', p + '%');
+    areaOut.textContent = dec1(+area.value) + ' m²';
+  }
+  function setArea(v, from){
+    v = Math.min(25, Math.max(2, Math.round(v * 2) / 2));
+    area.value = v; if (from !== 'n') areaN.value = v;
+    paintRange(); calc();
+  }
+  area.addEventListener('input', function(){ setArea(+area.value); });
+  areaN.addEventListener('input', function(){ if (areaN.value !== '') setArea(+areaN.value, 'n'); });
+  areaN.addEventListener('blur', function(){ setArea(+areaN.value || 5); });
+  var steps = document.querySelectorAll('[data-step]');
+  for (var s = 0; s < steps.length; s++)
+    steps[s].addEventListener('click', function(){ setArea(+area.value + parseFloat(this.getAttribute('data-d'))); });
+
+  // --- odczyt formularza ---
+  function val(name){ var el = document.querySelector('[name="' + name + '"]:checked'); return el ? el.value : null; }
+  function read(){
+    var ex = {}, ek2 = Object.keys(P.extras);
+    for (var z = 0; z < ek2.length; z++){
+      var c = document.querySelector('[name="ex_' + ek2[z] + '"]');
+      ex[ek2[z]] = !!(c && c.checked);
+    }
+    return {
+      region: $('#region').value, bigCity: $('#bigCity').checked,
+      variant: val('variant'), building: val('building'),
+      area: +area.value, height: +$('#height').value, tileScope: val('tileScope'),
+      windows: +val('windows'), doors: +val('doors'),
+      shower: val('shower'), bath: val('bath'), basin: val('basin'),
+      wc: val('wc'), faucet: val('faucet'), bidet: document.querySelector('[name="bidet"]').checked,
+      tileType: val('tileType'), tileFormat: val('tileFormat'), mosaic: +val('mosaic'),
+      standard: val('standard'), extras: ex
+    };
+  }
+
+  // --- render wyniku ---
+  var last = null;
+  var vatMode = 'brutto';           // jawny, jedyny zrodlo prawdy dla brutto/netto
+  function render(r){
+    var brutto = vatMode !== 'netto';
+    var v = brutto ? r.gross : r.net;
+    var lo = brutto ? r.range.grossLo : r.range.netLo;
+    var hi = brutto ? r.range.grossHi : r.range.netHi;
+    var pm = brutto ? r.perM2.gross : r.perM2.net;
+
+    $('#rLo').textContent = fmt.format(Math.round(lo/100)*100);
+    $('#rHi').textContent = zl(hi);
+    $('#rPm').textContent = zl(pm);
+    $('#rSub').textContent = 'Łazienka ' + decPl(r.area) + ' m² · ' +
+      r.wallArea.toFixed(1).replace('.', ',') + ' m² płytek na ścianach · ' +
+      r.pWod + ' pkt wod-kan · ' + r.pEl + ' pkt elektrycznych · ceny ' + (brutto ? 'brutto (VAT 8%)' : 'netto');
+    $('#sVal').textContent = zl(lo) + ' – ' + zl(hi);
+
+    var mx = Math.max(v.robocizna, v.materialy, v.wyposazenie) || 1;
+    $('#vRob').textContent = zl(v.robocizna); $('#bRob').style.width = (v.robocizna / mx * 100) + '%';
+    $('#vMat').textContent = zl(v.materialy); $('#bMat').style.width = (v.materialy / mx * 100) + '%';
+    $('#vWyp').textContent = zl(v.wyposazenie); $('#bWyp').style.width = (v.wyposazenie / mx * 100) + '%';
+
+    var k = 1 + (brutto ? P.vat : 0), h = '';
+    var groups = [['Robocizna', r.items.robocizna], ['Materiały budowlane', r.items.materialy], ['Wyposażenie', r.items.wyposazenie]];
+    for (var g = 0; g < groups.length; g++){
+      if (!groups[g][1].length) continue;
+      h += '<div class="grp">' + groups[g][0] + '</div>';
+      for (var x = 0; x < groups[g][1].length; x++)
+        h += '<div class="li"><span>' + groups[g][1][x][0] + '</span><b>' + zlp(groups[g][1][x][1] * k) + '</b></div>';
+    }
+    h += '<div class="grp">Razem</div><div class="li"><span>Wartość środkowa szacunku</span><b>' + zlp(v.total) + '</b></div>';
+    $('#kosz').innerHTML = h;
+  }
+  /* ---------- SPOJNOSC: wariant remontu  <->  typ budynku ------------------
+     „Nowa lazienka - stan deweloperski" oraz „Nowy dom - stan surowy zamkniety"
+     dotycza wylacznie rynku pierwotnego. Chipy niepasujace do wariantu sa
+     ukrywane i wylaczane (disabled), a jesli aktualny wybor przestal byc
+     dopuszczalny - przelaczamy na jedyna sensowna opcje. Filtr uruchamiany
+     jest wewnatrz calc(), wiec dziala niezaleznie od kolejnosci listenerow
+     i nie da sie go ominac ani programowo, ani cofnieciem w historii. */
+  var buildingHost = $('#buildingOpts'), buildingHint = $('#buildingHint');
+  var soloHint = {
+    deweloper:  'Stan deweloperski to rynek pierwotny — typ budynku ustawiany automatycznie.',
+    dom_surowy: 'Stan surowy zamknięty dotyczy wyłącznie domu jednorodzinnego.'
+  };
+  function syncBuildings(){
+    var v = val('variant') || 'stara_pelny';
+    var allow = P.buildingsFor[v] || Object.keys(P.buildings);
+    var inputs = document.querySelectorAll('[name="building"]');
+    var cur = val('building'), keep = false;
+    for (var i = 0; i < inputs.length; i++){
+      var on = allow.indexOf(inputs[i].value) > -1;
+      inputs[i].parentNode.hidden = !on;
+      inputs[i].disabled = !on;
+      if (!on) inputs[i].checked = false;
+      else if (inputs[i].value === cur) keep = true;
+    }
+    if (!keep){
+      var pick = document.querySelector('[name="building"][value="' + allow[0] + '"]');
+      if (pick) pick.checked = true;
+    }
+    var solo = allow.length === 1;
+    buildingHost.className = solo ? 'opts' : 'opts c2';
+    buildingHint.textContent = solo ? (soloHint[v] || '') : '';
+    buildingHint.hidden = !solo;
+  }
+
+  function calc(){ syncBuildings(); last = computeEstimate(read()); render(last); }
+
+  $('#f').addEventListener('change', calc);
+  $('#f').addEventListener('input', function(e){ if (e.target.type !== 'range') calc(); });
+
+  /* ---------- PRZELACZNIK BRUTTO / NETTO ----------------------------------
+     Przyczyna dawnego "losowego" dzialania na telefonie:
+     ukryte <input type="radio"> mialy position:absolute, ale ZADEN przodek
+     (label / .vat-tog / .res-card / #result) nie mial position:relative.
+     Blok zawierajacy = initial containing block, wiec pola 1x1 px ladowaly
+     w LEWYM GORNYM ROGU DOKUMENTU (w obszarze hero). Tapniecie w etykiete
+     nadawalo focus polu oddalonemu o kilka tysiecy pikseli, a przegladarka
+     mobilna przewijala do niego strone -> ekran skakal na gore, uzytkownik
+     nie widzial zmiany, tapal ponownie i wartosc wracala.
+     Dodatkowo te pola byly klikalne (brak pointer-events:none), wiec tap
+     w lewy gorny rog hero potrafil przelaczyc tryb "sam z siebie".
+
+     Teraz: zwykle <button> z jawnym stanem vatMode. Brak ukrytych pol,
+     brak zaleznosci od powiazania label<->input, brak skokow scrolla,
+     jedno zdarzenie 'click' (bez duplikatu touchstart/touchend). */
+  var vatTog = $('#vatTog');
+  var vatBtns = vatTog.querySelectorAll('.vat-btn');
+
+  function vatTarget(el){
+    while (el && el !== vatTog){
+      if (el.classList && el.classList.contains('vat-btn')) return el;
+      el = el.parentNode;
+    }
+    return null;
+  }
+  function setVat(mode, moveFocus){
+    if (mode !== 'brutto' && mode !== 'netto') return;
+    vatMode = mode;
+    for (var i = 0; i < vatBtns.length; i++){
+      var on = vatBtns[i].getAttribute('data-vat') === mode;
+      vatBtns[i].setAttribute('aria-checked', on ? 'true' : 'false');
+      vatBtns[i].tabIndex = on ? 0 : -1;
+      if (on && moveFocus) vatBtns[i].focus();
+    }
+    if (last) render(last);
+  }
+  vatTog.addEventListener('click', function(e){
+    var b = vatTarget(e.target);
+    if (!b) return;
+    e.preventDefault();
+    setVat(b.getAttribute('data-vat'));
+  });
+  vatTog.addEventListener('keydown', function(e){
+    var c = e.keyCode || e.which;
+    var k = e.key || ({ 37:'ArrowLeft', 38:'ArrowUp', 39:'ArrowRight', 40:'ArrowDown' }[c] || '');
+    if (k === 'ArrowLeft' || k === 'ArrowRight' || k === 'ArrowUp' || k === 'ArrowDown'){
+      e.preventDefault();
+      setVat(vatMode === 'brutto' ? 'netto' : 'brutto', true);
+    }
+  });
+  setVat('brutto');
+
+  /* ---------- PASEK Z CTA (fixed na dole) --------------------------------
+     BLAD, ktory tu byl: sentinelem dla IntersectionObserver byl #kalk, czyli
+     caly formularz (ok. 6000 px wysokosci). Observer z threshold 0 odpala sie
+     tylko przy WEJSCIU i WYJSCIU elementu z ekranu. Skoro formularz jest
+     wyzszy niz ekran, po pierwszym wywolaniu (przy starcie, gdy gora formularza
+     jest jeszcze widoczna -> top > 0) callback nie odpalal sie juz nigdy.
+     Efekt: warunek "jestem ponizej formularza" na stale false, a pasek z CTA
+     NIGDY sie nie pokazywal - na zadnej przegladarce. Potwierdzone pomiarem
+     w silniku WebKit.
+
+     Poprawka: jedno zrodlo prawdy - pomiar pozycji przy przewijaniu, dlawiony
+     przez requestAnimationFrame, ze sluchaczami pasywnymi. Dziala tak samo
+     wszedzie i nie zalezy od IntersectionObserver (wiec takze na iOS < 12.2). */
+  var st = $('#sticky'), kalkEl = $('#kalk'), resEl = $('#result'), ticking = false;
+  var raf = window.requestAnimationFrame || window.webkitRequestAnimationFrame ||
+            function(f){ return setTimeout(f, 16); };
+  function measure(){
+    ticking = false;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var k = kalkEl.getBoundingClientRect(), r = resEl.getBoundingClientRect();
+    /* pasek pokazujemy po wejsciu w formularz, ale chowamy nad karta wyniku -
+       inaczej zaslania przyciski brutto/netto i przechwytuje tapniecia */
+    var on = k.top < 0 && !(r.top < vh && r.bottom > 0);
+    st.className = on ? 'sticky on' : 'sticky';
+  }
+  function onScroll(){ if (!ticking){ ticking = true; raf(measure); } }
+  var passive = false;
+  try {
+    window.addEventListener('x', null, Object.defineProperty({}, 'passive', {
+      get: function(){ passive = { passive: true }; return true; }
+    }));
+  } catch (err) {}
+  window.addEventListener('scroll', onScroll, passive);
+  window.addEventListener('resize', onScroll, passive);
+  window.addEventListener('orientationchange', onScroll, passive);
+  measure();
+
+  paintRange(); calc();
+})();
+</script>
+<footer class="site-foot">
+  <div class="fl">
+    <a href="index.html">Dla Wykonawców</a>
+    <a href="dla-klientow.html">Dla Klientów</a>
+    <a href="regulamin.html">Regulamin</a>
+    <a href="polityka-prywatnosci.html">Polityka prywatności</a>
+    <a href="polityka-cookies.html">Polityka cookies</a>
+    <a href="mailto:platforma@remontylazienek.com">platforma@remontylazienek.com</a>
+  </div>
+  <p>© 2026 Remonty Łazienek Marketplace. Kalkulator ma charakter poglądowy i nie stanowi oferty w rozumieniu art. 66 §1 Kodeksu cywilnego.</p>
+</footer>
+
+<script>
+(function(){
+  var b=document.getElementById('siteBurger'), m=document.getElementById('siteMob');
+  if(b&&m){b.addEventListener('click',function(){
+    var o=m.classList.toggle('open'); b.setAttribute('aria-expanded',o);
+  });}
+})();
+</script>
+
+</body>
+</html>
