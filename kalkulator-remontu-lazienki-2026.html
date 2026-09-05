@@ -1003,7 +1003,7 @@ function computeEstimate(i){
   // --- budowa formularza ---
   var rs = '';
   for (var n = 0; n < P.regions.length; n++)
-    rs += '<option value="' + P.regions[n][0] + '"' + (P.regions[n][0] === 'mazowieckie' ? ' selected' : '') + '>' + P.regions[n][1] + '</option>';
+    rs += '<option value="' + P.regions[n][0] + '"' + (P.regions[n][0] === 'wielkopolskie' ? ' selected' : '') + '>' + P.regions[n][1] + '</option>';
   $('#region').innerHTML = rs;
 
   chips('#variantOpts',    'variant',    P.variants, 'stara_pelny');
